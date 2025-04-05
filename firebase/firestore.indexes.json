@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "tasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Categoria",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "idDaTask",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
