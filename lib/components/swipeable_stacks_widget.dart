@@ -7,10 +7,7 @@ import 'swipeable_stacks_model.dart';
 export 'swipeable_stacks_model.dart';
 
 class SwipeableStacksWidget extends StatefulWidget {
-  const SwipeableStacksWidget({
-    super.key,
-    this.parameter1,
-  });
+  const SwipeableStacksWidget({super.key, this.parameter1});
 
   final List<TasksRecord>? parameter1;
 
@@ -38,7 +35,6 @@ class _SwipeableStacksWidgetState extends State<SwipeableStacksWidget> {
   @override
   void dispose() {
     _model.maybeDispose();
-
     super.dispose();
   }
 
@@ -49,18 +45,38 @@ class _SwipeableStacksWidgetState extends State<SwipeableStacksWidget> {
         final containerVar = widget.parameter1?.toList() ?? [];
 
         return FlutterFlowSwipeableStack(
-          onSwipeFn: (index) {},
+          onSwipeFn: (index, swipeInfo) {
+            final dx = swipeInfo.offset.dx;
+            final dy = swipeInfo.offset.dy;
+
+            String direction = '';
+
+            if (dx > 0 && dy < 0) {
+              direction = 'topRight';
+            } else if (dx > 0 && dy > 0) {
+              direction = 'bottomRight';
+            } else if (dx < 0 && dy < 0) {
+              direction = 'topLeft';
+            } else if (dx < 0 && dy > 0) {
+              direction = 'bottomLeft';
+            }
+
+            FFAppState().localX = direction;
+          },
+
           onLeftSwipe: (index) {},
           onRightSwipe: (index) {},
           onUpSwipe: (index) {},
           onDownSwipe: (index) {},
+
           itemBuilder: (context, containerVarIndex) {
             final containerVarItem = containerVar[containerVarIndex];
             return Stack(
               children: [
                 SwipeableStackWidget(
                   key: Key(
-                      'Keyxik_${containerVarIndex}_of_${containerVar.length}'),
+                    'Keyxik_${containerVarIndex}_of_${containerVar.length}',
+                  ),
                   parameter3: widget.parameter1,
                 ),
               ],
