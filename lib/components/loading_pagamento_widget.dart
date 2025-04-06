@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'loading_pagamento_model.dart';
 export 'loading_pagamento_model.dart';
 
@@ -75,14 +77,14 @@ class _LoadingPagamentoWidgetState extends State<LoadingPagamentoWidget> {
         child: custom_widgets.StripeCheckoutScreen(
           width: double.infinity,
           height: double.infinity,
-          paymentIntentValue: widget.value!,
+          paymentIntentValue: widget!.value!,
           name: currentUserDisplayName,
           email: currentUserEmail,
           phone: '3399800793',
           city: 'Governador Valadares',
           postalCode: '35032390',
           state: 'Minas Gerais',
-          amount: widget.value!,
+          amount: widget!.value!,
           clientID: valueOrDefault(currentUserDocument?.stripeAccountID, ''),
           country: 'Minas Gerais',
           currency: 'usd',

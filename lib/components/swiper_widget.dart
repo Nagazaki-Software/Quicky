@@ -6,9 +6,13 @@ import '/components/naoexistetaskaqui_widget.dart';
 import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'swiper_model.dart';
 export 'swiper_model.dart';
@@ -80,7 +84,7 @@ class _SwiperWidgetState extends State<SwiperWidget> {
           builder: (context) {
             final containerVar = functions
                 .buscarRegiao(
-                    widget.parameter6!.toList(),
+                    widget!.parameter6!.toList(),
                     currentUserDocument!.location!,
                     50.0,
                     FFAppState().priceFilter.toDouble())
@@ -231,7 +235,7 @@ class _SwiperWidgetState extends State<SwiperWidget> {
               itemCount: containerVar.length,
               controller: _model.swipeableStackController,
               loop: false,
-              cardDisplayCount: widget.parameter5!,
+              cardDisplayCount: widget!.parameter5!,
               scale: 1.0,
               cardPadding: EdgeInsets.all(0.0),
             );

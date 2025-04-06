@@ -5,9 +5,15 @@ import '/flutter_flow/flutter_flow_count_controller.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'count_payment_copy_model.dart';
 export 'count_payment_copy_model.dart';
 
@@ -93,7 +99,7 @@ class _CountPaymentCopyWidgetState extends State<CountPaymentCopyWidget>
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
         child: StreamBuilder<TasksRecord>(
-          stream: TasksRecord.getDocument(widget.task!),
+          stream: TasksRecord.getDocument(widget!.task!),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
