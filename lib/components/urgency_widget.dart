@@ -2,11 +2,7 @@ import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'urgency_model.dart';
 export 'urgency_model.dart';
 
@@ -96,7 +92,7 @@ class _UrgencyWidgetState extends State<UrgencyWidget> {
                     Switch(
                       value: _model.switchValue!,
                       onChanged: (newValue) async {
-                        safeSetState(() => _model.switchValue = newValue!);
+                        safeSetState(() => _model.switchValue = newValue);
                       },
                       activeColor: FlutterFlowTheme.of(context).primary,
                       activeTrackColor:

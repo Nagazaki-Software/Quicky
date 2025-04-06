@@ -1,19 +1,12 @@
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:math';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'fotos_page_view_model.dart';
 export 'fotos_page_view_model.dart';
 
@@ -141,7 +134,7 @@ class _FotosPageViewWidgetState extends State<FotosPageViewWidget>
           alignment: AlignmentDirectional(0.0, 0.0),
           child: Builder(
             builder: (context) {
-              final fotosw = widget!.parameter1?.toList() ?? [];
+              final fotosw = widget.parameter1?.toList() ?? [];
 
               return Container(
                 width: double.infinity,
@@ -173,7 +166,7 @@ class _FotosPageViewWidgetState extends State<FotosPageViewWidget>
                                   onTap: () async {
                                     if (_model.pageViewCurrentIndex ==
                                         functions.quantasNaLista(
-                                            widget!.parameter1!.toList())) {
+                                            widget.parameter1!.toList())) {
                                       await _model.pageViewController
                                           ?.animateToPage(
                                         0,
@@ -274,7 +267,7 @@ class _FotosPageViewWidgetState extends State<FotosPageViewWidget>
                             child: Align(
                               alignment: AlignmentDirectional(-1.0, 1.0),
                               child: Text(
-                                widget!.parameter2!,
+                                widget.parameter2!,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -301,7 +294,7 @@ class _FotosPageViewWidgetState extends State<FotosPageViewWidget>
                                 ConversaWidget.routeName,
                                 queryParameters: {
                                   'chatReference': serializeParam(
-                                    widget!.chat,
+                                    widget.chat,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -357,8 +350,8 @@ class _FotosPageViewWidgetState extends State<FotosPageViewWidget>
                             clipBehavior: Clip.none,
                             children: [
                               if ((_model.pageViewCurrentIndex == 0) &&
-                                  (widget!.parameter3 != null &&
-                                      widget!.parameter3 != ''))
+                                  (widget.parameter3 != null &&
+                                      widget.parameter3 != ''))
                                 Container(
                                   height: 30.0,
                                   decoration: BoxDecoration(
@@ -386,7 +379,7 @@ class _FotosPageViewWidgetState extends State<FotosPageViewWidget>
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
                                           child: Text(
-                                            widget!.parameter3!,
+                                            widget.parameter3!,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -431,7 +424,7 @@ class _FotosPageViewWidgetState extends State<FotosPageViewWidget>
                                             alignment:
                                                 AlignmentDirectional(0.0, 0.0),
                                             child: Text(
-                                              widget!.parameter4!,
+                                              widget.parameter4!,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -483,8 +476,8 @@ class _FotosPageViewWidgetState extends State<FotosPageViewWidget>
                                 ).animateOnPageLoad(animationsMap[
                                     'containerOnPageLoadAnimation3']!),
                               if ((_model.pageViewCurrentIndex == 1) &&
-                                  (widget!.parameter5 != null &&
-                                      widget!.parameter5 != ''))
+                                  (widget.parameter5 != null &&
+                                      widget.parameter5 != ''))
                                 Container(
                                   height: 30.0,
                                   decoration: BoxDecoration(
@@ -512,7 +505,7 @@ class _FotosPageViewWidgetState extends State<FotosPageViewWidget>
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
                                           child: Text(
-                                            widget!.parameter5!,
+                                            widget.parameter5!,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -527,8 +520,8 @@ class _FotosPageViewWidgetState extends State<FotosPageViewWidget>
                                 ).animateOnPageLoad(animationsMap[
                                     'containerOnPageLoadAnimation4']!),
                               if ((_model.pageViewCurrentIndex == 1) &&
-                                  (widget!.parameter6 != null &&
-                                      widget!.parameter6 != ''))
+                                  (widget.parameter6 != null &&
+                                      widget.parameter6 != ''))
                                 Container(
                                   height: 30.0,
                                   decoration: BoxDecoration(
@@ -558,7 +551,7 @@ class _FotosPageViewWidgetState extends State<FotosPageViewWidget>
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
                                           child: Text(
-                                            widget!.parameter6!,
+                                            widget.parameter6!,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(

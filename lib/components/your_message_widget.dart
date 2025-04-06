@@ -2,12 +2,8 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'your_message_model.dart';
 export 'your_message_model.dart';
 
@@ -53,7 +49,7 @@ class _YourMessageWidgetState extends State<YourMessageWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<ChatHistoryRecord>>(
       stream: queryChatHistoryRecord(
-        parent: widget!.chat,
+        parent: widget.chat,
         singleRecord: true,
       ),
       builder: (context, snapshot) {
@@ -100,7 +96,7 @@ class _YourMessageWidgetState extends State<YourMessageWidget> {
                         padding: EdgeInsets.all(8.0),
                         child: Text(
                           valueOrDefault<String>(
-                            rowChatHistoryRecord?.msg,
+                            rowChatHistoryRecord.msg,
                             'err',
                           ),
                           style:

@@ -6,13 +6,8 @@ import '/components/hobbys_widget.dart';
 import '/components/nav_bar_homes_copy_copy2_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'teladeeditarperfil_copy2_model.dart';
 export 'teladeeditarperfil_copy2_model.dart';
 
@@ -221,10 +216,6 @@ class _TeladeeditarperfilCopy2WidgetState
                                     if (valueOrDefault(
                                                 currentUserDocument?.facebook,
                                                 '') !=
-                                            null &&
-                                        valueOrDefault(
-                                                currentUserDocument?.facebook,
-                                                '') !=
                                             '')
                                       AuthUserStreamWidget(
                                         builder: (context) => Container(
@@ -251,10 +242,6 @@ class _TeladeeditarperfilCopy2WidgetState
                                         ),
                                       ),
                                     if (valueOrDefault(
-                                                currentUserDocument?.instagram,
-                                                '') !=
-                                            null &&
-                                        valueOrDefault(
                                                 currentUserDocument?.instagram,
                                                 '') !=
                                             '')
@@ -285,10 +272,6 @@ class _TeladeeditarperfilCopy2WidgetState
                                     if (valueOrDefault(
                                                 currentUserDocument?.twitter,
                                                 '') !=
-                                            null &&
-                                        valueOrDefault(
-                                                currentUserDocument?.twitter,
-                                                '') !=
                                             '')
                                       AuthUserStreamWidget(
                                         builder: (context) => Container(
@@ -317,10 +300,6 @@ class _TeladeeditarperfilCopy2WidgetState
                                         ),
                                       ),
                                     if (valueOrDefault(
-                                                currentUserDocument?.linkedin,
-                                                '') !=
-                                            null &&
-                                        valueOrDefault(
                                                 currentUserDocument?.linkedin,
                                                 '') !=
                                             '')
