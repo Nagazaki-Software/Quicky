@@ -3,10 +3,14 @@ import '/backend/backend.dart';
 import '/components/your_message_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'message_model.dart';
 export 'message_model.dart';
 
@@ -90,16 +94,16 @@ class _MessageWidgetState extends State<MessageWidget> {
                 model: _model.yourMessageModel,
                 updateCallback: () => safeSetState(() {}),
                 child: YourMessageWidget(
-                  message: widget.mensage!,
-                  chat: columnChatHistoryRecord.parentReference,
+                  message: widget!.mensage!,
+                  chat: columnChatHistoryRecord!.parentReference,
                 ),
               ),
             Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                if (columnChatHistoryRecord.documentUser!.id ==
-                    widget.outrousers!.id)
+                if (columnChatHistoryRecord!.documentUser!.id ==
+                    widget!.outrousers!.id)
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
@@ -128,13 +132,13 @@ class _MessageWidgetState extends State<MessageWidget> {
                         ),
                         child: Builder(
                           builder: (context) {
-                            if (columnChatHistoryRecord.documentUser!.id ==
-                                widget.outrousers!.id) {
+                            if (columnChatHistoryRecord!.documentUser!.id ==
+                                widget!.outrousers!.id) {
                               return Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    columnChatHistoryRecord.msg,
+                                    columnChatHistoryRecord?.msg,
                                     'ero',
                                   ),
                                   style: FlutterFlowTheme.of(context)

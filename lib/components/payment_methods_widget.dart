@@ -1,11 +1,16 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/stripe/payment_manager.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'payment_methods_model.dart';
 export 'payment_methods_model.dart';
 
@@ -104,7 +109,7 @@ class _PaymentMethodsWidgetState extends State<PaymentMethodsWidget> {
                     builder: (context) => Builder(
                       builder: (context) {
                         final creditcard =
-                            (currentUserDocument?.creditCard.toList() ?? [])
+                            (currentUserDocument?.creditCard?.toList() ?? [])
                                 .toList();
 
                         return ListView.builder(
@@ -316,7 +321,7 @@ class _PaymentMethodsWidgetState extends State<PaymentMethodsWidget> {
                     onPressed: () async {
                       final paymentResponse = await processStripePayment(
                         context,
-                        amount: int.parse(widget.value!),
+                        amount: int.parse(widget!.value!),
                         currency: 'USD',
                         customerEmail: currentUserEmail,
                         customerName: currentUserDisplayName,

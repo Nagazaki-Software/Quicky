@@ -5,7 +5,14 @@ import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/place.dart';
+import 'dart:io';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'placepicker_location_model.dart';
 export 'placepicker_location_model.dart';
 
@@ -77,42 +84,44 @@ class _PlacepickerLocationWidgetState extends State<PlacepickerLocationWidget> {
                       letterSpacing: 0.0,
                     ),
               ),
-              Container(
-                width: double.infinity,
-                height: 200.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).alternate,
-                  borderRadius: BorderRadius.circular(8.0),
+              if (_model.placePickerValue.latLng != null)
+                Container(
+                  width: double.infinity,
+                  height: 200.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).alternate,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Builder(builder: (context) {
+                    final _googleMapMarker = _model.placePickerValue.latLng;
+                    return FlutterFlowGoogleMap(
+                      controller: _model.googleMapsController,
+                      onCameraIdle: (latLng) =>
+                          _model.googleMapsCenter = latLng,
+                      initialLocation: _model.googleMapsCenter ??=
+                          LatLng(13.106061, -59.613158),
+                      markers: [
+                        if (_googleMapMarker != null)
+                          FlutterFlowMarker(
+                            _googleMapMarker.serialize(),
+                            _googleMapMarker,
+                          ),
+                      ],
+                      markerColor: GoogleMarkerColor.magenta,
+                      mapType: MapType.normal,
+                      style: GoogleMapStyle.standard,
+                      initialZoom: 14.0,
+                      allowInteraction: true,
+                      allowZoom: true,
+                      showZoomControls: true,
+                      showLocation: true,
+                      showCompass: false,
+                      showMapToolbar: false,
+                      showTraffic: false,
+                      centerMapOnMarkerTap: true,
+                    );
+                  }),
                 ),
-                child: Builder(builder: (context) {
-                  final _googleMapMarker = _model.placePickerValue.latLng;
-                  return FlutterFlowGoogleMap(
-                    controller: _model.googleMapsController,
-                    onCameraIdle: (latLng) =>
-                        _model.googleMapsCenter = latLng,
-                    initialLocation: _model.googleMapsCenter ??=
-                        LatLng(13.106061, -59.613158),
-                    markers: [
-                      FlutterFlowMarker(
-                        _googleMapMarker.serialize(),
-                        _googleMapMarker,
-                      ),
-                    ],
-                    markerColor: GoogleMarkerColor.magenta,
-                    mapType: MapType.normal,
-                    style: GoogleMapStyle.standard,
-                    initialZoom: 14.0,
-                    allowInteraction: true,
-                    allowZoom: true,
-                    showZoomControls: true,
-                    showLocation: true,
-                    showCompass: false,
-                    showMapToolbar: false,
-                    showTraffic: false,
-                    centerMapOnMarkerTap: true,
-                  );
-                }),
-              ),
               FlutterFlowPlacePicker(
                 iOSGoogleMapsApiKey: 'AIzaSyCFBfcNHFg97sM7EhKnAP4OHIoY3Q8Y_xQ',
                 androidGoogleMapsApiKey:

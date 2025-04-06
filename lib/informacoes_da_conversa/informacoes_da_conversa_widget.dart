@@ -2,8 +2,13 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'informacoes_da_conversa_model.dart';
 export 'informacoes_da_conversa_model.dart';
 
@@ -50,7 +55,7 @@ class _InformacoesDaConversaWidgetState
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<ChatRecord>(
-      future: ChatRecord.getDocumentOnce(widget.chatReference!),
+      future: ChatRecord.getDocumentOnce(widget!.chatReference!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -463,7 +468,7 @@ class _InformacoesDaConversaWidgetState
                                                             valueOrDefault<
                                                                 String>(
                                                               rowUsersRecord
-                                                                  .displayName,
+                                                                  ?.displayName,
                                                               'a',
                                                             ),
                                                             style: FlutterFlowTheme
@@ -480,7 +485,7 @@ class _InformacoesDaConversaWidgetState
                                                             valueOrDefault<
                                                                 String>(
                                                               rowUsersRecord
-                                                                  .bio,
+                                                                  ?.bio,
                                                               'nada',
                                                             ),
                                                             style: FlutterFlowTheme
@@ -589,7 +594,7 @@ class _InformacoesDaConversaWidgetState
                                                             valueOrDefault<
                                                                 String>(
                                                               rowUsersRecord
-                                                                  .displayName,
+                                                                  ?.displayName,
                                                               'a',
                                                             ),
                                                             style: FlutterFlowTheme
@@ -606,7 +611,7 @@ class _InformacoesDaConversaWidgetState
                                                             valueOrDefault<
                                                                 String>(
                                                               rowUsersRecord
-                                                                  .bio,
+                                                                  ?.bio,
                                                               'nada',
                                                             ),
                                                             style: FlutterFlowTheme
@@ -757,7 +762,7 @@ class _InformacoesDaConversaWidgetState
                                             value: _model.switchValue!,
                                             onChanged: (newValue) async {
                                               safeSetState(() => _model
-                                                  .switchValue = newValue);
+                                                  .switchValue = newValue!);
                                             },
                                             activeColor:
                                                 FlutterFlowTheme.of(context)

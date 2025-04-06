@@ -1,6 +1,10 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'your_msg_model.dart';
 export 'your_msg_model.dart';
 
@@ -66,7 +70,7 @@ class _YourMsgWidgetState extends State<YourMsgWidget> {
                 Align(
                   alignment: AlignmentDirectional(-1.0, -1.0),
                   child: Text(
-                    widget.parameter1!,
+                    widget!.parameter1!,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           color: FlutterFlowTheme.of(context).primaryBackground,
@@ -78,7 +82,7 @@ class _YourMsgWidgetState extends State<YourMsgWidget> {
                   alignment: AlignmentDirectional(1.0, 1.0),
                   child: Text(
                     valueOrDefault<String>(
-                      widget.parameter2,
+                      widget!.parameter2,
                       'S',
                     ),
                     textAlign: TextAlign.end,
