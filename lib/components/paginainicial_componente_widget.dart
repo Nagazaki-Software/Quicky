@@ -4,16 +4,20 @@ import '/components/allfilters_widget.dart';
 import '/components/chooseyourcategoy_copy_widget.dart';
 import '/components/filter_distance_widget.dart';
 import '/components/pricefilter_widget.dart';
-import '/components/swipeable_stacks_widget.dart';
+import '/components/swipeable_stack_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
+import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'paginainicial_componente_model.dart';
 export 'paginainicial_componente_model.dart';
@@ -347,7 +351,8 @@ class _PaginainicialComponenteWidgetState
                       queryBuilder: (tasksRecord) => tasksRecord.where(
                         'Categoria',
                         isEqualTo: () {
-                          if ((FFAppState().filtercategory != '') &&
+                          if ((FFAppState().filtercategory != null &&
+                                  FFAppState().filtercategory != '') &&
                               (FFAppState().filtercategory != 'All')) {
                             return FFAppState().filtercategory;
                           } else if (FFAppState().filtercategory == 'All') {
@@ -358,7 +363,7 @@ class _PaginainicialComponenteWidgetState
                         }(),
                       ).whereNotIn(
                           'idDaTask',
-                          (currentUserDocument?.iDdastasksAceitadas.toList() ??
+                          (currentUserDocument?.iDdastasksAceitadas?.toList() ??
                               [])),
                     ),
                     builder: (context, snapshot) {
@@ -754,45 +759,15 @@ class _PaginainicialComponenteWidgetState
                                 ),
                               ),
                             ),
-                            Draggable<bool>(
-                              data: false,
-                              onDragStarted: () async {
-                                FFAppState().localX = 1.0;
-                                FFAppState().update(() {});
-
-                                safeSetState(() {});
-                              },
-                              onDragUpdate: (details) async {
-                                FFAppState().localX = 1.0;
-                                FFAppState().update(() {});
-
-                                safeSetState(() {});
-                              },
-                              feedback: Material(
-                                type: MaterialType.transparency,
-                                child: wrapWithModel(
-                                  model: _model.swipeableStacksModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: SwipeableStacksWidget(
-                                    parameter1: containerTasksRecordList,
-                                  ),
-                                ),
-                              ),
-                              child: wrapWithModel(
-                                model: _model.swipeableStacksModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: SwipeableStacksWidget(
-                                  parameter1: containerTasksRecordList,
-                                ),
-                              ),
-                            ),
                             Container(
                               width: double.infinity,
                               height: double.infinity,
-                              child: custom_widgets.SwipeableStack(
+                              child: custom_widgets.FlutterCardSwiper(
                                 width: double.infinity,
                                 height: double.infinity,
-                                parameter1: containerTasksRecordList,
+                                widgetDentroDoSwipe: () => SwipeableStackWidget(
+                                  parameter3: containerTasksRecordList,
+                                ),
                               ),
                             ),
                           ],

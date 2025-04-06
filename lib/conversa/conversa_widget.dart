@@ -5,9 +5,14 @@ import '/components/renegociar_proposta_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'conversa_model.dart';
 export 'conversa_model.dart';
 
@@ -53,7 +58,7 @@ class _ConversaWidgetState extends State<ConversaWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<ChatRecord>(
-      stream: ChatRecord.getDocument(widget.chatReference!),
+      stream: ChatRecord.getDocument(widget!.chatReference!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -302,7 +307,7 @@ class _ConversaWidgetState extends State<ConversaWidget> {
                             stream: _model.queryConversa(
                               uniqueQueryKey: conversaChatRecord.reference.id,
                               requestFn: () => queryChatHistoryRecord(
-                                parent: widget.chatReference,
+                                parent: widget!.chatReference,
                                 queryBuilder: (chatHistoryRecord) =>
                                     chatHistoryRecord.orderBy('horario'),
                               ),
@@ -392,7 +397,7 @@ class _ConversaWidgetState extends State<ConversaWidget> {
                                       focusNode: _model.textFieldFocusNode,
                                       onFieldSubmitted: (_) async {
                                         await ChatHistoryRecord.createDoc(
-                                                widget.chatReference!)
+                                                widget!.chatReference!)
                                             .set(createChatHistoryRecordData(
                                           documentUser: currentUserReference,
                                           msg: _model.textController.text,
@@ -400,7 +405,7 @@ class _ConversaWidgetState extends State<ConversaWidget> {
                                           msgdosystema: false,
                                         ));
 
-                                        await widget.chatReference!
+                                        await widget!.chatReference!
                                             .update(createChatRecordData(
                                           ultimaMsg: getCurrentTimestamp,
                                           ultMsg: _model.textController.text,
@@ -479,7 +484,7 @@ class _ConversaWidgetState extends State<ConversaWidget> {
                                             child: RenegociarPropostaWidget(
                                               task: columnTasksRecord.reference,
                                               chatReference:
-                                                  widget.chatReference!,
+                                                  widget!.chatReference!,
                                             ),
                                           ),
                                         );

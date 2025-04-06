@@ -1,6 +1,11 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'teladeeditarperfil_copy_model.dart';
 export 'teladeeditarperfil_copy_model.dart';
 
@@ -556,7 +561,7 @@ class _TeladeeditarperfilCopyWidgetState
                                   value: _model.switchValue!,
                                   onChanged: (newValue) async {
                                     safeSetState(
-                                        () => _model.switchValue = newValue);
+                                        () => _model.switchValue = newValue!);
                                   },
                                   activeColor:
                                       FlutterFlowTheme.of(context).accent4,

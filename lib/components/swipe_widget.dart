@@ -6,9 +6,13 @@ import '/components/naoexistetaskaqui_widget.dart';
 import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'swipe_model.dart';
 export 'swipe_model.dart';
@@ -65,7 +69,8 @@ class _SwipeWidgetState extends State<SwipeWidget> {
               queryBuilder: (tasksRecord) => tasksRecord.where(
                 'Categoria',
                 isEqualTo: () {
-                  if ((FFAppState().filtercategory != '') &&
+                  if ((FFAppState().filtercategory != null &&
+                          FFAppState().filtercategory != '') &&
                       (FFAppState().filtercategory != 'All')) {
                     return FFAppState().filtercategory;
                   } else if (FFAppState().filtercategory == 'All') {
@@ -75,7 +80,7 @@ class _SwipeWidgetState extends State<SwipeWidget> {
                   }
                 }(),
               ).whereNotIn('idDaTask',
-                  (currentUserDocument?.iDdastasksAceitadas.toList() ?? [])),
+                  (currentUserDocument?.iDdastasksAceitadas?.toList() ?? [])),
             ),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
