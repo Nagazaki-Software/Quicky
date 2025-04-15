@@ -3,20 +3,14 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:math';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'image_page_view_inicio_model.dart';
 export 'image_page_view_inicio_model.dart';
 
@@ -248,7 +242,7 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                       alignment:
                                           AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
-                                        widget!.parameter1!,
+                                        widget.parameter1!,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -288,7 +282,7 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                         alignment:
                                             AlignmentDirectional(0.0, 0.0),
                                         child: Text(
-                                          '\$ ${widget!.parameter6}',
+                                          '\$ ${widget.parameter6}',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -319,7 +313,7 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                     Builder(
                                       builder: (context) {
                                         final photos =
-                                            widget!.parameter5?.toList() ?? [];
+                                            widget.parameter5?.toList() ?? [];
 
                                         return Container(
                                           width: double.infinity,
@@ -355,7 +349,7 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                                       if (_model
                                                               .pageViewCurrentIndex ==
                                                           functions.quantasNaLista(
-                                                              widget!
+                                                              widget
                                                                   .parameter5!
                                                                   .toList())) {
                                                         await _model
@@ -491,8 +485,8 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      if (widget!.parameter7 != null &&
-                          widget!.parameter7 != '')
+                      if (widget.parameter7 != null &&
+                          widget.parameter7 != '')
                         Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -524,7 +518,7 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                         alignment:
                                             AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
-                                          widget!.parameter7!,
+                                          widget.parameter7!,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -547,7 +541,7 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                           TaskWidget.routeName,
                                           queryParameters: {
                                             'task': serializeParam(
-                                              widget!.parameter2,
+                                              widget.parameter2,
                                               ParamType.DocumentReference,
                                             ),
                                           }.withoutNulls,
@@ -601,8 +595,8 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                               VerticalDirection.down,
                                           clipBehavior: Clip.none,
                                           children: [
-                                            if (widget!.parameter9 != null &&
-                                                widget!.parameter9 != '')
+                                            if (widget.parameter9 != null &&
+                                                widget.parameter9 != '')
                                               Container(
                                                 height: 30.0,
                                                 decoration: BoxDecoration(
@@ -646,7 +640,7 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                                             AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
-                                                          widget!.parameter9!,
+                                                          widget.parameter9!,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -666,8 +660,8 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                                 ),
                                               ).animateOnPageLoad(animationsMap[
                                                   'containerOnPageLoadAnimation2']!),
-                                            if (widget!.parameter10 != null &&
-                                                widget!.parameter10 != '')
+                                            if (widget.parameter10 != null &&
+                                                widget.parameter10 != '')
                                               Container(
                                                 height: 30.0,
                                                 decoration: BoxDecoration(
@@ -713,7 +707,7 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                                             AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
-                                                          widget!.parameter10!,
+                                                          widget.parameter10!,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -771,8 +765,8 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                               ),
                                             ).animateOnPageLoad(animationsMap[
                                                 'containerOnPageLoadAnimation4']!),
-                                            if (widget!.parameter11 != null &&
-                                                widget!.parameter11 != '')
+                                            if (widget.parameter11 != null &&
+                                                widget.parameter11 != '')
                                               Container(
                                                 height: 30.0,
                                                 decoration: BoxDecoration(
@@ -818,7 +812,7 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                                             AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
-                                                          widget!.parameter11!,
+                                                          widget.parameter11!,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -838,8 +832,8 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                                 ),
                                               ).animateOnPageLoad(animationsMap[
                                                   'containerOnPageLoadAnimation5']!),
-                                            if (widget!.parameter12 != null &&
-                                                widget!.parameter12 != '')
+                                            if (widget.parameter12 != null &&
+                                                widget.parameter12 != '')
                                               Container(
                                                 height: 30.0,
                                                 decoration: BoxDecoration(
@@ -885,7 +879,7 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                                             AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
-                                                          widget!.parameter12!,
+                                                          widget.parameter12!,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -936,7 +930,7 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                           padding: EdgeInsets.all(12.0),
                           child: FutureBuilder<UsersRecord>(
                             future: UsersRecord.getDocumentOnce(
-                                widget!.parameter13!),
+                                widget.parameter13!),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
                               if (!snapshot.hasData) {
@@ -1045,11 +1039,6 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                                             currentUserDocument
                                                                 ?.facebook,
                                                             '') !=
-                                                        null &&
-                                                    valueOrDefault(
-                                                            currentUserDocument
-                                                                ?.facebook,
-                                                            '') !=
                                                         '')
                                                   AuthUserStreamWidget(
                                                     builder: (context) =>
@@ -1084,8 +1073,6 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                                     ),
                                                   ),
                                                 if (rowUsersRecord.instagram !=
-                                                        null &&
-                                                    rowUsersRecord.instagram !=
                                                         '')
                                                   Container(
                                                     width: 23.0,
@@ -1115,8 +1102,6 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                                     ),
                                                   ),
                                                 if (rowUsersRecord.twitter !=
-                                                        null &&
-                                                    rowUsersRecord.twitter !=
                                                         '')
                                                   Container(
                                                     width: 23.0,
@@ -1147,8 +1132,6 @@ class _ImagePageViewInicioWidgetState extends State<ImagePageViewInicioWidget>
                                                     ),
                                                   ),
                                                 if (rowUsersRecord.linkedin !=
-                                                        null &&
-                                                    rowUsersRecord.linkedin !=
                                                         '')
                                                   Container(
                                                     width: 23.0,

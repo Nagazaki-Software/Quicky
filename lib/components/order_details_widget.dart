@@ -2,12 +2,8 @@ import '/components/payment_methods_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'order_details_model.dart';
 export 'order_details_model.dart';
 
@@ -178,7 +174,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      widget!.img!,
+                                      widget.img!,
                                       width: 60.0,
                                       height: 60.0,
                                       fit: BoxFit.cover,
@@ -191,7 +187,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                   children: [
                                     Text(
                                       valueOrDefault<String>(
-                                        widget!.title,
+                                        widget.title,
                                         'Error',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -204,7 +200,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                     ),
                                     Text(
                                       valueOrDefault<String>(
-                                        widget!.category,
+                                        widget.category,
                                         'Error',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -225,7 +221,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                               children: [
                                 Text(
                                   '\$${valueOrDefault<String>(
-                                    widget!.subtotal,
+                                    widget.subtotal,
                                     '0',
                                   )}.00',
                                   style: FlutterFlowTheme.of(context)
@@ -275,7 +271,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                               ),
                               Text(
                                 valueOrDefault<String>(
-                                  '\$${functions.formatStringInter(widget!.subtotal).toString()}.00',
+                                  '\$${functions.formatStringInter(widget.subtotal).toString()}.00',
                                   '\$0',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -288,7 +284,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                             ],
                           ),
                         ),
-                        if (widget!.switchUrgency)
+                        if (widget.switchUrgency)
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 1.0, 0.0, 1.0, 0.0),
@@ -307,7 +303,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                 ),
                                 Text(
                                   '\$${functions.formatStringInter(valueOrDefault<String>(
-                                        widget!.taxaDeUrgencia,
+                                        widget.taxaDeUrgencia,
                                         '0',
                                       )).toString()}.00',
                                   style: FlutterFlowTheme.of(context)
@@ -320,7 +316,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                               ],
                             ),
                           ),
-                        if (widget!.switchUrgency)
+                        if (widget.switchUrgency)
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 1.0, 0.0, 1.0, 0.0),
@@ -347,8 +343,8 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                                   valueOrDefault<String>(
                                                 functions
                                                     .somatoriaSimples(
-                                                        widget!.taxaDeUrgencia,
-                                                        widget!.subtotal)
+                                                        widget.taxaDeUrgencia,
+                                                        widget.subtotal)
                                                     .toString(),
                                                 '0',
                                               ))
@@ -368,7 +364,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                               ],
                             ),
                           ),
-                        if (!widget!.switchUrgency)
+                        if (!widget.switchUrgency)
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 1.0, 0.0, 1.0, 0.0),
@@ -390,7 +386,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                     functions
                                         .diferencaPorcentagem(
                                             valueOrDefault<String>(
-                                          widget!.subtotal,
+                                          widget.subtotal,
                                           '0',
                                         ))
                                         .toString(),
@@ -415,7 +411,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                             ),
                           ),
                         ),
-                        if (widget!.switchUrgency)
+                        if (widget.switchUrgency)
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 1.0, 0.0, 1.0, 0.0),
@@ -440,8 +436,8 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                             valueOrDefault<String>(
                                           functions
                                               .somatoriaSimples(
-                                                  widget!.taxaDeUrgencia,
-                                                  widget!.subtotal)
+                                                  widget.taxaDeUrgencia,
+                                                  widget.subtotal)
                                               .toString(),
                                           '0',
                                         ))
@@ -459,7 +455,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                               ],
                             ),
                           ),
-                        if (!widget!.switchUrgency)
+                        if (!widget.switchUrgency)
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 1.0, 0.0, 1.0, 0.0),
@@ -480,7 +476,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                 Text(
                                   '\$${valueOrDefault<String>(
                                     functions
-                                        .valorcomporcentagem(widget!.subtotal)
+                                        .valorcomporcentagem(widget.subtotal)
                                         .toString(),
                                     '0',
                                   )}.00',

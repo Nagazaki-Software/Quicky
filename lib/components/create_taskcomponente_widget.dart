@@ -19,20 +19,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/instant_timer.dart';
-import '/flutter_flow/place.dart';
-import 'dart:io';
-import 'dart:math';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'create_taskcomponente_model.dart';
 export 'create_taskcomponente_model.dart';
@@ -619,7 +610,7 @@ class _CreateTaskcomponenteWidgetState extends State<CreateTaskcomponenteWidget>
                                                                           child:
                                                                               Visibility(
                                                                             visible:
-                                                                                phorsItem != null && phorsItem != '',
+                                                                                phorsItem != '',
                                                                             child:
                                                                                 Align(
                                                                               alignment: AlignmentDirectional(0.0, 0.0),
@@ -1088,8 +1079,6 @@ class _CreateTaskcomponenteWidgetState extends State<CreateTaskcomponenteWidget>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             if (_model.placePickerValue.name !=
-                                                    null &&
-                                                _model.placePickerValue.name !=
                                                     '')
                                               Container(
                                                 width:
@@ -1123,13 +1112,11 @@ class _CreateTaskcomponenteWidgetState extends State<CreateTaskcomponenteWidget>
                                                             LatLng(13.106061,
                                                                 -59.613158),
                                                         markers: [
-                                                          if (_googleMapMarker !=
-                                                              null)
-                                                            FlutterFlowMarker(
-                                                              _googleMapMarker
-                                                                  .serialize(),
-                                                              _googleMapMarker,
-                                                            ),
+                                                          FlutterFlowMarker(
+                                                            _googleMapMarker
+                                                                .serialize(),
+                                                            _googleMapMarker,
+                                                          ),
                                                         ],
                                                         markerColor:
                                                             GoogleMarkerColor
@@ -1153,8 +1140,6 @@ class _CreateTaskcomponenteWidgetState extends State<CreateTaskcomponenteWidget>
                                                 ),
                                               ),
                                             if (_model.placePickerValue.name ==
-                                                    null ||
-                                                _model.placePickerValue.name ==
                                                     '')
                                               FlutterFlowPlacePicker(
                                                 iOSGoogleMapsApiKey:
@@ -2237,7 +2222,7 @@ class _CreateTaskcomponenteWidgetState extends State<CreateTaskcomponenteWidget>
                                                           (newValue) async {
                                                         safeSetState(() =>
                                                             _model.switchValue =
-                                                                newValue!);
+                                                                newValue);
                                                       },
                                                       activeColor:
                                                           FlutterFlowTheme.of(
@@ -2820,7 +2805,7 @@ class _CreateTaskcomponenteWidgetState extends State<CreateTaskcomponenteWidget>
                                                                                                 verticalDirection: VerticalDirection.down,
                                                                                                 clipBehavior: Clip.none,
                                                                                                 children: [
-                                                                                                  if ((pagesIndex.toString() == '0') && (FFAppState().categoria != null && FFAppState().categoria != ''))
+                                                                                                  if ((pagesIndex.toString() == '0') && (FFAppState().categoria != ''))
                                                                                                     Container(
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
@@ -2856,7 +2841,7 @@ class _CreateTaskcomponenteWidgetState extends State<CreateTaskcomponenteWidget>
                                                                                                         ),
                                                                                                       ),
                                                                                                     ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation2']!),
-                                                                                                  if ((pagesIndex.toString() == '0') && (FFAppState().PresencialRemoto != null && FFAppState().PresencialRemoto != ''))
+                                                                                                  if ((pagesIndex.toString() == '0') && (FFAppState().PresencialRemoto != ''))
                                                                                                     Container(
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(
@@ -2968,7 +2953,7 @@ class _CreateTaskcomponenteWidgetState extends State<CreateTaskcomponenteWidget>
                                                                                                         ),
                                                                                                       ),
                                                                                                     ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation5']!),
-                                                                                                  if ((pagesIndex.toString() == '1') && (FFAppState().NecessaryMaterials != null && FFAppState().NecessaryMaterials != ''))
+                                                                                                  if ((pagesIndex.toString() == '1') && (FFAppState().NecessaryMaterials != ''))
                                                                                                     Container(
                                                                                                       height: 30.0,
                                                                                                       decoration: BoxDecoration(

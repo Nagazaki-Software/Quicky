@@ -17,16 +17,21 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'swipeable_stack_model.dart'; // atualizado para refletir o novo nome
+import 'swipeable_stack_model.dart';
 export 'swipeable_stack_model.dart';
 
 class SwipeableStack extends StatefulWidget {
   const SwipeableStack({
     super.key,
     this.parameter1,
+    this.onSwipeDirectionChange,
   });
 
   final List<TasksRecord>? parameter1;
+
+  /// Direções: 1 = Direita Superior, 2 = Direita Inferior,
+  ///           3 = Esquerda Inferior, 4 = Esquerda Superior
+  final Future<void> Function(int direction)? onSwipeDirectionChange;
 
   @override
   State<SwipeableStack> createState() => _SwipeableStackState();
@@ -55,31 +60,29 @@ class _SwipeableStackState extends State<SwipeableStack> {
     super.dispose();
   }
 
+  Future<void> _handleSwipe(int direction) async {
+    if (widget.onSwipeDirectionChange != null) {
+      await widget.onSwipeDirectionChange!(direction);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final containerVar = widget.parameter1?.toList() ?? [];
 
     return FlutterFlowSwipeableStack(
       onSwipeFn: (index) {},
-      onLeftSwipe: (index) {
-        FFAppState().update(() {
-          FFAppState().localX = 3.0; // ↖ Esquerda Superior
-        });
+      onLeftSwipe: (index) async {
+        await _handleSwipe(4); // Esquerda Superior ↖
       },
-      onRightSwipe: (index) {
-        FFAppState().update(() {
-          FFAppState().localX = 1.0; // ↘ Direita Inferior
-        });
+      onRightSwipe: (index) async {
+        await _handleSwipe(2); // Direita Inferior ↘
       },
-      onUpSwipe: (index) {
-        FFAppState().update(() {
-          FFAppState().localX = 2.0; // ↗ Direita Superior
-        });
+      onUpSwipe: (index) async {
+        await _handleSwipe(1); // Direita Superior ↗
       },
-      onDownSwipe: (index) {
-        FFAppState().update(() {
-          FFAppState().localX = 4.0; // ↙ Esquerda Inferior
-        });
+      onDownSwipe: (index) async {
+        await _handleSwipe(3); // Esquerda Inferior ↙
       },
       itemBuilder: (context, containerVarIndex) {
         final containerVarItem = containerVar[containerVarIndex];

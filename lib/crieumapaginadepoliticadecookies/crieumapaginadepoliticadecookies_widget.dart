@@ -1,11 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'crieumapaginadepoliticadecookies_model.dart';
 export 'crieumapaginadepoliticadecookies_model.dart';
 
@@ -317,7 +313,7 @@ class _CrieumapaginadepoliticadecookiesWidgetState
                                       value: _model.switchValue1!,
                                       onChanged: (newValue) async {
                                         safeSetState(() =>
-                                            _model.switchValue1 = newValue!);
+                                            _model.switchValue1 = newValue);
                                       },
                                       activeColor:
                                           FlutterFlowTheme.of(context).primary,
@@ -351,7 +347,7 @@ class _CrieumapaginadepoliticadecookiesWidgetState
                                       value: _model.switchValue2!,
                                       onChanged: (newValue) async {
                                         safeSetState(() =>
-                                            _model.switchValue2 = newValue!);
+                                            _model.switchValue2 = newValue);
                                       },
                                       activeColor:
                                           FlutterFlowTheme.of(context).primary,
@@ -385,7 +381,7 @@ class _CrieumapaginadepoliticadecookiesWidgetState
                                       value: _model.switchValue3!,
                                       onChanged: (newValue) async {
                                         safeSetState(() =>
-                                            _model.switchValue3 = newValue!);
+                                            _model.switchValue3 = newValue);
                                       },
                                       activeColor:
                                           FlutterFlowTheme.of(context).primary,
@@ -419,7 +415,7 @@ class _CrieumapaginadepoliticadecookiesWidgetState
                                       value: _model.switchValue4!,
                                       onChanged: (newValue) async {
                                         safeSetState(() =>
-                                            _model.switchValue4 = newValue!);
+                                            _model.switchValue4 = newValue);
                                       },
                                       activeColor:
                                           FlutterFlowTheme.of(context).primary,

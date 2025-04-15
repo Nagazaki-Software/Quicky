@@ -3,15 +3,10 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:math';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'all_chats_comp_model.dart';
 export 'all_chats_comp_model.dart';
 
@@ -521,9 +516,6 @@ class _AllChatsCompWidgetState extends State<AllChatsCompWidget>
                                                     children: [
                                                       if (containerTasksRecord
                                                                   .categoria !=
-                                                              null &&
-                                                          containerTasksRecord
-                                                                  .categoria !=
                                                               '')
                                                         Container(
                                                           height: 30.0,
@@ -590,9 +582,6 @@ class _AllChatsCompWidgetState extends State<AllChatsCompWidget>
                                                                 'containerOnPageLoadAnimation1']!),
                                                       if (containerTasksRecord
                                                                   .modalidade !=
-                                                              null &&
-                                                          containerTasksRecord
-                                                                  .modalidade !=
                                                               '')
                                                         Container(
                                                           height: 30.0,
@@ -658,9 +647,6 @@ class _AllChatsCompWidgetState extends State<AllChatsCompWidget>
                                                             animationsMap[
                                                                 'containerOnPageLoadAnimation2']!),
                                                       if (containerTasksRecord
-                                                                  .nivelTrabalho !=
-                                                              null &&
-                                                          containerTasksRecord
                                                                   .nivelTrabalho !=
                                                               '')
                                                         Container(
