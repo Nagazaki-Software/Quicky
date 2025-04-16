@@ -8,31 +8,29 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'teladeeditarperfil_copy2_model.dart';
-export 'teladeeditarperfil_copy2_model.dart';
+import 'editarperfil_model.dart';
+export 'editarperfil_model.dart';
 
 /// tela de editar perfil do tinder
-class TeladeeditarperfilCopy2Widget extends StatefulWidget {
-  const TeladeeditarperfilCopy2Widget({super.key});
+class EditarperfilWidget extends StatefulWidget {
+  const EditarperfilWidget({super.key});
 
-  static String routeName = 'teladeeditarperfilCopy2';
-  static String routePath = '/teladeeditarperfilCopy2';
+  static String routeName = 'editarperfil';
+  static String routePath = '/editarperfil';
 
   @override
-  State<TeladeeditarperfilCopy2Widget> createState() =>
-      _TeladeeditarperfilCopy2WidgetState();
+  State<EditarperfilWidget> createState() => _EditarperfilWidgetState();
 }
 
-class _TeladeeditarperfilCopy2WidgetState
-    extends State<TeladeeditarperfilCopy2Widget> {
-  late TeladeeditarperfilCopy2Model _model;
+class _EditarperfilWidgetState extends State<EditarperfilWidget> {
+  late EditarperfilModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TeladeeditarperfilCopy2Model());
+    _model = createModel(context, () => EditarperfilModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();

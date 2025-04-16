@@ -1,8 +1,8 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/count_payment_copy_widget.dart';
-import '/components/image_inicio_page_view_widget.dart';
 import '/components/naoexistetaskaqui_widget.dart';
+import '/components/payment_stripe_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -237,11 +237,9 @@ class _SwipeableWidgetState extends State<SwipeableWidget>
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Expanded(
-                                        child: ImageInicioPageViewWidget(
+                                        child: PaymentStripeWidget(
                                           key: Key(
                                               'Key3qa_${containerVarIndex}_of_${containerVar.length}'),
-                                          parameter3:
-                                              containerVarItem.reference,
                                         ),
                                       ),
                                     ],

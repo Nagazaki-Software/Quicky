@@ -1,19 +1,14 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/all_chats_comp_widget.dart';
-import '/components/componenteperfil_widget.dart';
-import '/components/create_taskcomponente_widget.dart';
-import '/components/explore_componente_widget.dart';
-import '/components/nav_bar_homes_widget.dart';
-import '/components/nav_bar_tinder_widget.dart';
 import '/components/paginainicial_componente_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'pagina_inicial_model.dart';
 export 'pagina_inicial_model.dart';
@@ -55,49 +50,6 @@ class _PaginaInicialWidgetState extends State<PaginaInicialWidget>
     });
 
     animationsMap.addAll({
-      'createTaskcomponenteOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.linear,
-            delay: 0.0.ms,
-            duration: 400.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'exploreComponenteOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.linear,
-            delay: 0.0.ms,
-            duration: 420.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 420.0.ms,
-            duration: 350.0.ms,
-            begin: Offset(0.0, -10.0),
-            end: Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-      'allChatsCompOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
       'paginainicialComponenteOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -105,18 +57,6 @@ class _PaginaInicialWidgetState extends State<PaginaInicialWidget>
             curve: Curves.easeInOutQuint,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'componenteperfilOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 400.0.ms,
             begin: 0.0,
             end: 1.0,
           ),
@@ -148,193 +88,172 @@ class _PaginaInicialWidgetState extends State<PaginaInicialWidget>
         child: Scaffold(
           key: scaffoldKey,
           resizeToAvoidBottomInset: false,
-          backgroundColor: Color(0xFF161617),
-          appBar: FFAppState().pages != 'Criar task'
-              ? PreferredSize(
-                  preferredSize: Size.fromHeight(35.0),
-                  child: AppBar(
-                    backgroundColor: Color(0xF6FFFFFF),
-                    automaticallyImplyLeading: false,
-                    actions: [],
-                    flexibleSpace: FlexibleSpaceBar(
-                      title: Column(
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          appBar: AppBar(
+            backgroundColor: Color(0xF6FFFFFF),
+            automaticallyImplyLeading: false,
+            actions: [],
+            flexibleSpace: FlexibleSpaceBar(
+              title: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 1.0),
-                            child: wrapWithModel(
-                              model: _model.navBarHomesModel,
-                              updateCallback: () => safeSetState(() {}),
-                              child: NavBarHomesWidget(),
-                            ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Stack(
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 1.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(0.0),
+                                        topRight: Radius.circular(0.0),
+                                      ),
+                                      child: Image.asset(
+                                        'assets/images/Quicky_Cursivo.png',
+                                        width: 170.0,
+                                        height: 60.0,
+                                        fit: BoxFit.fill,
+                                        alignment: Alignment(-1.0, 0.0),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ].divide(SizedBox(width: 4.0)),
                           ),
-                        ],
+                        ].divide(SizedBox(width: 12.0)),
                       ),
-                      centerTitle: true,
-                      expandedTitleScale: 1.0,
-                    ),
-                    elevation: 2.0,
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Stack(
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  if (FFAppState().pages == 'Perfil')
+                                    FlutterFlowIconButton(
+                                      borderColor: Colors.transparent,
+                                      borderRadius: 8.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 35.0,
+                                      icon: Icon(
+                                        Icons.settings,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 22.5,
+                                      ),
+                                      onPressed: () async {
+                                        context.pushNamed(
+                                          ConfiguracoessWidget.routeName,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType: PageTransitionType
+                                                  .leftToRight,
+                                            ),
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  if (FFAppState().pages != 'Perfil')
+                                    FlutterFlowIconButton(
+                                      borderColor: Colors.transparent,
+                                      borderRadius: 8.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 35.0,
+                                      icon: Icon(
+                                        Icons.notifications_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 22.5,
+                                      ),
+                                      onPressed: () async {
+                                        context.pushNamed(
+                                          PaginaNotificacoesWidget.routeName,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType: PageTransitionType
+                                                  .leftToRight,
+                                            ),
+                                          },
+                                        );
+                                      },
+                                    ),
+                                ],
+                              ),
+                              if (responsiveVisibility(
+                                context: context,
+                                phone: false,
+                              ))
+                                Align(
+                                  alignment: AlignmentDirectional(0.9, 0.1),
+                                  child: Container(
+                                    width: 16.0,
+                                    height: 16.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        '3',
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelSmall
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ].divide(SizedBox(width: 16.0)),
+                      ),
+                    ].divide(SizedBox(width: 12.0)),
                   ),
-                )
-              : null,
+                ],
+              ),
+              centerTitle: true,
+              expandedTitleScale: 1.0,
+            ),
+            elevation: 2.0,
+          ),
           body: SafeArea(
             top: true,
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: Stack(
-                      alignment: AlignmentDirectional(0.0, -1.0),
-                      children: [
-                        Container(
-                          width: double.infinity,
-                          height: MediaQuery.sizeOf(context).height * 1.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              if (FFAppState().pages == 'Criar task')
-                                Expanded(
-                                  child: wrapWithModel(
-                                    model: _model.createTaskcomponenteModel,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: CreateTaskcomponenteWidget(),
-                                  ).animateOnPageLoad(animationsMap[
-                                      'createTaskcomponenteOnPageLoadAnimation']!),
-                                ),
-                              if (FFAppState().pages == 'Explorer')
-                                Expanded(
-                                  child: wrapWithModel(
-                                    model: _model.exploreComponenteModel,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ExploreComponenteWidget(),
-                                  ).animateOnPageLoad(animationsMap[
-                                      'exploreComponenteOnPageLoadAnimation']!),
-                                ),
-                              if (FFAppState().pages == 'Chat')
-                                StreamBuilder<List<ChatRecord>>(
-                                  stream: queryChatRecord(
-                                    queryBuilder: (chatRecord) =>
-                                        chatRecord.where(Filter.or(
-                                      Filter(
-                                        'userDocument',
-                                        isEqualTo: currentUserReference,
-                                      ),
-                                      Filter(
-                                        'user2Document',
-                                        isEqualTo: currentUserReference,
-                                      ),
-                                    )),
-                                    singleRecord: true,
-                                  ),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: SpinKitFadingCube(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            size: 50.0,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    List<ChatRecord> columnChatRecordList =
-                                        snapshot.data!;
-                                    final columnChatRecord =
-                                        columnChatRecordList.isNotEmpty
-                                            ? columnChatRecordList.first
-                                            : null;
-
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        if (columnChatRecord != null)
-                                          Expanded(
-                                            child: wrapWithModel(
-                                              model: _model.allChatsCompModel,
-                                              updateCallback: () =>
-                                                  safeSetState(() {}),
-                                              updateOnChange: true,
-                                              child: AllChatsCompWidget(
-                                                parameter2: false,
-                                              ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'allChatsCompOnPageLoadAnimation']!),
-                                          ),
-                                        if (!(columnChatRecord != null))
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Text(
-                                              'No conversations or tasks.',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ),
-                                      ],
-                                    );
-                                  },
-                                ),
-                              if (FFAppState().pages == 'Pagina inicial')
-                                Expanded(
-                                  child: wrapWithModel(
-                                    model: _model.paginainicialComponenteModel,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: PaginainicialComponenteWidget(),
-                                  ).animateOnPageLoad(animationsMap[
-                                      'paginainicialComponenteOnPageLoadAnimation']!),
-                                ),
-                              if (FFAppState().pages == 'Perfil')
-                                Expanded(
-                                  child: wrapWithModel(
-                                    model: _model.componenteperfilModel,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ComponenteperfilWidget(),
-                                  ).animateOnPageLoad(animationsMap[
-                                      'componenteperfilOnPageLoadAnimation']!),
-                                ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SafeArea(
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryText,
-                    ),
-                    alignment: AlignmentDirectional(0.0, 1.0),
-                    child: Align(
-                      alignment: AlignmentDirectional(0.0, 1.0),
-                      child: wrapWithModel(
-                        model: _model.navBarTinderModel,
-                        updateCallback: () => safeSetState(() {}),
-                        child: NavBarTinderWidget(),
-                      ),
-                    ),
-                  ),
+                  child: wrapWithModel(
+                    model: _model.paginainicialComponenteModel,
+                    updateCallback: () => safeSetState(() {}),
+                    child: PaginainicialComponenteWidget(),
+                  ).animateOnPageLoad(animationsMap[
+                      'paginainicialComponenteOnPageLoadAnimation']!),
                 ),
               ],
             ),

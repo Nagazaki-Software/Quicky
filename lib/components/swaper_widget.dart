@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/image_inicio_page_view_widget.dart';
 import '/components/notification_widget.dart';
+import '/components/payment_stripe_widget.dart';
 import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -127,10 +127,9 @@ class _SwaperWidgetState extends State<SwaperWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
-                  child: ImageInicioPageViewWidget(
+                  child: PaymentStripeWidget(
                     key: Key(
                         'Keyr6o_${swipeableStackIndex}_of_${swipeableStackTasksRecordList.length}'),
-                    parameter3: swipeableStackTasksRecord.reference,
                   ),
                 ),
               ],

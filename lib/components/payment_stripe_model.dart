@@ -1,9 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'image_inicio_page_view_widget.dart' show ImageInicioPageViewWidget;
+import 'payment_stripe_widget.dart' show PaymentStripeWidget;
 import 'package:flutter/material.dart';
 
-class ImageInicioPageViewModel
-    extends FlutterFlowModel<ImageInicioPageViewWidget> {
+class PaymentStripeModel extends FlutterFlowModel<PaymentStripeWidget> {
   @override
   void initState(BuildContext context) {}
 

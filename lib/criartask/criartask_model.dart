@@ -1,11 +1,9 @@
 import '/components/create_taskcomponente_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'teladeeditarperfil_copy3_widget.dart'
-    show TeladeeditarperfilCopy3Widget;
+import 'criartask_widget.dart' show CriartaskWidget;
 import 'package:flutter/material.dart';
 
-class TeladeeditarperfilCopy3Model
-    extends FlutterFlowModel<TeladeeditarperfilCopy3Widget> {
+class CriartaskModel extends FlutterFlowModel<CriartaskWidget> {
   ///  Local state fields for this page.
 
   List<String> foto = ['l'];

@@ -2,31 +2,29 @@ import '/components/create_taskcomponente_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'teladeeditarperfil_copy3_model.dart';
-export 'teladeeditarperfil_copy3_model.dart';
+import 'criartask_model.dart';
+export 'criartask_model.dart';
 
 /// tela de editar perfil do tinder
-class TeladeeditarperfilCopy3Widget extends StatefulWidget {
-  const TeladeeditarperfilCopy3Widget({super.key});
+class CriartaskWidget extends StatefulWidget {
+  const CriartaskWidget({super.key});
 
-  static String routeName = 'teladeeditarperfilCopy3';
-  static String routePath = '/teladeeditarperfilCopy3';
+  static String routeName = 'criartask';
+  static String routePath = '/criartask';
 
   @override
-  State<TeladeeditarperfilCopy3Widget> createState() =>
-      _TeladeeditarperfilCopy3WidgetState();
+  State<CriartaskWidget> createState() => _CriartaskWidgetState();
 }
 
-class _TeladeeditarperfilCopy3WidgetState
-    extends State<TeladeeditarperfilCopy3Widget> {
-  late TeladeeditarperfilCopy3Model _model;
+class _CriartaskWidgetState extends State<CriartaskWidget> {
+  late CriartaskModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TeladeeditarperfilCopy3Model());
+    _model = createModel(context, () => CriartaskModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }

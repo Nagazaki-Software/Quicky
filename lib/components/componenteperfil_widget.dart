@@ -81,7 +81,7 @@ class _ComponenteperfilWidgetState extends State<ComponenteperfilWidget>
                   maxHeight: 220.0,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color(0xFFC3AA8E),
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 4.0,
@@ -381,8 +381,7 @@ class _ComponenteperfilWidgetState extends State<ComponenteperfilWidget>
                                             ),
                                             onPressed: () async {
                                               context.pushNamed(
-                                                TeladeeditarperfilCopy2Widget
-                                                    .routeName,
+                                                EditarperfilWidget.routeName,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
                                                       TransitionInfo(
@@ -509,7 +508,7 @@ class _ComponenteperfilWidgetState extends State<ComponenteperfilWidget>
                   width: 160.0,
                   height: 140.0,
                   decoration: BoxDecoration(
-                    color: Color(0xFAB49874),
+                    color: FlutterFlowTheme.of(context).tertiary,
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 4.0,
@@ -590,7 +589,7 @@ class _ComponenteperfilWidgetState extends State<ComponenteperfilWidget>
                   width: 160.0,
                   height: 140.0,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: FlutterFlowTheme.of(context).primaryBackground,
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 4.0,
@@ -677,7 +676,7 @@ class _ComponenteperfilWidgetState extends State<ComponenteperfilWidget>
                                     MediaQuery.sizeOf(context).height * 0.35,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Color(0xFFE9E9E9),
                                 boxShadow: [
                                   BoxShadow(
                                     blurRadius: 4.0,
@@ -691,7 +690,7 @@ class _ComponenteperfilWidgetState extends State<ComponenteperfilWidget>
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(12.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -757,7 +756,7 @@ class _ComponenteperfilWidgetState extends State<ComponenteperfilWidget>
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: Color(0x0D4B39EF),
+                                          color: Color(0x80B49874),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),

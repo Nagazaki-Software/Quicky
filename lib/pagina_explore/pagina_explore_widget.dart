@@ -1,5 +1,4 @@
 import '/components/explore_componente_widget.dart';
-import '/components/nav_bar_homes_copy_widget.dart';
 import '/components/nav_bar_tinder_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -78,11 +77,6 @@ class _PaginaExploreWidgetState extends State<PaginaExploreWidget> {
                         ),
                       ],
                     ),
-                  wrapWithModel(
-                    model: _model.navBarHomesCopyModel,
-                    updateCallback: () => safeSetState(() {}),
-                    child: NavBarHomesCopyWidget(),
-                  ),
                 ],
               ),
             ),

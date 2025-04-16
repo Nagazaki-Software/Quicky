@@ -91,6 +91,7 @@ class _CreateTaskcomponenteWidgetState extends State<CreateTaskcomponenteWidget>
       length: 2,
       initialIndex: 0,
     )..addListener(() => safeSetState(() {}));
+
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 

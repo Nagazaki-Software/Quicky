@@ -6,7 +6,6 @@ export '/pagina_notificacoes/pagina_notificacoes_widget.dart'
 export '/pagina_de_criar_conta/pagina_de_criar_conta_widget.dart'
     show PaginaDeCriarContaWidget;
 export '/task/task_widget.dart' show TaskWidget;
-export '/chat_inicio/chat_inicio_widget.dart' show ChatInicioWidget;
 export '/entrar/entrar_widget.dart' show EntrarWidget;
 export '/esqueci_minha_senh/esqueci_minha_senh_widget.dart'
     show EsqueciMinhaSenhWidget;
@@ -18,8 +17,8 @@ export '/pagina_explore/pagina_explore_widget.dart' show PaginaExploreWidget;
 export '/configuracoess/configuracoess_widget.dart' show ConfiguracoessWidget;
 export '/teladeeditarperfil/teladeeditarperfil_widget.dart'
     show TeladeeditarperfilWidget;
-export '/chat/chat_widget.dart' show ChatWidget;
 export '/conversa/conversa_widget.dart' show ConversaWidget;
+export '/chat/chat_widget.dart' show ChatWidget;
 export '/pagina_de_inserir_codigo/pagina_de_inserir_codigo_widget.dart'
     show PaginaDeInserirCodigoWidget;
 export '/pagina_de_verificar_email/pagina_de_verificar_email_widget.dart'
@@ -40,20 +39,14 @@ export '/pagina_distancia_maxima/pagina_distancia_maxima_widget.dart'
     show PaginaDistanciaMaximaWidget;
 export '/pagina_oque_esta_procurando/pagina_oque_esta_procurando_widget.dart'
     show PaginaOqueEstaProcurandoWidget;
-export '/teladeeditarperfil_copy/teladeeditarperfil_copy_widget.dart'
-    show TeladeeditarperfilCopyWidget;
-export '/teladeeditarperfil_copy2/teladeeditarperfil_copy2_widget.dart'
-    show TeladeeditarperfilCopy2Widget;
-export '/task_copy/task_copy_widget.dart' show TaskCopyWidget;
-export '/teladeeditarperfil_copy3/teladeeditarperfil_copy3_widget.dart'
-    show TeladeeditarperfilCopy3Widget;
+export '/editarperfil/editarperfil_widget.dart' show EditarperfilWidget;
+export '/criartask/criartask_widget.dart' show CriartaskWidget;
 export '/pagina_de_preferencias_de_privacidade/pagina_de_preferencias_de_privacidade_widget.dart'
     show PaginaDePreferenciasDePrivacidadeWidget;
 export '/crieumapaginadepoliticadecookies/crieumapaginadepoliticadecookies_widget.dart'
     show CrieumapaginadepoliticadecookiesWidget;
-export '/pagina_de_central_de_seguranca/pagina_de_central_de_seguranca_widget.dart'
-    show PaginaDeCentralDeSegurancaWidget;
 export '/login_b_e_t_a/login_b_e_t_a_widget.dart' show LoginBETAWidget;
 export '/informacoes_da_conversa/informacoes_da_conversa_widget.dart'
     show InformacoesDaConversaWidget;
 export '/confirmar_email/confirmar_email_widget.dart' show ConfirmarEmailWidget;
+export '/exploretasks/exploretasks_widget.dart' show ExploretasksWidget;

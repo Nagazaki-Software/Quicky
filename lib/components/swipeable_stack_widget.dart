@@ -174,23 +174,7 @@ class _SwipeableStackWidgetState extends State<SwipeableStackWidget> {
                           ImagePageViewInicioWidget(
                             key: Key(
                                 'Keydah_${containerVarIndex}_of_${containerVar.length}'),
-                            parameter1: columnTasksRecord.titulo,
                             parameter2: columnTasksRecord.reference,
-                            parameter3: containerVarItem.foto,
-                            parameter4: functions
-                                .formatStringInter(columnTasksRecord.valor),
-                            parameter5: columnTasksRecord.foto,
-                            parameter6: valueOrDefault<String>(
-                              columnTasksRecord.pagamentoPrecos.toString(),
-                              '0',
-                            ),
-                            parameter7: columnTasksRecord.descricao,
-                            parameter8: columnTasksRecord.categoria,
-                            parameter9: columnTasksRecord.categoria,
-                            parameter10: columnTasksRecord.modalidade,
-                            parameter11: columnTasksRecord.nivelTrabalho,
-                            parameter12: columnTasksRecord.materiaisNecessarios,
-                            parameter13: columnTasksRecord.userReference,
                           ),
                         ],
                       );

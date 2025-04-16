@@ -10,6 +10,8 @@ class TeladeeditarperfilModel
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
+  int get tabBarPreviousIndex =>
+      tabBarController != null ? tabBarController!.previousIndex : 0;
 
   // State field(s) for PageView widget.
   PageController? pageViewController1;

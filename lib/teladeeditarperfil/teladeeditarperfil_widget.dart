@@ -35,6 +35,7 @@ class _TeladeeditarperfilWidgetState extends State<TeladeeditarperfilWidget>
       length: 2,
       initialIndex: 0,
     )..addListener(() => safeSetState(() {}));
+
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 

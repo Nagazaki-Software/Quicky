@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'flutter_flow/request_manager.dart';
 import '/backend/backend.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
@@ -399,6 +400,27 @@ class FFAppState extends ChangeNotifier {
   set localX(double value) {
     _localX = value;
   }
+
+  DocumentReference? _documentTaskSwipe;
+  DocumentReference? get documentTaskSwipe => _documentTaskSwipe;
+  set documentTaskSwipe(DocumentReference? value) {
+    _documentTaskSwipe = value;
+  }
+
+  final _querySwipesManager = StreamRequestManager<List<TasksRecord>>();
+  Stream<List<TasksRecord>> querySwipes({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Stream<List<TasksRecord>> Function() requestFn,
+  }) =>
+      _querySwipesManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearQuerySwipesCache() => _querySwipesManager.clear();
+  void clearQuerySwipesCacheKey(String? uniqueKey) =>
+      _querySwipesManager.clearRequest(uniqueKey);
 }
 
 void _safeInit(Function() initializeField) {

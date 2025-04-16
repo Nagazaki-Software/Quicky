@@ -7,6 +7,7 @@ import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
+import '/main.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 import '/index.dart';
@@ -76,21 +77,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? PaginaInicialWidget()
-          : GetstartedWidget(),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? NavBarPage() : GetstartedWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? PaginaInicialWidget()
-              : GetstartedWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? NavBarPage() : GetstartedWidget(),
         ),
         FFRoute(
           name: PaginaInicialWidget.routeName,
           path: PaginaInicialWidget.routePath,
-          builder: (context, params) => PaginaInicialWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'PaginaInicial')
+              : PaginaInicialWidget(),
         ),
         FFRoute(
           name: GetstartedWidget.routeName,
@@ -120,11 +121,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: ChatInicioWidget.routeName,
-          path: ChatInicioWidget.routePath,
-          builder: (context, params) => ChatInicioWidget(),
-        ),
-        FFRoute(
           name: EntrarWidget.routeName,
           path: EntrarWidget.routePath,
           builder: (context, params) => EntrarWidget(),
@@ -142,7 +138,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: PerfilDoUsuarioWidget.routeName,
           path: PerfilDoUsuarioWidget.routePath,
-          builder: (context, params) => PerfilDoUsuarioWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'PerfilDoUsuario')
+              : PerfilDoUsuarioWidget(),
         ),
         FFRoute(
           name: PaginaExploreWidget.routeName,
@@ -160,11 +158,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => TeladeeditarperfilWidget(),
         ),
         FFRoute(
-          name: ChatWidget.routeName,
-          path: ChatWidget.routePath,
-          builder: (context, params) => ChatWidget(),
-        ),
-        FFRoute(
           name: ConversaWidget.routeName,
           path: ConversaWidget.routePath,
           builder: (context, params) => ConversaWidget(
@@ -175,6 +168,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               collectionNamePath: ['chat'],
             ),
           ),
+        ),
+        FFRoute(
+          name: ChatWidget.routeName,
+          path: ChatWidget.routePath,
+          builder: (context, params) =>
+              params.isEmpty ? NavBarPage(initialPage: 'chat') : ChatWidget(),
         ),
         FFRoute(
           name: PaginaDeInserirCodigoWidget.routeName,
@@ -227,31 +226,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PaginaOqueEstaProcurandoWidget(),
         ),
         FFRoute(
-          name: TeladeeditarperfilCopyWidget.routeName,
-          path: TeladeeditarperfilCopyWidget.routePath,
-          builder: (context, params) => TeladeeditarperfilCopyWidget(),
+          name: EditarperfilWidget.routeName,
+          path: EditarperfilWidget.routePath,
+          builder: (context, params) => EditarperfilWidget(),
         ),
         FFRoute(
-          name: TeladeeditarperfilCopy2Widget.routeName,
-          path: TeladeeditarperfilCopy2Widget.routePath,
-          builder: (context, params) => TeladeeditarperfilCopy2Widget(),
-        ),
-        FFRoute(
-          name: TaskCopyWidget.routeName,
-          path: TaskCopyWidget.routePath,
-          builder: (context, params) => TaskCopyWidget(
-            task: params.getParam(
-              'task',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['tasks'],
-            ),
-          ),
-        ),
-        FFRoute(
-          name: TeladeeditarperfilCopy3Widget.routeName,
-          path: TeladeeditarperfilCopy3Widget.routePath,
-          builder: (context, params) => TeladeeditarperfilCopy3Widget(),
+          name: CriartaskWidget.routeName,
+          path: CriartaskWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'criartask')
+              : CriartaskWidget(),
         ),
         FFRoute(
           name: PaginaDePreferenciasDePrivacidadeWidget.routeName,
@@ -264,11 +248,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: CrieumapaginadepoliticadecookiesWidget.routePath,
           builder: (context, params) =>
               CrieumapaginadepoliticadecookiesWidget(),
-        ),
-        FFRoute(
-          name: PaginaDeCentralDeSegurancaWidget.routeName,
-          path: PaginaDeCentralDeSegurancaWidget.routePath,
-          builder: (context, params) => PaginaDeCentralDeSegurancaWidget(),
         ),
         FFRoute(
           name: LoginBETAWidget.routeName,
@@ -291,6 +270,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: ConfirmarEmailWidget.routeName,
           path: ConfirmarEmailWidget.routePath,
           builder: (context, params) => ConfirmarEmailWidget(),
+        ),
+        FFRoute(
+          name: ExploretasksWidget.routeName,
+          path: ExploretasksWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'exploretasks')
+              : ExploretasksWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

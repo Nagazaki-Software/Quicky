@@ -136,6 +136,11 @@ class TasksRecord extends FirestoreRecord {
       _usuariosDisputandoPelaTask ?? const [];
   bool hasUsuariosDisputandoPelaTask() => _usuariosDisputandoPelaTask != null;
 
+  // "fotos" field.
+  List<String>? _fotos;
+  List<String> get fotos => _fotos ?? const [];
+  bool hasFotos() => _fotos != null;
+
   void _initializeFields() {
     _foto = getDataList(snapshotData['Foto']);
     _titulo = snapshotData['Titulo'] as String?;
@@ -162,6 +167,7 @@ class TasksRecord extends FirestoreRecord {
     _valorDeUrgencia = snapshotData['valorDeUrgencia'] as String?;
     _usuariosDisputandoPelaTask =
         getDataList(snapshotData['usuariosDisputandoPelaTask']);
+    _fotos = getDataList(snapshotData['fotos']);
   }
 
   static CollectionReference get collection =>
@@ -281,7 +287,8 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e1?.valor == e2?.valor &&
         e1?.valorDeUrgencia == e2?.valorDeUrgencia &&
         listEquality.equals(
-            e1?.usuariosDisputandoPelaTask, e2?.usuariosDisputandoPelaTask);
+            e1?.usuariosDisputandoPelaTask, e2?.usuariosDisputandoPelaTask) &&
+        listEquality.equals(e1?.fotos, e2?.fotos);
   }
 
   @override
@@ -309,7 +316,8 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e?.priority,
         e?.valor,
         e?.valorDeUrgencia,
-        e?.usuariosDisputandoPelaTask
+        e?.usuariosDisputandoPelaTask,
+        e?.fotos
       ]);
 
   @override

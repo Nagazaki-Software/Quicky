@@ -83,23 +83,6 @@ class _NavBarHomesWidgetState extends State<NavBarHomesWidget> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: AlignmentDirectional(-1.0, 1.0),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 10.0, 0.0, 0.0),
-                              child: Text(
-                                'Hello World',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontSize: 1.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ].divide(SizedBox(width: 4.0)),
@@ -164,35 +147,6 @@ class _NavBarHomesWidgetState extends State<NavBarHomesWidget> {
                             ),
                         ],
                       ),
-                      if (responsiveVisibility(
-                        context: context,
-                        phone: false,
-                      ))
-                        Align(
-                          alignment: AlignmentDirectional(0.9, 0.1),
-                          child: Container(
-                            width: 16.0,
-                            height: 16.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).error,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                '3',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .labelSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context).info,
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ),
                     ],
                   ),
                 ].divide(SizedBox(width: 16.0)),

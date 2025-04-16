@@ -1,11 +1,9 @@
 import '/components/nav_bar_homes_copy_copy2_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'teladeeditarperfil_copy2_widget.dart'
-    show TeladeeditarperfilCopy2Widget;
+import 'editarperfil_widget.dart' show EditarperfilWidget;
 import 'package:flutter/material.dart';
 
-class TeladeeditarperfilCopy2Model
-    extends FlutterFlowModel<TeladeeditarperfilCopy2Widget> {
+class EditarperfilModel extends FlutterFlowModel<EditarperfilWidget> {
   ///  State fields for stateful widgets in this page.
 
   // Model for navBarHomesCopyCopy2 component.
