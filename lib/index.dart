@@ -15,8 +15,6 @@ export '/perfil_do_usuario/perfil_do_usuario_widget.dart'
     show PerfilDoUsuarioWidget;
 export '/pagina_explore/pagina_explore_widget.dart' show PaginaExploreWidget;
 export '/configuracoess/configuracoess_widget.dart' show ConfiguracoessWidget;
-export '/teladeeditarperfil/teladeeditarperfil_widget.dart'
-    show TeladeeditarperfilWidget;
 export '/conversa/conversa_widget.dart' show ConversaWidget;
 export '/chat/chat_widget.dart' show ChatWidget;
 export '/pagina_de_inserir_codigo/pagina_de_inserir_codigo_widget.dart'

@@ -65,6 +65,11 @@ class ChatRecord extends FirestoreRecord {
   List<DocumentReference> get usersDoGrupo => _usersDoGrupo ?? const [];
   bool hasUsersDoGrupo() => _usersDoGrupo != null;
 
+  // "taskRenegociate" field.
+  bool? _taskRenegociate;
+  bool get taskRenegociate => _taskRenegociate ?? false;
+  bool hasTaskRenegociate() => _taskRenegociate != null;
+
   void _initializeFields() {
     _userDocument = snapshotData['userDocument'] as DocumentReference?;
     _imgDoUser = snapshotData['imgDoUser'] as String?;
@@ -76,6 +81,7 @@ class ChatRecord extends FirestoreRecord {
     _imgDaTask = snapshotData['imgDaTask'] as String?;
     _referenceTask = snapshotData['referenceTask'] as DocumentReference?;
     _usersDoGrupo = getDataList(snapshotData['usersDoGrupo']);
+    _taskRenegociate = snapshotData['taskRenegociate'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -121,6 +127,7 @@ Map<String, dynamic> createChatRecordData({
   String? nomeDoGrupo,
   String? imgDaTask,
   DocumentReference? referenceTask,
+  bool? taskRenegociate,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -133,6 +140,7 @@ Map<String, dynamic> createChatRecordData({
       'nomeDoGrupo': nomeDoGrupo,
       'imgDaTask': imgDaTask,
       'referenceTask': referenceTask,
+      'taskRenegociate': taskRenegociate,
     }.withoutNulls,
   );
 
@@ -154,7 +162,8 @@ class ChatRecordDocumentEquality implements Equality<ChatRecord> {
         e1?.nomeDoGrupo == e2?.nomeDoGrupo &&
         e1?.imgDaTask == e2?.imgDaTask &&
         e1?.referenceTask == e2?.referenceTask &&
-        listEquality.equals(e1?.usersDoGrupo, e2?.usersDoGrupo);
+        listEquality.equals(e1?.usersDoGrupo, e2?.usersDoGrupo) &&
+        e1?.taskRenegociate == e2?.taskRenegociate;
   }
 
   @override
@@ -168,7 +177,8 @@ class ChatRecordDocumentEquality implements Equality<ChatRecord> {
         e?.nomeDoGrupo,
         e?.imgDaTask,
         e?.referenceTask,
-        e?.usersDoGrupo
+        e?.usersDoGrupo,
+        e?.taskRenegociate
       ]);
 
   @override

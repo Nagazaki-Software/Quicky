@@ -407,6 +407,18 @@ class FFAppState extends ChangeNotifier {
     _documentTaskSwipe = value;
   }
 
+  String _taskName = '';
+  String get taskName => _taskName;
+  set taskName(String value) {
+    _taskName = value;
+  }
+
+  String _taskPrice = '';
+  String get taskPrice => _taskPrice;
+  set taskPrice(String value) {
+    _taskPrice = value;
+  }
+
   final _querySwipesManager = StreamRequestManager<List<TasksRecord>>();
   Stream<List<TasksRecord>> querySwipes({
     String? uniqueQueryKey,
@@ -421,6 +433,21 @@ class FFAppState extends ChangeNotifier {
   void clearQuerySwipesCache() => _querySwipesManager.clear();
   void clearQuerySwipesCacheKey(String? uniqueKey) =>
       _querySwipesManager.clearRequest(uniqueKey);
+
+  final _queryChatsManager = StreamRequestManager<List<ChatRecord>>();
+  Stream<List<ChatRecord>> queryChats({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Stream<List<ChatRecord>> Function() requestFn,
+  }) =>
+      _queryChatsManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearQueryChatsCache() => _queryChatsManager.clear();
+  void clearQueryChatsCacheKey(String? uniqueKey) =>
+      _queryChatsManager.clearRequest(uniqueKey);
 }
 
 void _safeInit(Function() initializeField) {

@@ -120,6 +120,11 @@ class UsersRecord extends FirestoreRecord {
   List<String> get iDdastasksAceitadas => _iDdastasksAceitadas ?? const [];
   bool hasIDdastasksAceitadas() => _iDdastasksAceitadas != null;
 
+  // "avaliacoes" field.
+  List<AvaliacoesStruct>? _avaliacoes;
+  List<AvaliacoesStruct> get avaliacoes => _avaliacoes ?? const [];
+  bool hasAvaliacoes() => _avaliacoes != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -145,6 +150,10 @@ class UsersRecord extends FirestoreRecord {
     _stripePaymentIntent = snapshotData['stripePaymentIntent'] as String?;
     _location = snapshotData['location'] as LatLng?;
     _iDdastasksAceitadas = getDataList(snapshotData['iDdastasksAceitadas']);
+    _avaliacoes = getStructList(
+      snapshotData['avaliacoes'],
+      AvaliacoesStruct.fromMap,
+    );
   }
 
   static CollectionReference get collection =>
@@ -252,7 +261,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.twitter == e2?.twitter &&
         e1?.stripePaymentIntent == e2?.stripePaymentIntent &&
         e1?.location == e2?.location &&
-        listEquality.equals(e1?.iDdastasksAceitadas, e2?.iDdastasksAceitadas);
+        listEquality.equals(e1?.iDdastasksAceitadas, e2?.iDdastasksAceitadas) &&
+        listEquality.equals(e1?.avaliacoes, e2?.avaliacoes);
   }
 
   @override
@@ -277,7 +287,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.twitter,
         e?.stripePaymentIntent,
         e?.location,
-        e?.iDdastasksAceitadas
+        e?.iDdastasksAceitadas,
+        e?.avaliacoes
       ]);
 
   @override

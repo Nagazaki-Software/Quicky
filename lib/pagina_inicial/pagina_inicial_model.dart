@@ -1,7 +1,5 @@
 import '/backend/backend.dart';
-import '/components/paginainicial_componente_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
 import 'pagina_inicial_widget.dart' show PaginaInicialWidget;
 import 'package:flutter/material.dart';
 
@@ -16,19 +14,9 @@ class PaginaInicialModel extends FlutterFlowModel<PaginaInicialWidget> {
 
   DocumentReference? taskDocument;
 
-  ///  State fields for stateful widgets in this page.
-
-  // Model for paginainicialComponente component.
-  late PaginainicialComponenteModel paginainicialComponenteModel;
+  @override
+  void initState(BuildContext context) {}
 
   @override
-  void initState(BuildContext context) {
-    paginainicialComponenteModel =
-        createModel(context, () => PaginainicialComponenteModel());
-  }
-
-  @override
-  void dispose() {
-    paginainicialComponenteModel.dispose();
-  }
+  void dispose() {}
 }

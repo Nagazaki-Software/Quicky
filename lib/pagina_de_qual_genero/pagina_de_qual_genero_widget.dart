@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'pagina_de_qual_genero_model.dart';
 export 'pagina_de_qual_genero_model.dart';
 
@@ -82,10 +83,18 @@ class _PaginaDeQualGeneroWidgetState extends State<PaginaDeQualGeneroWidget> {
                     Text(
                       'Which gender best represents you?',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
-                            fontFamily: 'Inter',
+                            font: GoogleFonts.inter(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .displaySmall
+                                  .fontStyle,
+                            ),
                             color: FlutterFlowTheme.of(context).primaryText,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .displaySmall
+                                .fontStyle,
                           ),
                     ),
                     Align(
@@ -94,11 +103,19 @@ class _PaginaDeQualGeneroWidgetState extends State<PaginaDeQualGeneroWidget> {
                         'Add one or more genres to your profile.',
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
-                              fontFamily: 'Readex Pro',
+                              font: GoogleFonts.readexPro(
+                                fontWeight: FontWeight.normal,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontStyle,
+                              ),
                               color: FlutterFlowTheme.of(context).customColor2,
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.normal,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .fontStyle,
                             ),
                       ),
                     ),
@@ -120,9 +137,22 @@ class _PaginaDeQualGeneroWidgetState extends State<PaginaDeQualGeneroWidget> {
                         textStyle: FlutterFlowTheme.of(context)
                             .headlineSmall
                             .override(
-                              fontFamily: 'Inter',
+                              font: GoogleFonts.inter(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .fontStyle,
+                              ),
                               color: FlutterFlowTheme.of(context).customColor2,
                               letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .fontStyle,
                             ),
                         elevation: 0.0,
                         borderSide: BorderSide(
@@ -150,9 +180,22 @@ class _PaginaDeQualGeneroWidgetState extends State<PaginaDeQualGeneroWidget> {
                         textStyle: FlutterFlowTheme.of(context)
                             .headlineSmall
                             .override(
-                              fontFamily: 'Inter',
+                              font: GoogleFonts.inter(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .fontStyle,
+                              ),
                               color: FlutterFlowTheme.of(context).customColor2,
                               letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .fontStyle,
                             ),
                         elevation: 0.0,
                         borderSide: BorderSide(
@@ -180,9 +223,22 @@ class _PaginaDeQualGeneroWidgetState extends State<PaginaDeQualGeneroWidget> {
                         textStyle: FlutterFlowTheme.of(context)
                             .headlineSmall
                             .override(
-                              fontFamily: 'Inter',
+                              font: GoogleFonts.inter(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .fontStyle,
+                              ),
                               color: FlutterFlowTheme.of(context).customColor2,
                               letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .fontStyle,
                             ),
                         elevation: 0.0,
                         borderSide: BorderSide(
@@ -198,10 +254,23 @@ class _PaginaDeQualGeneroWidgetState extends State<PaginaDeQualGeneroWidget> {
                         'Find out why Quick asks for this information.',
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).bodySmall.override(
-                              fontFamily: 'Readex Pro',
+                              font: GoogleFonts.readexPro(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontStyle,
+                              ),
                               color: Color(0xFF006DFF),
                               fontSize: 13.0,
                               letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontStyle,
                             ),
                       ),
                     ),
@@ -229,9 +298,22 @@ class _PaginaDeQualGeneroWidgetState extends State<PaginaDeQualGeneroWidget> {
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleLarge.override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontStyle,
+                                  ),
                                   color: FlutterFlowTheme.of(context).info,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .fontStyle,
                                 ),
                         elevation: 3.0,
                         borderRadius: BorderRadius.circular(28.0),

@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'nav_bar_model.dart';
 export 'nav_bar_model.dart';
@@ -95,7 +96,14 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           style: FlutterFlowTheme.of(context)
                               .labelSmall
                               .override(
-                                fontFamily: 'Readex Pro',
+                                font: GoogleFonts.readexPro(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelSmall
+                                      .fontStyle,
+                                ),
                                 color: valueOrDefault<Color>(
                                   FFAppState().pages == 'Home'
                                       ? FlutterFlowTheme.of(context).tertiary
@@ -104,6 +112,12 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                   FlutterFlowTheme.of(context).primaryText,
                                 ),
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .fontStyle,
                               ),
                         ),
                       ].divide(SizedBox(height: 4.0)),
@@ -126,7 +140,14 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       Text(
                         'All Tasks',
                         style: FlutterFlowTheme.of(context).labelSmall.override(
-                              fontFamily: 'Readex Pro',
+                              font: GoogleFonts.readexPro(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .fontStyle,
+                              ),
                               color: valueOrDefault<Color>(
                                 FFAppState().pages == 'All Tasks'
                                     ? FlutterFlowTheme.of(context).tertiary
@@ -134,6 +155,12 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                 FlutterFlowTheme.of(context).primaryText,
                               ),
                               letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .labelSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .labelSmall
+                                  .fontStyle,
                             ),
                       ),
                     ].divide(SizedBox(height: 4.0)),
@@ -166,7 +193,14 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           style: FlutterFlowTheme.of(context)
                               .labelSmall
                               .override(
-                                fontFamily: 'Readex Pro',
+                                font: GoogleFonts.readexPro(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelSmall
+                                      .fontStyle,
+                                ),
                                 color: valueOrDefault<Color>(
                                   FFAppState().pages == 'Scoreboard'
                                       ? FlutterFlowTheme.of(context).tertiary
@@ -175,6 +209,12 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                   FlutterFlowTheme.of(context).primaryText,
                                 ),
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .fontStyle,
                               ),
                         ),
                       ].divide(SizedBox(height: 4.0)),
@@ -197,7 +237,14 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       Text(
                         'Profile',
                         style: FlutterFlowTheme.of(context).labelSmall.override(
-                              fontFamily: 'Readex Pro',
+                              font: GoogleFonts.readexPro(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .fontStyle,
+                              ),
                               color: valueOrDefault<Color>(
                                 FFAppState().pages == 'Scoreboard'
                                     ? FlutterFlowTheme.of(context).tertiary
@@ -205,6 +252,12 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                 FlutterFlowTheme.of(context).primaryText,
                               ),
                               letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .labelSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .labelSmall
+                                  .fontStyle,
                             ),
                       ),
                     ].divide(SizedBox(height: 4.0)),

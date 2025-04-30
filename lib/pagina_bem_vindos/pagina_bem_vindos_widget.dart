@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'pagina_bem_vindos_model.dart';
 export 'pagina_bem_vindos_model.dart';
 
@@ -79,20 +80,41 @@ class _PaginaBemVindosWidgetState extends State<PaginaBemVindosWidget> {
                     Text(
                       'Welcome to Quick.',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
-                            fontFamily: 'Sora',
+                            font: GoogleFonts.sora(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .displaySmall
+                                  .fontStyle,
+                            ),
                             color: Color(0xFF14181B),
                             fontSize: 30.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .displaySmall
+                                .fontStyle,
                           ),
                     ),
                     Text(
                       'Follow the house rules.',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Inter',
+                            font: GoogleFonts.inter(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .fontStyle,
+                            ),
                             color: FlutterFlowTheme.of(context).customColor2,
                             fontSize: 16.0,
                             letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .fontStyle,
                           ),
                     ),
                     Column(
@@ -104,11 +126,19 @@ class _PaginaBemVindosWidgetState extends State<PaginaBemVindosWidget> {
                           style: FlutterFlowTheme.of(context)
                               .displaySmall
                               .override(
-                                fontFamily: 'Sora',
+                                font: GoogleFonts.sora(
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .fontStyle,
+                                ),
                                 color: Color(0xFF14181B),
                                 fontSize: 17.0,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w600,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .fontStyle,
                               ),
                         ),
                         Text(
@@ -116,11 +146,24 @@ class _PaginaBemVindosWidgetState extends State<PaginaBemVindosWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyLarge
                               .override(
-                                fontFamily: 'Inter',
+                                font: GoogleFonts.inter(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .fontStyle,
+                                ),
                                 color:
                                     FlutterFlowTheme.of(context).customColor2,
                                 fontSize: 16.0,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontStyle,
                               ),
                         ),
                       ].divide(SizedBox(height: 4.0)),
@@ -134,11 +177,19 @@ class _PaginaBemVindosWidgetState extends State<PaginaBemVindosWidget> {
                           style: FlutterFlowTheme.of(context)
                               .displaySmall
                               .override(
-                                fontFamily: 'Sora',
+                                font: GoogleFonts.sora(
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .fontStyle,
+                                ),
                                 color: Color(0xFF14181B),
                                 fontSize: 17.0,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w600,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .fontStyle,
                               ),
                         ),
                         Text(
@@ -146,22 +197,43 @@ class _PaginaBemVindosWidgetState extends State<PaginaBemVindosWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyLarge
                               .override(
-                                fontFamily: 'Inter',
+                                font: GoogleFonts.inter(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .fontStyle,
+                                ),
                                 color:
                                     FlutterFlowTheme.of(context).customColor2,
                                 fontSize: 16.0,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontStyle,
                               ),
                         ),
                         Text(
                           'Safety Tips',
                           style:
                               FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: 'Inter',
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .fontStyle,
+                                    ),
                                     color: Color(0xFF006DFF),
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .fontStyle,
                                     decoration: TextDecoration.underline,
                                   ),
                         ),
@@ -176,11 +248,19 @@ class _PaginaBemVindosWidgetState extends State<PaginaBemVindosWidget> {
                           style: FlutterFlowTheme.of(context)
                               .displaySmall
                               .override(
-                                fontFamily: 'Sora',
+                                font: GoogleFonts.sora(
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .fontStyle,
+                                ),
                                 color: Color(0xFF14181B),
                                 fontSize: 17.0,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w600,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .fontStyle,
                               ),
                         ),
                         Text(
@@ -188,11 +268,24 @@ class _PaginaBemVindosWidgetState extends State<PaginaBemVindosWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyLarge
                               .override(
-                                fontFamily: 'Inter',
+                                font: GoogleFonts.inter(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .fontStyle,
+                                ),
                                 color:
                                     FlutterFlowTheme.of(context).customColor2,
                                 fontSize: 16.0,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontStyle,
                               ),
                         ),
                       ].divide(SizedBox(height: 4.0)),
@@ -206,11 +299,19 @@ class _PaginaBemVindosWidgetState extends State<PaginaBemVindosWidget> {
                           style: FlutterFlowTheme.of(context)
                               .displaySmall
                               .override(
-                                fontFamily: 'Sora',
+                                font: GoogleFonts.sora(
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .fontStyle,
+                                ),
                                 color: Color(0xFF14181B),
                                 fontSize: 17.0,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w600,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .fontStyle,
                               ),
                         ),
                         Text(
@@ -218,11 +319,24 @@ class _PaginaBemVindosWidgetState extends State<PaginaBemVindosWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyLarge
                               .override(
-                                fontFamily: 'Inter',
+                                font: GoogleFonts.inter(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .fontStyle,
+                                ),
                                 color:
                                     FlutterFlowTheme.of(context).customColor2,
                                 fontSize: 16.0,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontStyle,
                               ),
                         ),
                       ].divide(SizedBox(height: 4.0)),
@@ -245,11 +359,18 @@ class _PaginaBemVindosWidgetState extends State<PaginaBemVindosWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleLarge.override(
-                          fontFamily: 'Sora',
+                          font: GoogleFonts.sora(
+                            fontWeight: FontWeight.w500,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .fontStyle,
+                          ),
                           color: Colors.white,
                           fontSize: 22.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.w500,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleLarge.fontStyle,
                         ),
                     elevation: 3.0,
                     borderRadius: BorderRadius.circular(28.0),

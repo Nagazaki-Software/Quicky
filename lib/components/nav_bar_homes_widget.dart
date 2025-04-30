@@ -75,7 +75,7 @@ class _NavBarHomesWidgetState extends State<NavBarHomesWidget> {
                                 topRight: Radius.circular(0.0),
                               ),
                               child: Image.asset(
-                                'assets/images/Quicky_Cursivo.png',
+                                'assets/images/Ativo_1@3x.png',
                                 width: 150.0,
                                 height: 60.0,
                                 fit: BoxFit.fill,

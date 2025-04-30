@@ -1,12 +1,11 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'create_task_new_widget.dart' show CreateTaskNewWidget;
+import 'imagem_current_task_chat_widget.dart' show ImagemCurrentTaskChatWidget;
 import 'package:flutter/material.dart';
 
-class CreateTaskNewModel extends FlutterFlowModel<CreateTaskNewWidget> {
+class ImagemCurrentTaskChatModel
+    extends FlutterFlowModel<ImagemCurrentTaskChatWidget> {
   ///  State fields for stateful widgets in this component.
 
-  // Stores action output result for [Gemini - Generate Text] action in createTaskNew widget.
-  String? gemini;
   // State field(s) for PageView widget.
   PageController? pageViewController;
 

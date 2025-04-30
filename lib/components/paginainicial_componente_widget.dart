@@ -49,16 +49,10 @@ class _PaginainicialComponenteWidgetState
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
-        Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            wrapWithModel(
-              model: _model.widgetPaginaInicialFiltersModel,
-              updateCallback: () => safeSetState(() {}),
-              child: WidgetPaginaInicialFiltersWidget(),
-            ),
-          ],
+        wrapWithModel(
+          model: _model.widgetPaginaInicialFiltersModel,
+          updateCallback: () => safeSetState(() {}),
+          child: WidgetPaginaInicialFiltersWidget(),
         ),
         Align(
           alignment: AlignmentDirectional(0.0, 0.0),

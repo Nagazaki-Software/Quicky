@@ -130,16 +130,26 @@ class TasksRecord extends FirestoreRecord {
   String get valorDeUrgencia => _valorDeUrgencia ?? '';
   bool hasValorDeUrgencia() => _valorDeUrgencia != null;
 
+  // "fotos" field.
+  List<String>? _fotos;
+  List<String> get fotos => _fotos ?? const [];
+  bool hasFotos() => _fotos != null;
+
+  // "acceptRenegociate" field.
+  bool? _acceptRenegociate;
+  bool get acceptRenegociate => _acceptRenegociate ?? false;
+  bool hasAcceptRenegociate() => _acceptRenegociate != null;
+
   // "usuariosDisputandoPelaTask" field.
   List<DocumentReference>? _usuariosDisputandoPelaTask;
   List<DocumentReference> get usuariosDisputandoPelaTask =>
       _usuariosDisputandoPelaTask ?? const [];
   bool hasUsuariosDisputandoPelaTask() => _usuariosDisputandoPelaTask != null;
 
-  // "fotos" field.
-  List<String>? _fotos;
-  List<String> get fotos => _fotos ?? const [];
-  bool hasFotos() => _fotos != null;
+  // "usuarioQueAceitouaTask" field.
+  DocumentReference? _usuarioQueAceitouaTask;
+  DocumentReference? get usuarioQueAceitouaTask => _usuarioQueAceitouaTask;
+  bool hasUsuarioQueAceitouaTask() => _usuarioQueAceitouaTask != null;
 
   void _initializeFields() {
     _foto = getDataList(snapshotData['Foto']);
@@ -165,9 +175,12 @@ class TasksRecord extends FirestoreRecord {
     _priority = snapshotData['priority'] as String?;
     _valor = snapshotData['valor'] as String?;
     _valorDeUrgencia = snapshotData['valorDeUrgencia'] as String?;
+    _fotos = getDataList(snapshotData['fotos']);
+    _acceptRenegociate = snapshotData['acceptRenegociate'] as bool?;
     _usuariosDisputandoPelaTask =
         getDataList(snapshotData['usuariosDisputandoPelaTask']);
-    _fotos = getDataList(snapshotData['fotos']);
+    _usuarioQueAceitouaTask =
+        snapshotData['usuarioQueAceitouaTask'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -226,6 +239,8 @@ Map<String, dynamic> createTasksRecordData({
   String? priority,
   String? valor,
   String? valorDeUrgencia,
+  bool? acceptRenegociate,
+  DocumentReference? usuarioQueAceitouaTask,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -251,6 +266,8 @@ Map<String, dynamic> createTasksRecordData({
       'priority': priority,
       'valor': valor,
       'valorDeUrgencia': valorDeUrgencia,
+      'acceptRenegociate': acceptRenegociate,
+      'usuarioQueAceitouaTask': usuarioQueAceitouaTask,
     }.withoutNulls,
   );
 
@@ -286,9 +303,11 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e1?.priority == e2?.priority &&
         e1?.valor == e2?.valor &&
         e1?.valorDeUrgencia == e2?.valorDeUrgencia &&
+        listEquality.equals(e1?.fotos, e2?.fotos) &&
+        e1?.acceptRenegociate == e2?.acceptRenegociate &&
         listEquality.equals(
             e1?.usuariosDisputandoPelaTask, e2?.usuariosDisputandoPelaTask) &&
-        listEquality.equals(e1?.fotos, e2?.fotos);
+        e1?.usuarioQueAceitouaTask == e2?.usuarioQueAceitouaTask;
   }
 
   @override
@@ -316,8 +335,10 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e?.priority,
         e?.valor,
         e?.valorDeUrgencia,
+        e?.fotos,
+        e?.acceptRenegociate,
         e?.usuariosDisputandoPelaTask,
-        e?.fotos
+        e?.usuarioQueAceitouaTask
       ]);
 
   @override

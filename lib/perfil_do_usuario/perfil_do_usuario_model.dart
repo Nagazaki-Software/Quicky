@@ -1,26 +1,23 @@
-import '/components/componenteperfil_widget.dart';
-import '/components/nav_bar_homes_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'perfil_do_usuario_widget.dart' show PerfilDoUsuarioWidget;
 import 'package:flutter/material.dart';
 
 class PerfilDoUsuarioModel extends FlutterFlowModel<PerfilDoUsuarioWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // Model for componenteperfil component.
-  late ComponenteperfilModel componenteperfilModel;
-  // Model for navBarHomes component.
-  late NavBarHomesModel navBarHomesModel;
+  // State field(s) for PageView widget.
+  PageController? pageViewController;
+
+  int get pageViewCurrentIndex => pageViewController != null &&
+          pageViewController!.hasClients &&
+          pageViewController!.page != null
+      ? pageViewController!.page!.round()
+      : 0;
 
   @override
-  void initState(BuildContext context) {
-    componenteperfilModel = createModel(context, () => ComponenteperfilModel());
-    navBarHomesModel = createModel(context, () => NavBarHomesModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    componenteperfilModel.dispose();
-    navBarHomesModel.dispose();
-  }
+  void dispose() {}
 }

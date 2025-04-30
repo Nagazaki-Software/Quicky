@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'naoexitefotosaquiadicone_model.dart';
 export 'naoexitefotosaquiadicone_model.dart';
 
@@ -65,9 +66,18 @@ class _NaoexitefotosaquiadiconeWidgetState
               Text(
                 'Add photos to your task',
                 style: FlutterFlowTheme.of(context).titleMedium.override(
-                      fontFamily: 'Readex Pro',
+                      font: GoogleFonts.readexPro(
+                        fontWeight:
+                            FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                      ),
                       color: FlutterFlowTheme.of(context).secondaryText,
                       letterSpacing: 0.0,
+                      fontWeight:
+                          FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).titleMedium.fontStyle,
                     ),
               ),
               FFButtonWidget(
@@ -130,9 +140,19 @@ class _NaoexitefotosaquiadiconeWidgetState
                       EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
+                        font: GoogleFonts.readexPro(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
                         color: Colors.white,
                         letterSpacing: 0.0,
+                        fontWeight:
+                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),
                   elevation: 0.0,
                   borderSide: BorderSide(

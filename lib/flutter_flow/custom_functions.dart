@@ -330,3 +330,41 @@ int formateInteiroEmDouble(double doble) {
   // formate double em inteiro
   return doble.toInt();
 }
+
+List<int> retorneMaisImagens(String choiceChips) {
+  // se o choiceChips retornar (1 Step, 2 Steps, 3 Steps, 4 +, 5,6,7,8 desse jeito mesmo) retorne o numero
+  switch (choiceChips) {
+    case '1 Step':
+      return [1];
+    case '2 Steps':
+      return [2];
+    case '3 Steps':
+      return [3];
+    case '4 +':
+      return [4];
+    case '5':
+      return [5];
+    case '6':
+      return [6];
+    case '7':
+      return [7];
+    case '8':
+      return [8];
+    default:
+      return [];
+  }
+}
+
+int calcularRatings(List<AvaliacoesStruct>? avaliacoes) {
+  // calcule a media de ratings baseado em avaliacoes.rating sendo inteiro
+  if (avaliacoes == null || avaliacoes.isEmpty) {
+    return 5; // Retorna 0 se a lista estiver vazia ou nula
+  }
+
+  int totalRatings = 0;
+  for (var avaliacao in avaliacoes) {
+    totalRatings += avaliacao.rating; // Soma as avaliações
+  }
+
+  return (totalRatings ~/ avaliacoes.length); // Calcula a média
+}

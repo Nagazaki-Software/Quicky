@@ -1,5 +1,5 @@
-import '/components/nav_bar_homes_copy_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'chat_widget.dart' show ChatWidget;
 import 'package:flutter/material.dart';
 
@@ -8,18 +8,26 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
 
   String? direcao = '';
 
+  bool recentTasks = true;
+
+  bool allTasks = false;
+
+  bool completedTask = false;
+
   ///  State fields for stateful widgets in this page.
 
-  // Model for navBarHomesCopy component.
-  late NavBarHomesCopyModel navBarHomesCopyModel;
+  // State field(s) for PageView widget.
+  PageController? pageViewController;
+
+  int get pageViewCurrentIndex => pageViewController != null &&
+          pageViewController!.hasClients &&
+          pageViewController!.page != null
+      ? pageViewController!.page!.round()
+      : 0;
 
   @override
-  void initState(BuildContext context) {
-    navBarHomesCopyModel = createModel(context, () => NavBarHomesCopyModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    navBarHomesCopyModel.dispose();
-  }
+  void dispose() {}
 }

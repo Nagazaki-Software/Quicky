@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:flip_card/flip_card.dart';
+
 import '/custom_code/widgets/index.dart';
 import '/custom_code/actions/index.dart';
 import '/flutter_flow/custom_functions.dart';
@@ -51,59 +53,47 @@ class _FlutterCardSwiperState extends State<FlutterCardSwiper> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final screenSize = MediaQuery.of(context).size;
-        final cardHeight = screenSize.height * 0.70;
+        final cardHeight = screenSize.height * 0.80;
         final cardWidth = screenSize.width * 0.96;
         return Stack(
           children: [
             Column(
               children: [
-                SizedBox(
-                  height: cardHeight,
-                  width: cardWidth,
-                  child: CardSwiper(
-                    controller: controller,
-                    cardsCount: widget.tasksList.length,
-                    numberOfCardsDisplayed: 1,
-                    duration: const Duration(milliseconds: 400),
-                    isLoop: false,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
-                    allowedSwipeDirection: AllowedSwipeDirection.all(),
-                    onSwipe: (prevIndex, newIndex, direction) {
-                      final currentTask = widget.tasksList[prevIndex];
+                Expanded(
+                  child: SizedBox(
+                    height: cardHeight,
+                    width: cardWidth,
+                    child: CardSwiper(
+                      controller: controller,
+                      cardsCount: widget.tasksList.length,
+                      numberOfCardsDisplayed: 1,
+                      duration: const Duration(milliseconds: 400),
+                      isLoop: false,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 0),
+                      allowedSwipeDirection: AllowedSwipeDirection.all(),
+                      onSwipe: (prevIndex, newIndex, direction) {
+                        final currentTask = widget.tasksList[prevIndex];
 
-                      // Aguarde um microtask para permitir que a animação do CardSwiper finalize
-                      Future.microtask(() async {
-                        await Future.delayed(
-                            const Duration(milliseconds: 100)); // pequena pausa
+                        // Aguarde um microtask para permitir que a animação do CardSwiper finalize
+                        Future.microtask(() async {
+                          await Future.delayed(const Duration(
+                              milliseconds: 100)); // pequena pausa
 
-                        final userSnap = await widget.currentUser.get();
-                        final userData =
-                            userSnap.data() as Map<String, dynamic>?;
+                          final userSnap = await widget.currentUser.get();
+                          final userData =
+                              userSnap.data() as Map<String, dynamic>?;
 
-                        if (userData == null) return;
+                          if (userData == null) return;
 
-                        final userName = userData['displayName'] ??
-                            userData['display_name'] ??
-                            'Sem nome';
-                        final userPhoto = userData['photo_url'];
+                          final userName = userData['displayName'] ??
+                              userData['display_name'] ??
+                              'Sem nome';
+                          final userPhoto = userData['photo_url'];
 
-                        if (direction == CardSwiperDirection.right) {
-                          var chatRef = ChatRecord.collection.doc();
-                          await chatRef.set(createChatRecordData(
-                            userDocument: widget.currentUser,
-                            imgDoUser: currentTask.foto.firstOrNull,
-                            userName: userName,
-                            nomeDoGrupo: 'Task ${currentTask.titulo}',
-                            imgDaTask: currentTask.foto.firstOrNull,
-                            user2Document: currentTask.userReference,
-                            ultimaMsg: getCurrentTimestamp,
-                            ultMsg: '$userName accept this task.',
-                            referenceTask: currentTask.reference,
-                          ));
-
-                          final chatRecord = ChatRecord.getDocumentFromData(
-                            createChatRecordData(
+                          if (direction == CardSwiperDirection.right) {
+                            var chatRef = ChatRecord.collection.doc();
+                            await chatRef.set(createChatRecordData(
                               userDocument: widget.currentUser,
                               imgDoUser: currentTask.foto.firstOrNull,
                               userName: userName,
@@ -113,393 +103,507 @@ class _FlutterCardSwiperState extends State<FlutterCardSwiper> {
                               ultimaMsg: getCurrentTimestamp,
                               ultMsg: '$userName accept this task.',
                               referenceTask: currentTask.reference,
-                            ),
-                            chatRef,
-                          );
+                            ));
 
-                          await ChatHistoryRecord.createDoc(
-                                  chatRecord.reference)
-                              .set(
-                            createChatHistoryRecordData(
-                              msgdosystema: true,
-                              msg: '$userName accept this task.',
-                              horario: getCurrentTimestamp,
-                              documentUser: widget.currentUser,
-                            ),
-                          );
+                            final chatRecord = ChatRecord.getDocumentFromData(
+                              createChatRecordData(
+                                userDocument: widget.currentUser,
+                                imgDoUser: currentTask.foto.firstOrNull,
+                                userName: userName,
+                                nomeDoGrupo: 'Task ${currentTask.titulo}',
+                                imgDaTask: currentTask.foto.firstOrNull,
+                                user2Document: currentTask.userReference,
+                                ultimaMsg: getCurrentTimestamp,
+                                ultMsg: '$userName accept this task.',
+                                referenceTask: currentTask.reference,
+                              ),
+                              chatRef,
+                            );
 
-                          await currentTask.reference.update({
-                            'usuariosDisputandoPelaTask':
-                                FieldValue.arrayUnion([userName]),
-                          });
+                            await ChatHistoryRecord.createDoc(
+                                    chatRecord.reference)
+                                .set(
+                              createChatHistoryRecordData(
+                                msgdosystema: true,
+                                msg: '$userName accept this task.',
+                                horario: getCurrentTimestamp,
+                                documentUser: widget.currentUser,
+                              ),
+                            );
 
-                          setState(() {
-                            widget.tasksList.removeAt(prevIndex);
-                            _currentIndex = 0;
-                          });
+                            await currentTask.reference.update({
+                              'usuariosDisputandoPelaTask':
+                                  FieldValue.arrayUnion([userName]),
+                            });
 
-                          FFAppState().taskReference = currentTask.reference;
-                          FFAppState().update(() {});
-                        }
+                            setState(() {
+                              widget.tasksList.removeAt(prevIndex);
+                              _currentIndex = 0;
+                            });
 
-                        if (direction == CardSwiperDirection.top) {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            enableDrag: false,
-                            context: context,
-                            builder: (context) {
-                              return Padding(
-                                padding: MediaQuery.viewInsetsOf(context),
-                                child: CountPaymentCopyWidget(
-                                    task: currentTask.reference),
-                              );
-                            },
-                          );
-                        }
+                            FFAppState().taskReference = currentTask.reference;
+                            FFAppState().update(() {});
+                          }
 
-                        if (direction == CardSwiperDirection.left) {
-                          // Swipe de recusa, você pode adicionar lógica se quiser
-                        }
-                      });
+                          if (direction == CardSwiperDirection.top) {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              context: context,
+                              builder: (context) {
+                                return Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: CountPaymentCopyWidget(
+                                      task: currentTask.reference),
+                                );
+                              },
+                            );
+                          }
 
-                      // Atualiza a UI imediatamente
-                      setState(() {
-                        _currentIndex = newIndex ?? 0;
-                      });
+                          if (direction == CardSwiperDirection.left) {
+                            // Swipe de recusa, você pode adicionar lógica se quiser
+                          }
+                        });
 
-                      return true;
-                    },
-                    cardBuilder: (context, index, percentX, percentY) {
-                      final task = widget.tasksList[index];
-                      final showAccept = percentX > 0.15;
-                      final showDecline = percentX < -0.15;
-                      final showTop = percentY < -0.15;
-                      final titleLength = (task.titulo ?? '').length;
-                      final descLength = (task.descricao ?? '').length;
+                        // Atualiza a UI imediatamente
+                        setState(() {
+                          _currentIndex = newIndex ?? 0;
+                        });
 
-                      final screenHeight = MediaQuery.of(context).size.height;
-                      final cardMaxHeight = screenHeight * 0.65;
-                      final textoWeight = (titleLength + descLength) * 0.25;
+                        return true;
+                      },
+                      cardBuilder: (context, index, percentX, percentY) {
+                        final task = widget.tasksList[index];
+                        final showAccept = percentX > 0.15;
+                        final showDecline = percentX < -0.15;
+                        final showTop = percentY < -0.15;
+                        final titleLength = (task.titulo ?? '').length;
+                        final descLength = (task.descricao ?? '').length;
 
-                      double minHeight;
-                      double maxHeight;
+                        final screenHeight = MediaQuery.of(context).size.height;
+                        final cardMaxHeight = screenHeight * 0.65;
+                        final textoWeight = (titleLength + descLength) * 0.25;
+
+                        double minHeight;
+                        double maxHeight;
 
 // Faixas dinâmicas
-                      if (screenHeight <= 680) {
-                        minHeight = 140;
-                        maxHeight = 230;
-                      } else if (screenHeight <= 780) {
-                        minHeight = 180;
-                        maxHeight = 230;
-                      } else if (screenHeight <= 880) {
-                        minHeight = 220;
-                        maxHeight = 380;
-                      } else if (screenHeight <= 1000) {
-                        minHeight = 300;
-                        maxHeight = 400;
-                      } else {
-                        minHeight = 340;
-                        maxHeight = 410;
-                      }
+                        if (screenHeight <= 680) {
+                          minHeight = 100;
+                          maxHeight = 230;
+                        } else if (screenHeight <= 780) {
+                          minHeight = 150;
+                          maxHeight = 280;
+                        } else if (screenHeight <= 880) {
+                          minHeight = 150;
+                          maxHeight = 330;
+                        } else if (screenHeight <= 1000) {
+                          minHeight = 220;
+                          maxHeight = 420;
+                        } else {
+                          minHeight = 340;
+                          maxHeight = 410;
+                        }
 
 // Cálculo com base e peso do texto
-                      final base = (minHeight + maxHeight) / 2;
-                      final imageHeight = (base - textoWeight)
-                          .clamp(minHeight, maxHeight)
-                          .toDouble();
+                        final base = (minHeight + maxHeight) / 2;
+                        final imageHeight = (base - textoWeight)
+                            .clamp(minHeight, maxHeight)
+                            .toDouble();
 
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        String? newDirection;
-                        if (showAccept)
-                          newDirection = 'right';
-                        else if (showDecline)
-                          newDirection = 'left';
-                        else if (showTop)
-                          newDirection = 'up';
-                        else
-                          newDirection = null;
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          String? newDirection;
+                          if (showAccept)
+                            newDirection = 'right';
+                          else if (showDecline)
+                            newDirection = 'left';
+                          else if (showTop)
+                            newDirection = 'up';
+                          else
+                            newDirection = null;
 
-                        if (_currentSwipeDirection != newDirection) {
-                          setState(() {
-                            _currentSwipeDirection = newDirection;
-                          });
-                        }
-                      });
+                          if (_currentSwipeDirection != newDirection) {
+                            setState(() {
+                              _currentSwipeDirection = newDirection;
+                            });
+                          }
+                        });
 
-                      _currentImageIndex.putIfAbsent(index, () => 0);
-                      final currentImage = _currentImageIndex[index]!;
+                        _currentImageIndex.putIfAbsent(index, () => 0);
+                        final currentImage = _currentImageIndex[index]!;
 
-                      return StreamBuilder<UsersRecord>(
-                        stream: UsersRecord.getDocument(task.userReference!),
-                        builder: (context, snapshot) {
-                          final user = snapshot.data;
-
-                          return Card(
-                            color: const Color(0xFFF6F6F6),
-                            elevation: 6,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        20, 24, 16, 16),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            task.titulo ?? 'Título',
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20,
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 6),
-                                          decoration: BoxDecoration(
-                                            color: Colors.green[800],
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          child: Text(
-                                            '\$ ${task.valor}',
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTapDown: (details) {
-                                      final dx = details.localPosition.dx;
-                                      final width = context.size!.width;
-                                      setState(() {
-                                        if (dx < width / 2) {
-                                          _currentImageIndex[index] =
-                                              (_currentImageIndex[index]! -
-                                                      1 +
-                                                      task.foto.length) %
-                                                  task.foto.length;
-                                        } else {
-                                          _currentImageIndex[index] =
-                                              (_currentImageIndex[index]! + 1) %
-                                                  task.foto.length;
-                                        }
-                                      });
-                                    },
-                                    child: Container(
-                                      height: imageHeight,
-                                      child: Stack(
-                                        fit: StackFit.expand,
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(0),
-                                              topRight: Radius.circular(0),
-                                            ),
-                                            child: Image.network(
-                                              task.foto[currentImage],
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          if (showAccept)
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(0),
-                                                color: Colors.green
-                                                    .withOpacity(0.70),
-                                              ),
-                                            ),
-                                          if (showDecline)
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(0),
-                                                color: Colors.red
-                                                    .withOpacity(0.70),
-                                              ),
-                                            ),
-                                          if (showAccept)
-                                            const Positioned(
-                                              top: 12,
-                                              right: 12,
-                                              child: Text(
-                                                'Accept',
-                                                style: TextStyle(
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.brown,
-                                                ),
-                                              ),
-                                            ),
-                                          if (showDecline)
-                                            const Positioned(
-                                              top: 12,
-                                              left: 12,
-                                              child: Text(
-                                                'Decline',
-                                                style: TextStyle(
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.brown,
-                                                ),
-                                              ),
-                                            ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(16),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Row(
+                        return StreamBuilder<UsersRecord>(
+                          stream: UsersRecord.getDocument(task.userReference!),
+                          builder: (context, snapshot) {
+                            final user = snapshot.data;
+                            return FlipCard(
+                              direction: FlipDirection.HORIZONTAL,
+                              speed: 450,
+                              fill: Fill.fillBack,
+                              flipOnTouch: true,
+                              front: Card(
+                                color: const Color(0xFFF6F6F6),
+                                elevation: 4,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            20, 24, 16, 16),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                task.descricao ?? 'Descrição',
+                                                task.titulo ?? 'Título',
                                                 style: const TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.w300),
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20,
+                                                ),
                                               ),
                                             ),
-                                            InkWell(
-                                              onTap: () {
-                                                final currentTask = widget
-                                                    .tasksList[_currentIndex];
-                                                context.pushNamed(
-                                                  'task',
-                                                  queryParameters: {
-                                                    'task': currentTask
-                                                        .reference.id,
-                                                  },
-                                                );
-                                              },
-                                              child: const Text(
-                                                'View task',
-                                                style: TextStyle(
-                                                  decoration:
-                                                      TextDecoration.none,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w600,
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 6),
+                                              decoration: BoxDecoration(
+                                                color: Colors.green[800],
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: Text(
+                                                '\$ ${task.valor}',
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               ),
                                             ),
                                           ],
                                         ),
-                                        const SizedBox(height: 12),
-                                        Wrap(
-                                          spacing: 8,
-                                          runSpacing: 4,
-                                          children: [
-                                            if (task.modalidade != null &&
-                                                task.modalidade!
-                                                    .trim()
-                                                    .isNotEmpty)
-                                              _buildTag(task.modalidade!),
-                                            if (task.materiaisNecessarios !=
-                                                    null &&
-                                                task.materiaisNecessarios!
-                                                    .trim()
-                                                    .isNotEmpty)
-                                              _buildTag(
-                                                  task.materiaisNecessarios!),
-                                            _buildTag('Quick Gold',
-                                                cor: Colors.amber),
-                                            if (task.instrucoesEspeciais !=
-                                                    null &&
-                                                task.instrucoesEspeciais!
-                                                    .trim()
-                                                    .isNotEmpty)
-                                              _buildTag(
-                                                  task.instrucoesEspeciais!),
-                                            if (task.nivelTrabalho != null &&
-                                                task.nivelTrabalho!
-                                                    .trim()
-                                                    .isNotEmpty)
-                                              _buildTag(task.nivelTrabalho!),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 16),
-                                        Container(
-                                          padding: const EdgeInsets.all(8),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            color: Colors.white,
-                                          ),
-                                          child: Row(
+                                      ),
+                                      GestureDetector(
+                                        onTapDown: (details) {
+                                          final dx = details.localPosition.dx;
+                                          final width = context.size!.width;
+                                          setState(() {
+                                            if (dx < width / 2) {
+                                              _currentImageIndex[index] =
+                                                  (_currentImageIndex[index]! -
+                                                          1 +
+                                                          task.foto.length) %
+                                                      task.foto.length;
+                                            } else {
+                                              _currentImageIndex[index] =
+                                                  (_currentImageIndex[index]! +
+                                                          1) %
+                                                      task.foto.length;
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          height: imageHeight,
+                                          child: Stack(
+                                            fit: StackFit.expand,
                                             children: [
-                                              CircleAvatar(
-                                                backgroundImage:
-                                                    user?.photoUrl != null
-                                                        ? NetworkImage(
-                                                            user!.photoUrl!)
-                                                        : null,
-                                                radius: 24,
-                                                backgroundColor:
-                                                    Colors.brown.shade100,
+                                              ClipRRect(
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(0),
+                                                  topRight: Radius.circular(0),
+                                                ),
+                                                child: Image.network(
+                                                  task.foto[currentImage],
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
-                                              const SizedBox(width: 12),
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    user?.displayName ??
-                                                        'Sem nome',
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                              if (showAccept)
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0),
+                                                    color: Colors.green
+                                                        .withOpacity(0.50),
                                                   ),
-                                                  Text(
-                                                    user?.bio ?? 'Sem bio',
-                                                    style: const TextStyle(
-                                                        fontSize: 12,
-                                                        color: Colors.grey),
+                                                ),
+                                              if (showDecline)
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0),
+                                                    color: Colors.red
+                                                        .withOpacity(0.50),
                                                   ),
-                                                ],
-                                              ),
-                                              const Spacer(),
-                                              const Row(
-                                                children: [
-                                                  Icon(Icons.camera_alt,
-                                                      size: 16),
-                                                  SizedBox(width: 4),
-                                                  Icon(Icons.link, size: 16),
-                                                ],
-                                              ),
+                                                ),
+                                              if (showAccept)
+                                                const Positioned(
+                                                  top: 12,
+                                                  right: 12,
+                                                  child: Text(
+                                                    'Accept',
+                                                    style: TextStyle(
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.brown,
+                                                    ),
+                                                  ),
+                                                ),
+                                              if (showDecline)
+                                                const Positioned(
+                                                  top: 12,
+                                                  left: 12,
+                                                  child: Text(
+                                                    'Decline',
+                                                    style: TextStyle(
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.brown,
+                                                    ),
+                                                  ),
+                                                ),
                                             ],
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                      const SizedBox(height: 12),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.all(16),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black
+                                                        .withOpacity(0.1),
+                                                    blurRadius: 6,
+                                                    offset: Offset(0, 3),
+                                                  ),
+                                                ],
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          task.descricao ??
+                                                              'Descrição',
+                                                          style: const TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w300),
+                                                        ),
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          final currentTask =
+                                                              widget.tasksList[
+                                                                  _currentIndex];
+                                                          context.pushNamed(
+                                                            'task',
+                                                            queryParameters: {
+                                                              'task':
+                                                                  currentTask
+                                                                      .reference
+                                                                      .id,
+                                                            },
+                                                          );
+                                                        },
+                                                        child: const Text(
+                                                          'View task',
+                                                          style: TextStyle(
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .none,
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 12),
+                                                  Wrap(
+                                                    spacing: 8,
+                                                    runSpacing: 4,
+                                                    children: [
+                                                      if (task.modalidade !=
+                                                              null &&
+                                                          task.modalidade!
+                                                              .trim()
+                                                              .isNotEmpty)
+                                                        _buildTag(
+                                                            task.modalidade!),
+                                                      if (task.materiaisNecessarios !=
+                                                              null &&
+                                                          task.materiaisNecessarios!
+                                                              .trim()
+                                                              .isNotEmpty)
+                                                        _buildTag(task
+                                                            .materiaisNecessarios!),
+                                                      _buildTag('Quick Gold',
+                                                          cor: Colors.amber),
+                                                      if (task.instrucoesEspeciais !=
+                                                              null &&
+                                                          task.instrucoesEspeciais!
+                                                              .trim()
+                                                              .isNotEmpty)
+                                                        _buildTag(task
+                                                            .instrucoesEspeciais!),
+                                                      if (task.nivelTrabalho !=
+                                                              null &&
+                                                          task.nivelTrabalho!
+                                                              .trim()
+                                                              .isNotEmpty)
+                                                        _buildTag(task
+                                                            .nivelTrabalho!),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(height: 16),
+                                            Container(
+                                              padding: const EdgeInsets.all(8),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                color: Colors.white,
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  CircleAvatar(
+                                                    backgroundImage:
+                                                        user?.photoUrl != null
+                                                            ? NetworkImage(
+                                                                user!.photoUrl!)
+                                                            : null,
+                                                    radius: 24,
+                                                    backgroundColor:
+                                                        Colors.brown.shade100,
+                                                  ),
+                                                  const SizedBox(width: 12),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        user?.displayName ??
+                                                            'Sem nome',
+                                                        style: const TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      Text(
+                                                        user?.bio ?? 'Sem bio',
+                                                        style: const TextStyle(
+                                                            fontSize: 12,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const Spacer(),
+                                                  const Row(
+                                                    children: [
+                                                      Icon(Icons.camera_alt,
+                                                          size: 16),
+                                                      SizedBox(width: 4),
+                                                      Icon(Icons.link,
+                                                          size: 16),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                      );
-                    },
+                              back: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16)),
+                                color: Colors.white,
+                                elevation: 4,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Task Details',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(height: 16),
+                                      _infoBlock(
+                                          title: 'Milestones',
+                                          content: task.nivelTrabalho ?? 'N/A'),
+                                      const SizedBox(height: 12),
+                                      _infoBlock(
+                                        title: 'Urgency',
+                                        content: (task.locationString ??
+                                            'Not Specificate'),
+                                      ),
+                                      const SizedBox(height: 12),
+                                      _infoBlock(
+                                          title: 'Add Materials',
+                                          content: task.materiaisNecessarios ??
+                                              'Not provided'),
+                                      const SizedBox(height: 12),
+                                      _infoBlock(
+                                          title: 'Special Instructions',
+                                          content: task.instrucoesEspeciais ??
+                                              'None'),
+                                      const SizedBox(height: 12),
+                                      _infoBlock(
+                                          title: 'Modalitie',
+                                          content: task.modalidade ??
+                                              'Not specified'),
+                                      const SizedBox(height: 12),
+                                      _infoBlock(
+                                          title: 'Schedule',
+                                          content: dateTimeFormat(
+                                              'MMMM dd, yyyy – HH:mm',
+                                              task.tempo)),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
                 Padding(
@@ -580,6 +684,24 @@ class _FlutterCardSwiperState extends State<FlutterCardSwiper> {
         label,
         style: const TextStyle(color: Colors.white, fontSize: 12),
       ),
+    );
+  }
+
+  Widget _infoBlock({required String title, required String content}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+              fontWeight: FontWeight.w600, fontSize: 14, color: Colors.brown),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          content,
+          style: const TextStyle(fontSize: 13, color: Colors.black87),
+        ),
+      ],
     );
   }
 }

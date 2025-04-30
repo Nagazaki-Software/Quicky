@@ -14,7 +14,7 @@ import 'package:flutter/services.dart';
 Future<void> changeStatusBarColor() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: Colors.white, // Change the color whatever you want
+      statusBarColor: Color(0xFFE8DCDC), // Cor atualizada para #e8dcdc
     ),
   );
 }

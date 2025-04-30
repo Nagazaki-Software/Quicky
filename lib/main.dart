@@ -15,10 +15,6 @@ import 'index.dart';
 
 import 'backend/stripe/payment_manager.dart';
 
-
-
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   GoRouter.optionURLReflectsImperativeAPIs = true;
@@ -208,6 +204,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               FFIcons.kcreateTaskButton,
+              size: 30.0,
             ),
             label: '',
             tooltip: '',

@@ -153,11 +153,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ConfiguracoessWidget(),
         ),
         FFRoute(
-          name: TeladeeditarperfilWidget.routeName,
-          path: TeladeeditarperfilWidget.routePath,
-          builder: (context, params) => TeladeeditarperfilWidget(),
-        ),
-        FFRoute(
           name: ConversaWidget.routeName,
           path: ConversaWidget.routePath,
           builder: (context, params) => ConversaWidget(

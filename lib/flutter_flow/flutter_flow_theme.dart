@@ -166,105 +166,90 @@ class ThemeTypography extends Typography {
   final FlutterFlowTheme theme;
 
   String get displayLargeFamily => 'Inter';
-  TextStyle get displayLarge => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get displayLarge => GoogleFonts.inter(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 57.0,
       );
   String get displayMediumFamily => 'Inter';
-  TextStyle get displayMedium => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get displayMedium => GoogleFonts.inter(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 45.0,
       );
   String get displaySmallFamily => 'Inter';
-  TextStyle get displaySmall => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get displaySmall => GoogleFonts.inter(
         color: theme.primaryText,
         fontWeight: FontWeight.bold,
         fontSize: 30.0,
       );
   String get headlineLargeFamily => 'Inter';
-  TextStyle get headlineLarge => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get headlineLarge => GoogleFonts.inter(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 32.0,
       );
   String get headlineMediumFamily => 'Inter';
-  TextStyle get headlineMedium => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get headlineMedium => GoogleFonts.inter(
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 24.0,
       );
   String get headlineSmallFamily => 'Inter';
-  TextStyle get headlineSmall => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get headlineSmall => GoogleFonts.inter(
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 20.0,
       );
   String get titleLargeFamily => 'Readex Pro';
-  TextStyle get titleLarge => GoogleFonts.getFont(
-        'Readex Pro',
+  TextStyle get titleLarge => GoogleFonts.readexPro(
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
   String get titleMediumFamily => 'Readex Pro';
-  TextStyle get titleMedium => GoogleFonts.getFont(
-        'Readex Pro',
+  TextStyle get titleMedium => GoogleFonts.readexPro(
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
   String get titleSmallFamily => 'Readex Pro';
-  TextStyle get titleSmall => GoogleFonts.getFont(
-        'Readex Pro',
+  TextStyle get titleSmall => GoogleFonts.readexPro(
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
   String get labelLargeFamily => 'Readex Pro';
-  TextStyle get labelLarge => GoogleFonts.getFont(
-        'Readex Pro',
+  TextStyle get labelLarge => GoogleFonts.readexPro(
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
   String get labelMediumFamily => 'Readex Pro';
-  TextStyle get labelMedium => GoogleFonts.getFont(
-        'Readex Pro',
+  TextStyle get labelMedium => GoogleFonts.readexPro(
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
   String get labelSmallFamily => 'Readex Pro';
-  TextStyle get labelSmall => GoogleFonts.getFont(
-        'Readex Pro',
+  TextStyle get labelSmall => GoogleFonts.readexPro(
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
       );
   String get bodyLargeFamily => 'Readex Pro';
-  TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Readex Pro',
+  TextStyle get bodyLarge => GoogleFonts.readexPro(
         color: theme.primaryText,
         fontSize: 16.0,
       );
   String get bodyMediumFamily => 'Readex Pro';
-  TextStyle get bodyMedium => GoogleFonts.getFont(
-        'Readex Pro',
+  TextStyle get bodyMedium => GoogleFonts.readexPro(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
   String get bodySmallFamily => 'Readex Pro';
-  TextStyle get bodySmall => GoogleFonts.getFont(
-        'Readex Pro',
+  TextStyle get bodySmall => GoogleFonts.readexPro(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
@@ -273,38 +258,45 @@ class ThemeTypography extends Typography {
 
 extension TextStyleHelper on TextStyle {
   TextStyle override({
+    TextStyle? font,
     String? fontFamily,
     Color? color,
     double? fontSize,
     FontWeight? fontWeight,
     double? letterSpacing,
     FontStyle? fontStyle,
-    bool useGoogleFonts = true,
+    bool useGoogleFonts = false,
     TextDecoration? decoration,
     double? lineHeight,
     List<Shadow>? shadows,
-  }) =>
-      useGoogleFonts
-          ? GoogleFonts.getFont(
-              fontFamily!,
-              color: color ?? this.color,
-              fontSize: fontSize ?? this.fontSize,
-              letterSpacing: letterSpacing ?? this.letterSpacing,
-              fontWeight: fontWeight ?? this.fontWeight,
-              fontStyle: fontStyle ?? this.fontStyle,
-              decoration: decoration,
-              height: lineHeight,
-              shadows: shadows,
-            )
-          : copyWith(
-              fontFamily: fontFamily,
-              color: color,
-              fontSize: fontSize,
-              letterSpacing: letterSpacing,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              decoration: decoration,
-              height: lineHeight,
-              shadows: shadows,
-            );
+  }) {
+    if (useGoogleFonts && fontFamily != null) {
+      font = GoogleFonts.getFont(fontFamily,
+          fontWeight: fontWeight ?? this.fontWeight,
+          fontStyle: fontStyle ?? this.fontStyle);
+    }
+
+    return font != null
+        ? font.copyWith(
+            color: color ?? this.color,
+            fontSize: fontSize ?? this.fontSize,
+            letterSpacing: letterSpacing ?? this.letterSpacing,
+            fontWeight: fontWeight ?? this.fontWeight,
+            fontStyle: fontStyle ?? this.fontStyle,
+            decoration: decoration,
+            height: lineHeight,
+            shadows: shadows,
+          )
+        : copyWith(
+            fontFamily: fontFamily,
+            color: color,
+            fontSize: fontSize,
+            letterSpacing: letterSpacing,
+            fontWeight: fontWeight,
+            fontStyle: fontStyle,
+            decoration: decoration,
+            height: lineHeight,
+            shadows: shadows,
+          );
+  }
 }
