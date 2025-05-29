@@ -12,12 +12,16 @@ import 'package:intl/intl.dart';
 import 'package:json_path/json_path.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cross_file/cross_file.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:record/record.dart';
+import 'uploaded_file.dart';
+import 'platform_utils/platform_util.dart';
 
 import '../main.dart';
 
 import 'lat_lng.dart';
 
-export 'keep_alive_wrapper.dart';
 export 'lat_lng.dart';
 export 'place.dart';
 export 'uploaded_file.dart';
@@ -44,151 +48,6 @@ String dateTimeFormat(String format, DateTime? dateTime, {String? locale}) {
     return timeago.format(dateTime, locale: locale, allowFromNow: true);
   }
   return DateFormat(format, locale).format(dateTime);
-}
-
-Theme wrapInMaterialDatePickerTheme(
-  BuildContext context,
-  Widget child, {
-  required Color headerBackgroundColor,
-  required Color headerForegroundColor,
-  required TextStyle headerTextStyle,
-  required Color pickerBackgroundColor,
-  required Color pickerForegroundColor,
-  required Color selectedDateTimeBackgroundColor,
-  required Color selectedDateTimeForegroundColor,
-  required Color actionButtonForegroundColor,
-  required double iconSize,
-}) {
-  final baseTheme = Theme.of(context);
-  final dateTimeMaterialStateForegroundColor =
-      WidgetStateProperty.resolveWith((states) {
-    if (states.contains(WidgetState.disabled)) {
-      return pickerForegroundColor.applyAlpha(0.60);
-    }
-    if (states.contains(WidgetState.selected)) {
-      return selectedDateTimeForegroundColor;
-    }
-    if (states.isEmpty) {
-      return pickerForegroundColor;
-    }
-    return null;
-  });
-
-  final dateTimeMaterialStateBackgroundColor =
-      WidgetStateProperty.resolveWith((states) {
-    if (states.contains(WidgetState.selected)) {
-      return selectedDateTimeBackgroundColor;
-    }
-    return null;
-  });
-
-  return Theme(
-    data: baseTheme.copyWith(
-      colorScheme: baseTheme.colorScheme.copyWith(
-        onSurface: pickerForegroundColor,
-      ),
-      disabledColor: pickerForegroundColor.applyAlpha(0.3),
-      textTheme: baseTheme.textTheme.copyWith(
-        headlineSmall: headerTextStyle,
-        headlineMedium: headerTextStyle,
-      ),
-      iconTheme: baseTheme.iconTheme.copyWith(
-        size: iconSize,
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-            foregroundColor: WidgetStatePropertyAll(
-              actionButtonForegroundColor,
-            ),
-            overlayColor: WidgetStateProperty.resolveWith((states) {
-              if (states.contains(WidgetState.hovered)) {
-                return actionButtonForegroundColor.applyAlpha(0.04);
-              }
-              if (states.contains(WidgetState.focused) ||
-                  states.contains(WidgetState.pressed)) {
-                return actionButtonForegroundColor.applyAlpha(0.12);
-              }
-              return null;
-            })),
-      ),
-      datePickerTheme: DatePickerThemeData(
-        backgroundColor: pickerBackgroundColor,
-        headerBackgroundColor: headerBackgroundColor,
-        headerForegroundColor: headerForegroundColor,
-        weekdayStyle: baseTheme.textTheme.labelMedium!.copyWith(
-          color: pickerForegroundColor,
-        ),
-        dayBackgroundColor: dateTimeMaterialStateBackgroundColor,
-        todayBackgroundColor: dateTimeMaterialStateBackgroundColor,
-        yearBackgroundColor: dateTimeMaterialStateBackgroundColor,
-        dayForegroundColor: dateTimeMaterialStateForegroundColor,
-        todayForegroundColor: dateTimeMaterialStateForegroundColor,
-        yearForegroundColor: dateTimeMaterialStateForegroundColor,
-      ),
-    ),
-    child: child,
-  );
-}
-
-Theme wrapInMaterialTimePickerTheme(
-  BuildContext context,
-  Widget child, {
-  required Color headerBackgroundColor,
-  required Color headerForegroundColor,
-  required TextStyle headerTextStyle,
-  required Color pickerBackgroundColor,
-  required Color pickerForegroundColor,
-  required Color selectedDateTimeBackgroundColor,
-  required Color selectedDateTimeForegroundColor,
-  required Color actionButtonForegroundColor,
-  required double iconSize,
-}) {
-  final baseTheme = Theme.of(context);
-  return Theme(
-    data: baseTheme.copyWith(
-      iconTheme: baseTheme.iconTheme.copyWith(
-        size: iconSize,
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-            foregroundColor: WidgetStatePropertyAll(
-              actionButtonForegroundColor,
-            ),
-            overlayColor: WidgetStateProperty.resolveWith((states) {
-              if (states.contains(WidgetState.hovered)) {
-                return actionButtonForegroundColor.applyAlpha(0.04);
-              }
-              if (states.contains(WidgetState.focused) ||
-                  states.contains(WidgetState.pressed)) {
-                return actionButtonForegroundColor.applyAlpha(0.12);
-              }
-              return null;
-            })),
-      ),
-      timePickerTheme: baseTheme.timePickerTheme.copyWith(
-        backgroundColor: pickerBackgroundColor,
-        hourMinuteTextColor: pickerForegroundColor,
-        dialHandColor: selectedDateTimeBackgroundColor,
-        dialTextColor: WidgetStateColor.resolveWith((states) =>
-            states.contains(WidgetState.selected)
-                ? selectedDateTimeForegroundColor
-                : pickerForegroundColor),
-        dayPeriodBorderSide: BorderSide(
-          color: pickerForegroundColor,
-        ),
-        dayPeriodTextColor: WidgetStateColor.resolveWith((states) =>
-            states.contains(WidgetState.selected)
-                ? selectedDateTimeForegroundColor
-                : pickerForegroundColor),
-        dayPeriodColor: WidgetStateColor.resolveWith((states) =>
-            states.contains(WidgetState.selected)
-                ? selectedDateTimeBackgroundColor
-                : Colors.transparent),
-        entryModeIconColor: pickerForegroundColor,
-      ),
-    ),
-    child: child,
-  );
 }
 
 Future launchURL(String url) async {
@@ -566,6 +425,69 @@ extension StatefulWidgetExtensions on State<StatefulWidget> {
       setState(fn);
     }
   }
+}
+
+Future<void> startAudioRecording(
+  BuildContext context, {
+  required AudioRecorder audioRecorder,
+}) async {
+  if (await audioRecorder.hasPermission()) {
+    final String path;
+    final AudioEncoder encoder;
+    if (kIsWeb) {
+      path = '';
+      final userAgent = getUserAgent();
+      // Safari browsers don't support opus encoding, so we fall back to wav.
+      // All other browsers use opus for smaller file sizes.
+      if (userAgent.contains('safari') && !userAgent.contains('chrome')) {
+        encoder = AudioEncoder.wav;
+      } else {
+        encoder = AudioEncoder.opus;
+      }
+    } else {
+      final dir = await getApplicationDocumentsDirectory();
+      path = '${dir.path}/audio_${DateTime.now().millisecondsSinceEpoch}.m4a';
+      encoder = AudioEncoder.aacLc;
+    }
+    await audioRecorder.start(
+      RecordConfig(encoder: encoder),
+      path: path,
+    );
+  } else {
+    if (!context.mounted) {
+      return;
+    }
+    showSnackbar(
+      context,
+      'You have not provided permission to record audio.',
+    );
+  }
+}
+
+Future<void> stopAudioRecording({
+  required AudioRecorder? audioRecorder,
+  required String audioName,
+  required Function(String?, FFUploadedFile) onRecordingComplete,
+}) async {
+  if (audioRecorder == null) {
+    return;
+  }
+  final recordedPath = await audioRecorder.stop();
+  final recordedFilePath = !kIsWeb && (Platform.isIOS || Platform.isMacOS)
+      ? 'file://$recordedPath'
+      : recordedPath;
+  if (recordedFilePath == null) {
+    return;
+  }
+
+  final recordedFileBytes = FFUploadedFile(
+    name: '$audioName.m4a',
+    bytes: await XFile(recordedPath!).readAsBytes(),
+  );
+  onRecordingComplete(
+    recordedFilePath,
+    recordedFileBytes,
+  );
 }
 
 // For iOS 16 and below, set the status bar color to match the app's theme.

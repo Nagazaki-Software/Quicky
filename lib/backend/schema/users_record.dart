@@ -90,26 +90,6 @@ class UsersRecord extends FirestoreRecord {
   String get facebook => _facebook ?? '';
   bool hasFacebook() => _facebook != null;
 
-  // "instagram" field.
-  String? _instagram;
-  String get instagram => _instagram ?? '';
-  bool hasInstagram() => _instagram != null;
-
-  // "linkedin" field.
-  String? _linkedin;
-  String get linkedin => _linkedin ?? '';
-  bool hasLinkedin() => _linkedin != null;
-
-  // "twitter" field.
-  String? _twitter;
-  String get twitter => _twitter ?? '';
-  bool hasTwitter() => _twitter != null;
-
-  // "stripePaymentIntent" field.
-  String? _stripePaymentIntent;
-  String get stripePaymentIntent => _stripePaymentIntent ?? '';
-  bool hasStripePaymentIntent() => _stripePaymentIntent != null;
-
   // "location" field.
   LatLng? _location;
   LatLng? get location => _location;
@@ -124,6 +104,47 @@ class UsersRecord extends FirestoreRecord {
   List<AvaliacoesStruct>? _avaliacoes;
   List<AvaliacoesStruct> get avaliacoes => _avaliacoes ?? const [];
   bool hasAvaliacoes() => _avaliacoes != null;
+
+  // "tasksRealizadas" field.
+  List<String>? _tasksRealizadas;
+  List<String> get tasksRealizadas => _tasksRealizadas ?? const [];
+  bool hasTasksRealizadas() => _tasksRealizadas != null;
+
+  // "quantTasksRealizadas" field.
+  int? _quantTasksRealizadas;
+  int get quantTasksRealizadas => _quantTasksRealizadas ?? 0;
+  bool hasQuantTasksRealizadas() => _quantTasksRealizadas != null;
+
+  // "taskOrTaskee" field.
+  String? _taskOrTaskee;
+  String get taskOrTaskee => _taskOrTaskee ?? '';
+  bool hasTaskOrTaskee() => _taskOrTaskee != null;
+
+  // "saldo" field.
+  double? _saldo;
+  double get saldo => _saldo ?? 0.0;
+  bool hasSaldo() => _saldo != null;
+
+  // "deposityTransacoes" field.
+  List<DepositsTaskeeStruct>? _deposityTransacoes;
+  List<DepositsTaskeeStruct> get deposityTransacoes =>
+      _deposityTransacoes ?? const [];
+  bool hasDeposityTransacoes() => _deposityTransacoes != null;
+
+  // "clienteStripeId" field.
+  String? _clienteStripeId;
+  String get clienteStripeId => _clienteStripeId ?? '';
+  bool hasClienteStripeId() => _clienteStripeId != null;
+
+  // "dob" field.
+  DateTime? _dob;
+  DateTime? get dob => _dob;
+  bool hasDob() => _dob != null;
+
+  // "verifyaccount" field.
+  bool? _verifyaccount;
+  bool get verifyaccount => _verifyaccount ?? false;
+  bool hasVerifyaccount() => _verifyaccount != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -144,16 +165,24 @@ class UsersRecord extends FirestoreRecord {
     _hobbys = getDataList(snapshotData['hobbys']);
     _genero = snapshotData['genero'] as String?;
     _facebook = snapshotData['facebook'] as String?;
-    _instagram = snapshotData['instagram'] as String?;
-    _linkedin = snapshotData['linkedin'] as String?;
-    _twitter = snapshotData['twitter'] as String?;
-    _stripePaymentIntent = snapshotData['stripePaymentIntent'] as String?;
     _location = snapshotData['location'] as LatLng?;
     _iDdastasksAceitadas = getDataList(snapshotData['iDdastasksAceitadas']);
     _avaliacoes = getStructList(
       snapshotData['avaliacoes'],
       AvaliacoesStruct.fromMap,
     );
+    _tasksRealizadas = getDataList(snapshotData['tasksRealizadas']);
+    _quantTasksRealizadas =
+        castToType<int>(snapshotData['quantTasksRealizadas']);
+    _taskOrTaskee = snapshotData['taskOrTaskee'] as String?;
+    _saldo = castToType<double>(snapshotData['saldo']);
+    _deposityTransacoes = getStructList(
+      snapshotData['deposityTransacoes'],
+      DepositsTaskeeStruct.fromMap,
+    );
+    _clienteStripeId = snapshotData['clienteStripeId'] as String?;
+    _dob = snapshotData['dob'] as DateTime?;
+    _verifyaccount = snapshotData['verifyaccount'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -203,11 +232,13 @@ Map<String, dynamic> createUsersRecordData({
   bool? stripeChargeEnable,
   String? genero,
   String? facebook,
-  String? instagram,
-  String? linkedin,
-  String? twitter,
-  String? stripePaymentIntent,
   LatLng? location,
+  int? quantTasksRealizadas,
+  String? taskOrTaskee,
+  double? saldo,
+  String? clienteStripeId,
+  DateTime? dob,
+  bool? verifyaccount,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -224,11 +255,13 @@ Map<String, dynamic> createUsersRecordData({
       'stripeChargeEnable': stripeChargeEnable,
       'genero': genero,
       'facebook': facebook,
-      'instagram': instagram,
-      'linkedin': linkedin,
-      'twitter': twitter,
-      'stripePaymentIntent': stripePaymentIntent,
       'location': location,
+      'quantTasksRealizadas': quantTasksRealizadas,
+      'taskOrTaskee': taskOrTaskee,
+      'saldo': saldo,
+      'clienteStripeId': clienteStripeId,
+      'dob': dob,
+      'verifyaccount': verifyaccount,
     }.withoutNulls,
   );
 
@@ -256,13 +289,17 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         listEquality.equals(e1?.hobbys, e2?.hobbys) &&
         e1?.genero == e2?.genero &&
         e1?.facebook == e2?.facebook &&
-        e1?.instagram == e2?.instagram &&
-        e1?.linkedin == e2?.linkedin &&
-        e1?.twitter == e2?.twitter &&
-        e1?.stripePaymentIntent == e2?.stripePaymentIntent &&
         e1?.location == e2?.location &&
         listEquality.equals(e1?.iDdastasksAceitadas, e2?.iDdastasksAceitadas) &&
-        listEquality.equals(e1?.avaliacoes, e2?.avaliacoes);
+        listEquality.equals(e1?.avaliacoes, e2?.avaliacoes) &&
+        listEquality.equals(e1?.tasksRealizadas, e2?.tasksRealizadas) &&
+        e1?.quantTasksRealizadas == e2?.quantTasksRealizadas &&
+        e1?.taskOrTaskee == e2?.taskOrTaskee &&
+        e1?.saldo == e2?.saldo &&
+        listEquality.equals(e1?.deposityTransacoes, e2?.deposityTransacoes) &&
+        e1?.clienteStripeId == e2?.clienteStripeId &&
+        e1?.dob == e2?.dob &&
+        e1?.verifyaccount == e2?.verifyaccount;
   }
 
   @override
@@ -282,13 +319,17 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.hobbys,
         e?.genero,
         e?.facebook,
-        e?.instagram,
-        e?.linkedin,
-        e?.twitter,
-        e?.stripePaymentIntent,
         e?.location,
         e?.iDdastasksAceitadas,
-        e?.avaliacoes
+        e?.avaliacoes,
+        e?.tasksRealizadas,
+        e?.quantTasksRealizadas,
+        e?.taskOrTaskee,
+        e?.saldo,
+        e?.deposityTransacoes,
+        e?.clienteStripeId,
+        e?.dob,
+        e?.verifyaccount
       ]);
 
   @override

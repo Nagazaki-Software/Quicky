@@ -2,8 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'nav_bar_model.dart';
 export 'nav_bar_model.dart';
 
@@ -40,231 +38,135 @@ class _NavBarWidgetState extends State<NavBarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: AlignmentDirectional(0.0, 1.0),
-      child: Container(
-        decoration: BoxDecoration(),
-        child: Align(
-          alignment: AlignmentDirectional(0.0, 1.0),
-          child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(),
-            child: Align(
-              alignment: AlignmentDirectional(0.0, 0.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      FFAppState().pages = 'Home';
-                      safeSetState(() {});
-
-                      context.pushNamed(
-                        PaginaInicialWidget.routeName,
-                        extra: <String, dynamic>{
-                          kTransitionInfoKey: TransitionInfo(
-                            hasTransition: true,
-                            transitionType: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 350),
-                          ),
-                        },
-                      );
-                    },
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.home_rounded,
-                          color: valueOrDefault<Color>(
-                            FFAppState().pages == 'Home'
-                                ? FlutterFlowTheme.of(context).tertiary
-                                : FlutterFlowTheme.of(context).primaryText,
-                            FlutterFlowTheme.of(context).primaryText,
-                          ),
-                          size: 24.0,
-                        ),
-                        Text(
-                          'Home',
-                          style: FlutterFlowTheme.of(context)
-                              .labelSmall
-                              .override(
-                                font: GoogleFonts.readexPro(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontStyle,
-                                ),
-                                color: valueOrDefault<Color>(
-                                  FFAppState().pages == 'Home'
-                                      ? FlutterFlowTheme.of(context).tertiary
-                                      : FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                  FlutterFlowTheme.of(context).primaryText,
-                                ),
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .labelSmall
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .labelSmall
-                                    .fontStyle,
-                              ),
-                        ),
-                      ].divide(SizedBox(height: 4.0)),
-                    ),
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.add_task_rounded,
-                        color: valueOrDefault<Color>(
-                          FFAppState().pages == 'All Tasks'
-                              ? FlutterFlowTheme.of(context).tertiary
-                              : FlutterFlowTheme.of(context).primaryText,
-                          FlutterFlowTheme.of(context).primaryText,
-                        ),
-                        size: 24.0,
-                      ),
-                      Text(
-                        'All Tasks',
-                        style: FlutterFlowTheme.of(context).labelSmall.override(
-                              font: GoogleFonts.readexPro(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .labelSmall
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .labelSmall
-                                    .fontStyle,
-                              ),
-                              color: valueOrDefault<Color>(
-                                FFAppState().pages == 'All Tasks'
-                                    ? FlutterFlowTheme.of(context).tertiary
-                                    : FlutterFlowTheme.of(context).primaryText,
-                                FlutterFlowTheme.of(context).primaryText,
-                              ),
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .labelSmall
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .labelSmall
-                                  .fontStyle,
-                            ),
-                      ),
-                    ].divide(SizedBox(height: 4.0)),
-                  ),
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      FFAppState().pages = 'Scoreboard';
-                      safeSetState(() {});
-                    },
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.sports_score_sharp,
-                          color: valueOrDefault<Color>(
-                            FFAppState().pages == 'Scoreboard'
-                                ? FlutterFlowTheme.of(context).tertiary
-                                : FlutterFlowTheme.of(context).primaryText,
-                            FlutterFlowTheme.of(context).primaryText,
-                          ),
-                          size: 24.0,
-                        ),
-                        Text(
-                          'Scoreboard',
-                          style: FlutterFlowTheme.of(context)
-                              .labelSmall
-                              .override(
-                                font: GoogleFonts.readexPro(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontStyle,
-                                ),
-                                color: valueOrDefault<Color>(
-                                  FFAppState().pages == 'Scoreboard'
-                                      ? FlutterFlowTheme.of(context).tertiary
-                                      : FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                  FlutterFlowTheme.of(context).primaryText,
-                                ),
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .labelSmall
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .labelSmall
-                                    .fontStyle,
-                              ),
-                        ),
-                      ].divide(SizedBox(height: 4.0)),
-                    ),
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.person_outline_rounded,
-                        color: valueOrDefault<Color>(
-                          FFAppState().pages == 'Profile'
-                              ? FlutterFlowTheme.of(context).tertiary
-                              : FlutterFlowTheme.of(context).primaryText,
-                          FlutterFlowTheme.of(context).primaryText,
-                        ),
-                        size: 24.0,
-                      ),
-                      Text(
-                        'Profile',
-                        style: FlutterFlowTheme.of(context).labelSmall.override(
-                              font: GoogleFonts.readexPro(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .labelSmall
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .labelSmall
-                                    .fontStyle,
-                              ),
-                              color: valueOrDefault<Color>(
-                                FFAppState().pages == 'Scoreboard'
-                                    ? FlutterFlowTheme.of(context).tertiary
-                                    : FlutterFlowTheme.of(context).primaryText,
-                                FlutterFlowTheme.of(context).primaryText,
-                              ),
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .labelSmall
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .labelSmall
-                                  .fontStyle,
-                            ),
-                      ),
-                    ].divide(SizedBox(height: 4.0)),
-                  ),
-                ],
-              ),
+      child: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
+        child: Container(
+          width: MediaQuery.sizeOf(context).width * 0.8,
+          height: 40.0,
+          decoration: BoxDecoration(
+            color: FlutterFlowTheme.of(context).secondaryBackground,
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 4.0,
+                color: Color(0x33000000),
+                offset: Offset(
+                  0.0,
+                  2.0,
+                ),
+              )
+            ],
+            borderRadius: BorderRadius.circular(24.0),
+            border: Border.all(
+              color: FlutterFlowTheme.of(context).tertiary,
             ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed(TaskeeRankingWidget.routeName);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.scoreboard_rounded,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      size: 24.0,
+                    ),
+                  ],
+                ),
+              ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed(RatingsTaskeesWidget.routeName);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.stacked_bar_chart,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      size: 24.0,
+                    ),
+                  ],
+                ),
+              ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed(CreateTaskWidget.routeName);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.clean_hands_rounded,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      size: 24.0,
+                    ),
+                  ],
+                ),
+              ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed(CurrentTasksWidget.routeName);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.lan_sharp,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      size: 24.0,
+                    ),
+                  ],
+                ),
+              ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed(ProfilePageWidget.routeName);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.person_sharp,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      size: 24.0,
+                    ),
+                  ],
+                ),
+              ),
+            ].divide(SizedBox(width: 12.0)).around(SizedBox(width: 12.0)),
           ),
         ),
       ),

@@ -199,15 +199,22 @@ int diferencaPorcentagem(String value) {
   return diferenca.toInt();
 }
 
-int somatoriaSimples(
-  String number,
-  String number2,
+double somatoriaSimples(
+  String? number,
+  String? number2,
+  String? number3,
+  String? number4,
 ) {
-  // faça a somatoria dos valores
-  int num1 = int.parse(number);
-  int num2 = int.parse(number2);
+  // faça a somatoria dos valores (NUMBER 4 É PORCENTAGEM SOMENTE)
+  double num1 = double.tryParse(number ?? '0') ?? 0;
+  double num2 = double.tryParse(number2 ?? '0') ?? 0;
+  double num3 = double.tryParse(number3 ?? '0') ?? 0;
+  double percentage = double.tryParse(number4 ?? '0') ?? 0;
 
-  return num1 + num2;
+  double total = num1 + num2 + num3;
+  double percentageValue = (total * percentage) / 100;
+
+  return total + percentageValue;
 }
 
 int formatStringInter(String texto) {
@@ -269,61 +276,57 @@ String esconderCartaoDeCredito(String cardNumber) {
   return '$hiddenDigits $lastFourDigits';
 }
 
-int somatoriaPorcetagem(
+double? somatoriaPorcetagem(
   String number1,
   String? number2,
 ) {
-  // calcule o valor do numer1 + number2  e retorne-os com + 12%
-  int num1 = int.parse(number1);
-  int num2 = int.parse(number2 ?? '0');
-
-  int sum = num1 + num2;
-  double percent = sum * 0.15;
-
-  return (sum + percent).round();
+  // calcule o valor do numer1 + number2  e retorne-os somente o valor do calculo de 8%
+  double num1 = double.tryParse(number1) ?? 0.0;
+  double num2 = double.tryParse(number2 ?? '0') ?? 0.0;
+  double total = num1 + num2;
+  return total * 0.08; // Retorna 8% do total
 }
 
 List<TasksRecord> buscarRegiao(
   List<TasksRecord> task,
   LatLng localizacaoDoUsuario,
   double localizacaoMaxima,
-  double price,
+  List<LatLng> locationComunity,
 ) {
-  // Lista para armazenar as tarefas filtradas
   List<TasksRecord> placesList = [];
 
-  // Latitude e Longitude do usuário
-  double lat1 = localizacaoDoUsuario.latitude;
-  double lon1 = localizacaoDoUsuario.longitude;
+  double latUser = localizacaoDoUsuario.latitude;
+  double lonUser = localizacaoDoUsuario.longitude;
 
-  // Itera sobre a lista de tarefas
-  for (TasksRecord tasks in task) {
-    if (tasks.localizacao != null) {
-      double lat2 = tasks.localizacao!.latitude;
-      double lon2 = tasks.localizacao!.longitude;
+  bool estaDentroDaArea = false;
 
-      // Fórmula de Haversine para calcular a distância entre dois pontos geográficos
-      var c = math.cos;
-      var p = 0.017453292519943295; // Pi/180
-      var a = 0.5 -
-          c((lat2 - lat1) * p) / 2 +
-          c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
-      var d = (12742 * math.asin(math.sqrt(a))); // Distância em km
-      double distance = double.parse(d.toStringAsFixed(2));
+  for (LatLng pontoComunitario in locationComunity) {
+    double latCom = pontoComunitario.latitude;
+    double lonCom = pontoComunitario.longitude;
 
-      // Converte o preço da tarefa e o preço máximo para inteiros
-      int parsedPrice =
-          price.toInt(); // Usando o preço máximo passado como parâmetro
-      int parsedValor = int.tryParse(tasks.valor) ?? 0; // Se falhar, assume 0
+    // Fórmula de Haversine
+    var c = math.cos;
+    var p = 0.017453292519943295;
+    var a = 0.5 -
+        c((latCom - latUser) * p) / 2 +
+        c(latUser * p) * c(latCom * p) * (1 - c((lonCom - lonUser) * p)) / 2;
+    var d = 12742 * math.asin(math.sqrt(a)); // distância em km
 
-      // Verifica se a distância e o preço da tarefa estão dentro dos limites
-      if (distance <= localizacaoMaxima) {
-        placesList.add(tasks); // Adiciona a tarefa à lista de resultados
-      }
+    double distancia = double.parse(d.toStringAsFixed(2));
+
+    if (distancia <= localizacaoMaxima) {
+      estaDentroDaArea = true;
+      break; // já encontrou um ponto dentro da área, pode parar
     }
   }
 
-  return placesList; // Retorna a lista de tarefas filtradas
+  if (estaDentroDaArea) {
+    // Usuário está dentro de pelo menos uma área comunitária
+    return task; // ou aplicar filtro extra aqui se quiser
+  } else {
+    // Fora de todas as áreas
+    return [];
+  }
 }
 
 int formateInteiroEmDouble(double doble) {
@@ -367,4 +370,18 @@ int calcularRatings(List<AvaliacoesStruct>? avaliacoes) {
   }
 
   return (totalRatings ~/ avaliacoes.length); // Calcula a média
+}
+
+double fastPass(
+  String porcentagem,
+  double valortotal,
+) {
+  // retorne somente o calculo da porcentagem do valor total tipo (35% do valor total = $3,35 dol)
+  double percent = double.parse(porcentagem.replaceAll('%', '')) / 100;
+  return valortotal * percent;
+}
+
+List<String> separarTexto(String texto) {
+  // separe o texto por espaço
+  return texto.split(' '); // Separa o texto por espaço
 }

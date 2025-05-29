@@ -1,50 +1,65 @@
 // Export pages
-export '/pagina_inicial/pagina_inicial_widget.dart' show PaginaInicialWidget;
-export '/getstarted/getstarted_widget.dart' show GetstartedWidget;
-export '/pagina_notificacoes/pagina_notificacoes_widget.dart'
-    show PaginaNotificacoesWidget;
-export '/pagina_de_criar_conta/pagina_de_criar_conta_widget.dart'
-    show PaginaDeCriarContaWidget;
-export '/task/task_widget.dart' show TaskWidget;
-export '/entrar/entrar_widget.dart' show EntrarWidget;
-export '/esqueci_minha_senh/esqueci_minha_senh_widget.dart'
-    show EsqueciMinhaSenhWidget;
-export '/pagina_notificacoes_copy/pagina_notificacoes_copy_widget.dart'
-    show PaginaNotificacoesCopyWidget;
-export '/perfil_do_usuario/perfil_do_usuario_widget.dart'
-    show PerfilDoUsuarioWidget;
-export '/pagina_explore/pagina_explore_widget.dart' show PaginaExploreWidget;
-export '/configuracoess/configuracoess_widget.dart' show ConfiguracoessWidget;
-export '/conversa/conversa_widget.dart' show ConversaWidget;
+export '/task_overview/task_overview_widget.dart' show TaskOverviewWidget;
+export '/task_stepss/task_stepss_widget.dart' show TaskStepssWidget;
+export '/taskee/current_tasks/current_tasks_widget.dart'
+    show CurrentTasksWidget;
+export '/get_started/get_started_widget.dart' show GetStartedWidget;
+export '/continue_as/continue_as_widget.dart' show ContinueAsWidget;
+export '/taskee/create_profile/create_profile_widget.dart'
+    show CreateProfileWidget;
+export '/taskee/verify_your_account/verify_your_account_widget.dart'
+    show VerifyYourAccountWidget;
+export '/taskee/progress/progress_widget.dart' show ProgressWidget;
 export '/chat/chat_widget.dart' show ChatWidget;
-export '/pagina_de_inserir_codigo/pagina_de_inserir_codigo_widget.dart'
-    show PaginaDeInserirCodigoWidget;
-export '/pagina_de_verificar_email/pagina_de_verificar_email_widget.dart'
-    show PaginaDeVerificarEmailWidget;
-export '/pagina_de_conectar_sua_conta/pagina_de_conectar_sua_conta_widget.dart'
-    show PaginaDeConectarSuaContaWidget;
-export '/pagina_bem_vindos/pagina_bem_vindos_widget.dart'
-    show PaginaBemVindosWidget;
-export '/pagina_qual_seu_nome/pagina_qual_seu_nome_widget.dart'
-    show PaginaQualSeuNomeWidget;
-export '/pagina_do_seu_aniversario/pagina_do_seu_aniversario_widget.dart'
-    show PaginaDoSeuAniversarioWidget;
-export '/pagina_de_qual_genero/pagina_de_qual_genero_widget.dart'
-    show PaginaDeQualGeneroWidget;
-export '/biubibubibub_copy/biubibubibub_copy_widget.dart'
-    show BiubibubibubCopyWidget;
-export '/pagina_distancia_maxima/pagina_distancia_maxima_widget.dart'
-    show PaginaDistanciaMaximaWidget;
-export '/pagina_oque_esta_procurando/pagina_oque_esta_procurando_widget.dart'
-    show PaginaOqueEstaProcurandoWidget;
-export '/editarperfil/editarperfil_widget.dart' show EditarperfilWidget;
-export '/criartask/criartask_widget.dart' show CriartaskWidget;
-export '/pagina_de_preferencias_de_privacidade/pagina_de_preferencias_de_privacidade_widget.dart'
-    show PaginaDePreferenciasDePrivacidadeWidget;
-export '/crieumapaginadepoliticadecookies/crieumapaginadepoliticadecookies_widget.dart'
-    show CrieumapaginadepoliticadecookiesWidget;
-export '/login_b_e_t_a/login_b_e_t_a_widget.dart' show LoginBETAWidget;
-export '/informacoes_da_conversa/informacoes_da_conversa_widget.dart'
-    show InformacoesDaConversaWidget;
-export '/confirmar_email/confirmar_email_widget.dart' show ConfirmarEmailWidget;
-export '/exploretasks/exploretasks_widget.dart' show ExploretasksWidget;
+export '/taskee/create_task/create_task_widget.dart' show CreateTaskWidget;
+export '/taskee/select_task/select_task_widget.dart' show SelectTaskWidget;
+export '/taskee/a_d_d_photo_create_task/a_d_d_photo_create_task_widget.dart'
+    show ADDPhotoCreateTaskWidget;
+export '/taskee/request_create_task/request_create_task_widget.dart'
+    show RequestCreateTaskWidget;
+export '/taskee/request_evaluation/request_evaluation_widget.dart'
+    show RequestEvaluationWidget;
+export '/taskee/looking_tasker/looking_tasker_widget.dart'
+    show LookingTaskerWidget;
+export '/taskee/final_request_task/final_request_task_widget.dart'
+    show FinalRequestTaskWidget;
+export '/taskee/taskee_ranking/taskee_ranking_widget.dart'
+    show TaskeeRankingWidget;
+export '/profile_page/profile_page_widget.dart' show ProfilePageWidget;
+export '/tasker/create_profile_tasker/create_profile_tasker_widget.dart'
+    show CreateProfileTaskerWidget;
+export '/tasker/verify_your_account_tasker/verify_your_account_tasker_widget.dart'
+    show VerifyYourAccountTaskerWidget;
+export '/task_overview_tasker/task_overview_tasker_widget.dart'
+    show TaskOverviewTaskerWidget;
+export '/tasker/chat_tasker/chat_tasker_widget.dart' show ChatTaskerWidget;
+export '/tasker/taskee_ranking_tasker/taskee_ranking_tasker_widget.dart'
+    show TaskeeRankingTaskerWidget;
+export '/tasker/profile_page_tasker/profile_page_tasker_widget.dart'
+    show ProfilePageTaskerWidget;
+export '/tasker/swipe_tasker/swipe_tasker_widget.dart' show SwipeTaskerWidget;
+export '/taskee/configuracao/configuracao_widget.dart' show ConfiguracaoWidget;
+export '/taskee/ratings_taskee/ratings_taskee_widget.dart'
+    show RatingsTaskeeWidget;
+export '/taskee/login/login_widget.dart' show LoginWidget;
+export '/taskee/ratings_taskees/ratings_taskees_widget.dart'
+    show RatingsTaskeesWidget;
+export '/taskee/ratings_taskees_copy/ratings_taskees_copy_widget.dart'
+    show RatingsTaskeesCopyWidget;
+export '/taskee/configuracao_copy/configuracao_copy_widget.dart'
+    show ConfiguracaoCopyWidget;
+export '/taskee/phone_number_tasker/phone_number_tasker_widget.dart'
+    show PhoneNumberTaskerWidget;
+export '/taskee/configuracao_copy_copy_copy/configuracao_copy_copy_copy_widget.dart'
+    show ConfiguracaoCopyCopyCopyWidget;
+export '/taskee/email_tasker/email_tasker_widget.dart' show EmailTaskerWidget;
+export '/taskee/phone_number_copy2/phone_number_copy2_widget.dart'
+    show PhoneNumberCopy2Widget;
+export '/taskee/password/password_widget.dart' show PasswordWidget;
+export '/taskee/email_notificacao/email_notificacao_widget.dart'
+    show EmailNotificacaoWidget;
+export '/taskee/quicky_team_notificacoes/quicky_team_notificacoes_widget.dart'
+    show QuickyTeamNotificacoesWidget;
+export '/taskee/phone_number_taskee/phone_number_taskee_widget.dart'
+    show PhoneNumberTaskeeWidget;
+export '/taskee/email_taskee/email_taskee_widget.dart' show EmailTaskeeWidget;

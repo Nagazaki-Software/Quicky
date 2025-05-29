@@ -7,7 +7,8 @@ import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
-import '/main.dart';
+import '/backend/push_notifications/push_notifications_handler.dart'
+    show PushNotificationsHandler;
 import '/flutter_flow/flutter_flow_util.dart';
 
 import '/index.dart';
@@ -72,189 +73,69 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
+GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
+    GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : GetstartedWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? entryPage ?? CurrentTasksWidget()
+          : GetStartedWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : GetstartedWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? entryPage ?? CurrentTasksWidget()
+              : GetStartedWidget(),
         ),
         FFRoute(
-          name: PaginaInicialWidget.routeName,
-          path: PaginaInicialWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'PaginaInicial')
-              : PaginaInicialWidget(),
+          name: TaskOverviewWidget.routeName,
+          path: TaskOverviewWidget.routePath,
+          builder: (context, params) => TaskOverviewWidget(),
         ),
         FFRoute(
-          name: GetstartedWidget.routeName,
-          path: GetstartedWidget.routePath,
-          builder: (context, params) => GetstartedWidget(),
+          name: TaskStepssWidget.routeName,
+          path: TaskStepssWidget.routePath,
+          builder: (context, params) => TaskStepssWidget(),
         ),
         FFRoute(
-          name: PaginaNotificacoesWidget.routeName,
-          path: PaginaNotificacoesWidget.routePath,
-          builder: (context, params) => PaginaNotificacoesWidget(),
+          name: CurrentTasksWidget.routeName,
+          path: CurrentTasksWidget.routePath,
+          builder: (context, params) => CurrentTasksWidget(),
         ),
         FFRoute(
-          name: PaginaDeCriarContaWidget.routeName,
-          path: PaginaDeCriarContaWidget.routePath,
-          builder: (context, params) => PaginaDeCriarContaWidget(),
+          name: GetStartedWidget.routeName,
+          path: GetStartedWidget.routePath,
+          builder: (context, params) => GetStartedWidget(),
         ),
         FFRoute(
-          name: TaskWidget.routeName,
-          path: TaskWidget.routePath,
-          builder: (context, params) => TaskWidget(
-            task: params.getParam(
-              'task',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['tasks'],
-            ),
-          ),
+          name: ContinueAsWidget.routeName,
+          path: ContinueAsWidget.routePath,
+          builder: (context, params) => ContinueAsWidget(),
         ),
         FFRoute(
-          name: EntrarWidget.routeName,
-          path: EntrarWidget.routePath,
-          builder: (context, params) => EntrarWidget(),
+          name: CreateProfileWidget.routeName,
+          path: CreateProfileWidget.routePath,
+          builder: (context, params) => CreateProfileWidget(),
         ),
         FFRoute(
-          name: EsqueciMinhaSenhWidget.routeName,
-          path: EsqueciMinhaSenhWidget.routePath,
-          builder: (context, params) => EsqueciMinhaSenhWidget(),
+          name: VerifyYourAccountWidget.routeName,
+          path: VerifyYourAccountWidget.routePath,
+          builder: (context, params) => VerifyYourAccountWidget(),
         ),
         FFRoute(
-          name: PaginaNotificacoesCopyWidget.routeName,
-          path: PaginaNotificacoesCopyWidget.routePath,
-          builder: (context, params) => PaginaNotificacoesCopyWidget(),
-        ),
-        FFRoute(
-          name: PerfilDoUsuarioWidget.routeName,
-          path: PerfilDoUsuarioWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'PerfilDoUsuario')
-              : PerfilDoUsuarioWidget(),
-        ),
-        FFRoute(
-          name: PaginaExploreWidget.routeName,
-          path: PaginaExploreWidget.routePath,
-          builder: (context, params) => PaginaExploreWidget(),
-        ),
-        FFRoute(
-          name: ConfiguracoessWidget.routeName,
-          path: ConfiguracoessWidget.routePath,
-          builder: (context, params) => ConfiguracoessWidget(),
-        ),
-        FFRoute(
-          name: ConversaWidget.routeName,
-          path: ConversaWidget.routePath,
-          builder: (context, params) => ConversaWidget(
-            chatReference: params.getParam(
-              'chatReference',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['chat'],
-            ),
-          ),
+          name: ProgressWidget.routeName,
+          path: ProgressWidget.routePath,
+          builder: (context, params) => ProgressWidget(),
         ),
         FFRoute(
           name: ChatWidget.routeName,
           path: ChatWidget.routePath,
-          builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'chat') : ChatWidget(),
-        ),
-        FFRoute(
-          name: PaginaDeInserirCodigoWidget.routeName,
-          path: PaginaDeInserirCodigoWidget.routePath,
-          builder: (context, params) => PaginaDeInserirCodigoWidget(),
-        ),
-        FFRoute(
-          name: PaginaDeVerificarEmailWidget.routeName,
-          path: PaginaDeVerificarEmailWidget.routePath,
-          builder: (context, params) => PaginaDeVerificarEmailWidget(),
-        ),
-        FFRoute(
-          name: PaginaDeConectarSuaContaWidget.routeName,
-          path: PaginaDeConectarSuaContaWidget.routePath,
-          builder: (context, params) => PaginaDeConectarSuaContaWidget(),
-        ),
-        FFRoute(
-          name: PaginaBemVindosWidget.routeName,
-          path: PaginaBemVindosWidget.routePath,
-          builder: (context, params) => PaginaBemVindosWidget(),
-        ),
-        FFRoute(
-          name: PaginaQualSeuNomeWidget.routeName,
-          path: PaginaQualSeuNomeWidget.routePath,
-          builder: (context, params) => PaginaQualSeuNomeWidget(),
-        ),
-        FFRoute(
-          name: PaginaDoSeuAniversarioWidget.routeName,
-          path: PaginaDoSeuAniversarioWidget.routePath,
-          builder: (context, params) => PaginaDoSeuAniversarioWidget(),
-        ),
-        FFRoute(
-          name: PaginaDeQualGeneroWidget.routeName,
-          path: PaginaDeQualGeneroWidget.routePath,
-          builder: (context, params) => PaginaDeQualGeneroWidget(),
-        ),
-        FFRoute(
-          name: BiubibubibubCopyWidget.routeName,
-          path: BiubibubibubCopyWidget.routePath,
-          builder: (context, params) => BiubibubibubCopyWidget(),
-        ),
-        FFRoute(
-          name: PaginaDistanciaMaximaWidget.routeName,
-          path: PaginaDistanciaMaximaWidget.routePath,
-          builder: (context, params) => PaginaDistanciaMaximaWidget(),
-        ),
-        FFRoute(
-          name: PaginaOqueEstaProcurandoWidget.routeName,
-          path: PaginaOqueEstaProcurandoWidget.routePath,
-          builder: (context, params) => PaginaOqueEstaProcurandoWidget(),
-        ),
-        FFRoute(
-          name: EditarperfilWidget.routeName,
-          path: EditarperfilWidget.routePath,
-          builder: (context, params) => EditarperfilWidget(),
-        ),
-        FFRoute(
-          name: CriartaskWidget.routeName,
-          path: CriartaskWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'criartask')
-              : CriartaskWidget(),
-        ),
-        FFRoute(
-          name: PaginaDePreferenciasDePrivacidadeWidget.routeName,
-          path: PaginaDePreferenciasDePrivacidadeWidget.routePath,
-          builder: (context, params) =>
-              PaginaDePreferenciasDePrivacidadeWidget(),
-        ),
-        FFRoute(
-          name: CrieumapaginadepoliticadecookiesWidget.routeName,
-          path: CrieumapaginadepoliticadecookiesWidget.routePath,
-          builder: (context, params) =>
-              CrieumapaginadepoliticadecookiesWidget(),
-        ),
-        FFRoute(
-          name: LoginBETAWidget.routeName,
-          path: LoginBETAWidget.routePath,
-          builder: (context, params) => LoginBETAWidget(),
-        ),
-        FFRoute(
-          name: InformacoesDaConversaWidget.routeName,
-          path: InformacoesDaConversaWidget.routePath,
-          builder: (context, params) => InformacoesDaConversaWidget(
-            chatReference: params.getParam(
-              'chatReference',
+          builder: (context, params) => ChatWidget(
+            chat: params.getParam(
+              'chat',
               ParamType.DocumentReference,
               isList: false,
               collectionNamePath: ['chat'],
@@ -262,16 +143,180 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: ConfirmarEmailWidget.routeName,
-          path: ConfirmarEmailWidget.routePath,
-          builder: (context, params) => ConfirmarEmailWidget(),
+          name: CreateTaskWidget.routeName,
+          path: CreateTaskWidget.routePath,
+          builder: (context, params) => CreateTaskWidget(),
         ),
         FFRoute(
-          name: ExploretasksWidget.routeName,
-          path: ExploretasksWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'exploretasks')
-              : ExploretasksWidget(),
+          name: SelectTaskWidget.routeName,
+          path: SelectTaskWidget.routePath,
+          builder: (context, params) => SelectTaskWidget(),
+        ),
+        FFRoute(
+          name: ADDPhotoCreateTaskWidget.routeName,
+          path: ADDPhotoCreateTaskWidget.routePath,
+          builder: (context, params) => ADDPhotoCreateTaskWidget(
+            pretasks: params.getParam(
+              'pretasks',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['tasksPreProntas'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: RequestCreateTaskWidget.routeName,
+          path: RequestCreateTaskWidget.routePath,
+          builder: (context, params) => RequestCreateTaskWidget(
+            pretasks: params.getParam(
+              'pretasks',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['tasksPreProntas'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: RequestEvaluationWidget.routeName,
+          path: RequestEvaluationWidget.routePath,
+          builder: (context, params) => RequestEvaluationWidget(),
+        ),
+        FFRoute(
+          name: LookingTaskerWidget.routeName,
+          path: LookingTaskerWidget.routePath,
+          builder: (context, params) => LookingTaskerWidget(),
+        ),
+        FFRoute(
+          name: FinalRequestTaskWidget.routeName,
+          path: FinalRequestTaskWidget.routePath,
+          builder: (context, params) => FinalRequestTaskWidget(),
+        ),
+        FFRoute(
+          name: TaskeeRankingWidget.routeName,
+          path: TaskeeRankingWidget.routePath,
+          builder: (context, params) => TaskeeRankingWidget(),
+        ),
+        FFRoute(
+          name: ProfilePageWidget.routeName,
+          path: ProfilePageWidget.routePath,
+          builder: (context, params) => ProfilePageWidget(),
+        ),
+        FFRoute(
+          name: CreateProfileTaskerWidget.routeName,
+          path: CreateProfileTaskerWidget.routePath,
+          builder: (context, params) => CreateProfileTaskerWidget(),
+        ),
+        FFRoute(
+          name: VerifyYourAccountTaskerWidget.routeName,
+          path: VerifyYourAccountTaskerWidget.routePath,
+          builder: (context, params) => VerifyYourAccountTaskerWidget(),
+        ),
+        FFRoute(
+          name: TaskOverviewTaskerWidget.routeName,
+          path: TaskOverviewTaskerWidget.routePath,
+          builder: (context, params) => TaskOverviewTaskerWidget(),
+        ),
+        FFRoute(
+          name: ChatTaskerWidget.routeName,
+          path: ChatTaskerWidget.routePath,
+          builder: (context, params) => ChatTaskerWidget(
+            chat: params.getParam(
+              'chat',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['chat'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: TaskeeRankingTaskerWidget.routeName,
+          path: TaskeeRankingTaskerWidget.routePath,
+          builder: (context, params) => TaskeeRankingTaskerWidget(),
+        ),
+        FFRoute(
+          name: ProfilePageTaskerWidget.routeName,
+          path: ProfilePageTaskerWidget.routePath,
+          builder: (context, params) => ProfilePageTaskerWidget(),
+        ),
+        FFRoute(
+          name: SwipeTaskerWidget.routeName,
+          path: SwipeTaskerWidget.routePath,
+          builder: (context, params) => SwipeTaskerWidget(),
+        ),
+        FFRoute(
+          name: ConfiguracaoWidget.routeName,
+          path: ConfiguracaoWidget.routePath,
+          builder: (context, params) => ConfiguracaoWidget(),
+        ),
+        FFRoute(
+          name: RatingsTaskeeWidget.routeName,
+          path: RatingsTaskeeWidget.routePath,
+          builder: (context, params) => RatingsTaskeeWidget(),
+        ),
+        FFRoute(
+          name: LoginWidget.routeName,
+          path: LoginWidget.routePath,
+          builder: (context, params) => LoginWidget(),
+        ),
+        FFRoute(
+          name: RatingsTaskeesWidget.routeName,
+          path: RatingsTaskeesWidget.routePath,
+          builder: (context, params) => RatingsTaskeesWidget(),
+        ),
+        FFRoute(
+          name: RatingsTaskeesCopyWidget.routeName,
+          path: RatingsTaskeesCopyWidget.routePath,
+          builder: (context, params) => RatingsTaskeesCopyWidget(),
+        ),
+        FFRoute(
+          name: ConfiguracaoCopyWidget.routeName,
+          path: ConfiguracaoCopyWidget.routePath,
+          builder: (context, params) => ConfiguracaoCopyWidget(),
+        ),
+        FFRoute(
+          name: PhoneNumberTaskerWidget.routeName,
+          path: PhoneNumberTaskerWidget.routePath,
+          builder: (context, params) => PhoneNumberTaskerWidget(),
+        ),
+        FFRoute(
+          name: ConfiguracaoCopyCopyCopyWidget.routeName,
+          path: ConfiguracaoCopyCopyCopyWidget.routePath,
+          builder: (context, params) => ConfiguracaoCopyCopyCopyWidget(),
+        ),
+        FFRoute(
+          name: EmailTaskerWidget.routeName,
+          path: EmailTaskerWidget.routePath,
+          builder: (context, params) => EmailTaskerWidget(),
+        ),
+        FFRoute(
+          name: PhoneNumberCopy2Widget.routeName,
+          path: PhoneNumberCopy2Widget.routePath,
+          builder: (context, params) => PhoneNumberCopy2Widget(),
+        ),
+        FFRoute(
+          name: PasswordWidget.routeName,
+          path: PasswordWidget.routePath,
+          builder: (context, params) => PasswordWidget(),
+        ),
+        FFRoute(
+          name: EmailNotificacaoWidget.routeName,
+          path: EmailNotificacaoWidget.routePath,
+          builder: (context, params) => EmailNotificacaoWidget(),
+        ),
+        FFRoute(
+          name: QuickyTeamNotificacoesWidget.routeName,
+          path: QuickyTeamNotificacoesWidget.routePath,
+          builder: (context, params) => QuickyTeamNotificacoesWidget(),
+        ),
+        FFRoute(
+          name: PhoneNumberTaskeeWidget.routeName,
+          path: PhoneNumberTaskeeWidget.routePath,
+          builder: (context, params) => PhoneNumberTaskeeWidget(),
+        ),
+        FFRoute(
+          name: EmailTaskeeWidget.routeName,
+          path: EmailTaskeeWidget.routePath,
+          builder: (context, params) => EmailTaskeeWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -444,7 +489,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/getstarted';
+            return '/getStarted';
           }
           return null;
         },
@@ -468,7 +513,7 @@ class FFRoute {
                     ),
                   ),
                 )
-              : page;
+              : PushNotificationsHandler(child: page);
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition

@@ -54,12 +54,20 @@
 	<true/>
 
 	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>In order to search nearby, this app requires access to your current location.</string>
+    <string>We use location to surface tasks based on users&#39; campuses.</string>
 	<key>NSCameraUsageDescription</key>
-    <string>In order to take a picture or video, this app requires permission to access the camera.</string>
+    <string>We use the user&#39;s camera so that they can send photos of completed tasks or create one.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>In order to upload data, this app requires permission to access the photo library.</string>
-
+    <string>We use the user&#39;s photo library so that they can send photos of completed tasks or create one.</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>We use audiowhen the user needs to send a voice message.</string>
+	<key>PermissionGroupNotification</key>
+    <string>We use notification for communication from tasker to taskee and vice versa.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
 
 
 

@@ -9,8 +9,9 @@ import 'schema/users_record.dart';
 import 'schema/chat_record.dart';
 import 'schema/chat_history_record.dart';
 import 'schema/notificacoes_record.dart';
-import 'schema/transation_record.dart';
 import 'schema/tasks_record.dart';
+import 'schema/tasks_pre_prontas_record.dart';
+import 'schema/comunitys_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -23,8 +24,9 @@ export 'schema/users_record.dart';
 export 'schema/chat_record.dart';
 export 'schema/chat_history_record.dart';
 export 'schema/notificacoes_record.dart';
-export 'schema/transation_record.dart';
 export 'schema/tasks_record.dart';
+export 'schema/tasks_pre_prontas_record.dart';
+export 'schema/comunitys_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -177,46 +179,6 @@ Future<List<NotificacoesRecord>> queryNotificacoesRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query TransationRecords (as a Stream and as a Future).
-Future<int> queryTransationRecordCount({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      TransationRecord.collection(parent),
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<TransationRecord>> queryTransationRecord({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      TransationRecord.collection(parent),
-      TransationRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<TransationRecord>> queryTransationRecordOnce({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      TransationRecord.collection(parent),
-      TransationRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
 /// Functions to query TasksRecords (as a Stream and as a Future).
 Future<int> queryTasksRecordCount({
   Query Function(Query)? queryBuilder,
@@ -249,6 +211,80 @@ Future<List<TasksRecord>> queryTasksRecordOnce({
     queryCollectionOnce(
       TasksRecord.collection,
       TasksRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query TasksPreProntasRecords (as a Stream and as a Future).
+Future<int> queryTasksPreProntasRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      TasksPreProntasRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<TasksPreProntasRecord>> queryTasksPreProntasRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      TasksPreProntasRecord.collection,
+      TasksPreProntasRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<TasksPreProntasRecord>> queryTasksPreProntasRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      TasksPreProntasRecord.collection,
+      TasksPreProntasRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ComunitysRecords (as a Stream and as a Future).
+Future<int> queryComunitysRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ComunitysRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ComunitysRecord>> queryComunitysRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ComunitysRecord.collection,
+      ComunitysRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ComunitysRecord>> queryComunitysRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ComunitysRecord.collection,
+      ComunitysRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

@@ -35,6 +35,16 @@ class ChatHistoryRecord extends FirestoreRecord {
   bool get msgdosystema => _msgdosystema ?? false;
   bool hasMsgdosystema() => _msgdosystema != null;
 
+  // "audio" field.
+  String? _audio;
+  String get audio => _audio ?? '';
+  bool hasAudio() => _audio != null;
+
+  // "foto" field.
+  String? _foto;
+  String get foto => _foto ?? '';
+  bool hasFoto() => _foto != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -42,6 +52,8 @@ class ChatHistoryRecord extends FirestoreRecord {
     _msg = snapshotData['msg'] as String?;
     _horario = snapshotData['horario'] as DateTime?;
     _msgdosystema = snapshotData['msgdosystema'] as bool?;
+    _audio = snapshotData['audio'] as String?;
+    _foto = snapshotData['foto'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -88,6 +100,8 @@ Map<String, dynamic> createChatHistoryRecordData({
   String? msg,
   DateTime? horario,
   bool? msgdosystema,
+  String? audio,
+  String? foto,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -95,6 +109,8 @@ Map<String, dynamic> createChatHistoryRecordData({
       'msg': msg,
       'horario': horario,
       'msgdosystema': msgdosystema,
+      'audio': audio,
+      'foto': foto,
     }.withoutNulls,
   );
 
@@ -109,12 +125,20 @@ class ChatHistoryRecordDocumentEquality implements Equality<ChatHistoryRecord> {
     return e1?.documentUser == e2?.documentUser &&
         e1?.msg == e2?.msg &&
         e1?.horario == e2?.horario &&
-        e1?.msgdosystema == e2?.msgdosystema;
+        e1?.msgdosystema == e2?.msgdosystema &&
+        e1?.audio == e2?.audio &&
+        e1?.foto == e2?.foto;
   }
 
   @override
-  int hash(ChatHistoryRecord? e) => const ListEquality()
-      .hash([e?.documentUser, e?.msg, e?.horario, e?.msgdosystema]);
+  int hash(ChatHistoryRecord? e) => const ListEquality().hash([
+        e?.documentUser,
+        e?.msg,
+        e?.horario,
+        e?.msgdosystema,
+        e?.audio,
+        e?.foto
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is ChatHistoryRecord;

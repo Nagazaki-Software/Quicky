@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'flutter_flow/request_manager.dart';
 import '/backend/backend.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
@@ -19,9 +18,6 @@ class FFAppState extends ChangeNotifier {
 
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
-    _safeInit(() {
-      _pages = prefs.getString('ff_pages') ?? _pages;
-    });
     _safeInit(() {
       _conversasData = prefs
               .getStringList('ff_conversasData')
@@ -43,6 +39,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _priceFilter = prefs.getInt('ff_priceFilter') ?? _priceFilter;
     });
+    _safeInit(() {
+      _betaPreview = prefs.getBool('ff_betaPreview') ?? _betaPreview;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -51,13 +50,6 @@ class FFAppState extends ChangeNotifier {
   }
 
   late SharedPreferences prefs;
-
-  String _pages = 'Pagina inicial';
-  String get pages => _pages;
-  set pages(String value) {
-    _pages = value;
-    prefs.setString('ff_pages', value);
-  }
 
   ChatStruct _conversas = ChatStruct();
   ChatStruct get conversas => _conversas;
@@ -419,35 +411,30 @@ class FFAppState extends ChangeNotifier {
     _taskPrice = value;
   }
 
-  final _querySwipesManager = StreamRequestManager<List<TasksRecord>>();
-  Stream<List<TasksRecord>> querySwipes({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Stream<List<TasksRecord>> Function() requestFn,
-  }) =>
-      _querySwipesManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearQuerySwipesCache() => _querySwipesManager.clear();
-  void clearQuerySwipesCacheKey(String? uniqueKey) =>
-      _querySwipesManager.clearRequest(uniqueKey);
+  bool _betaPreview = false;
+  bool get betaPreview => _betaPreview;
+  set betaPreview(bool value) {
+    _betaPreview = value;
+    prefs.setBool('ff_betaPreview', value);
+  }
 
-  final _queryChatsManager = StreamRequestManager<List<ChatRecord>>();
-  Stream<List<ChatRecord>> queryChats({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Stream<List<ChatRecord>> Function() requestFn,
-  }) =>
-      _queryChatsManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearQueryChatsCache() => _queryChatsManager.clear();
-  void clearQueryChatsCacheKey(String? uniqueKey) =>
-      _queryChatsManager.clearRequest(uniqueKey);
+  String _selectedTabName = 'Active Tasks';
+  String get selectedTabName => _selectedTabName;
+  set selectedTabName(String value) {
+    _selectedTabName = value;
+  }
+
+  String _selectedRakingPages = 'About the task';
+  String get selectedRakingPages => _selectedRakingPages;
+  set selectedRakingPages(String value) {
+    _selectedRakingPages = value;
+  }
+
+  dynamic _bankAccount;
+  dynamic get bankAccount => _bankAccount;
+  set bankAccount(dynamic value) {
+    _bankAccount = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

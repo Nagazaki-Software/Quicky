@@ -35,25 +35,10 @@ class TasksRecord extends FirestoreRecord {
   String get categoria => _categoria ?? '';
   bool hasCategoria() => _categoria != null;
 
-  // "Localizacao" field.
-  LatLng? _localizacao;
-  LatLng? get localizacao => _localizacao;
-  bool hasLocalizacao() => _localizacao != null;
-
-  // "Modalidade" field.
-  String? _modalidade;
-  String get modalidade => _modalidade ?? '';
-  bool hasModalidade() => _modalidade != null;
-
   // "MateriaisNecessarios" field.
   String? _materiaisNecessarios;
   String get materiaisNecessarios => _materiaisNecessarios ?? '';
   bool hasMateriaisNecessarios() => _materiaisNecessarios != null;
-
-  // "InstrucoesEspeciais" field.
-  String? _instrucoesEspeciais;
-  String get instrucoesEspeciais => _instrucoesEspeciais ?? '';
-  bool hasInstrucoesEspeciais() => _instrucoesEspeciais != null;
 
   // "userReference" field.
   DocumentReference? _userReference;
@@ -70,25 +55,10 @@ class TasksRecord extends FirestoreRecord {
   DateTime? get data => _data;
   bool hasData() => _data != null;
 
-  // "NivelTrabalho" field.
-  String? _nivelTrabalho;
-  String get nivelTrabalho => _nivelTrabalho ?? '';
-  bool hasNivelTrabalho() => _nivelTrabalho != null;
-
   // "PagamentoPrecos" field.
   double? _pagamentoPrecos;
   double get pagamentoPrecos => _pagamentoPrecos ?? 0.0;
   bool hasPagamentoPrecos() => _pagamentoPrecos != null;
-
-  // "locationString" field.
-  String? _locationString;
-  String get locationString => _locationString ?? '';
-  bool hasLocationString() => _locationString != null;
-
-  // "duracaoEstimada" field.
-  String? _duracaoEstimada;
-  String get duracaoEstimada => _duracaoEstimada ?? '';
-  bool hasDuracaoEstimada() => _duracaoEstimada != null;
 
   // "aceito" field.
   bool? _aceito;
@@ -130,11 +100,6 @@ class TasksRecord extends FirestoreRecord {
   String get valorDeUrgencia => _valorDeUrgencia ?? '';
   bool hasValorDeUrgencia() => _valorDeUrgencia != null;
 
-  // "fotos" field.
-  List<String>? _fotos;
-  List<String> get fotos => _fotos ?? const [];
-  bool hasFotos() => _fotos != null;
-
   // "acceptRenegociate" field.
   bool? _acceptRenegociate;
   bool get acceptRenegociate => _acceptRenegociate ?? false;
@@ -151,22 +116,41 @@ class TasksRecord extends FirestoreRecord {
   DocumentReference? get usuarioQueAceitouaTask => _usuarioQueAceitouaTask;
   bool hasUsuarioQueAceitouaTask() => _usuarioQueAceitouaTask != null;
 
+  // "FornecedorDosMateriais" field.
+  String? _fornecedorDosMateriais;
+  String get fornecedorDosMateriais => _fornecedorDosMateriais ?? '';
+  bool hasFornecedorDosMateriais() => _fornecedorDosMateriais != null;
+
+  // "localizacao" field.
+  EnderecoTasksStruct? _localizacao;
+  EnderecoTasksStruct get localizacao => _localizacao ?? EnderecoTasksStruct();
+  bool hasLocalizacao() => _localizacao != null;
+
+  // "location" field.
+  LatLng? _location;
+  LatLng? get location => _location;
+  bool hasLocation() => _location != null;
+
+  // "fastpass" field.
+  String? _fastpass;
+  String get fastpass => _fastpass ?? '';
+  bool hasFastpass() => _fastpass != null;
+
+  // "taskPrePronta" field.
+  DocumentReference? _taskPrePronta;
+  DocumentReference? get taskPrePronta => _taskPrePronta;
+  bool hasTaskPrePronta() => _taskPrePronta != null;
+
   void _initializeFields() {
     _foto = getDataList(snapshotData['Foto']);
     _titulo = snapshotData['Titulo'] as String?;
     _descricao = snapshotData['Descricao'] as String?;
     _categoria = snapshotData['Categoria'] as String?;
-    _localizacao = snapshotData['Localizacao'] as LatLng?;
-    _modalidade = snapshotData['Modalidade'] as String?;
     _materiaisNecessarios = snapshotData['MateriaisNecessarios'] as String?;
-    _instrucoesEspeciais = snapshotData['InstrucoesEspeciais'] as String?;
     _userReference = snapshotData['userReference'] as DocumentReference?;
     _tempo = snapshotData['Tempo'] as DateTime?;
     _data = snapshotData['Data'] as DateTime?;
-    _nivelTrabalho = snapshotData['NivelTrabalho'] as String?;
     _pagamentoPrecos = castToType<double>(snapshotData['PagamentoPrecos']);
-    _locationString = snapshotData['locationString'] as String?;
-    _duracaoEstimada = snapshotData['duracaoEstimada'] as String?;
     _aceito = snapshotData['aceito'] as bool?;
     _idDaTask = snapshotData['idDaTask'] as String?;
     _status = snapshotData['status'] as String?;
@@ -175,12 +159,18 @@ class TasksRecord extends FirestoreRecord {
     _priority = snapshotData['priority'] as String?;
     _valor = snapshotData['valor'] as String?;
     _valorDeUrgencia = snapshotData['valorDeUrgencia'] as String?;
-    _fotos = getDataList(snapshotData['fotos']);
     _acceptRenegociate = snapshotData['acceptRenegociate'] as bool?;
     _usuariosDisputandoPelaTask =
         getDataList(snapshotData['usuariosDisputandoPelaTask']);
     _usuarioQueAceitouaTask =
         snapshotData['usuarioQueAceitouaTask'] as DocumentReference?;
+    _fornecedorDosMateriais = snapshotData['FornecedorDosMateriais'] as String?;
+    _localizacao = snapshotData['localizacao'] is EnderecoTasksStruct
+        ? snapshotData['localizacao']
+        : EnderecoTasksStruct.maybeFromMap(snapshotData['localizacao']);
+    _location = snapshotData['location'] as LatLng?;
+    _fastpass = snapshotData['fastpass'] as String?;
+    _taskPrePronta = snapshotData['taskPrePronta'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -220,17 +210,11 @@ Map<String, dynamic> createTasksRecordData({
   String? titulo,
   String? descricao,
   String? categoria,
-  LatLng? localizacao,
-  String? modalidade,
   String? materiaisNecessarios,
-  String? instrucoesEspeciais,
   DocumentReference? userReference,
   DateTime? tempo,
   DateTime? data,
-  String? nivelTrabalho,
   double? pagamentoPrecos,
-  String? locationString,
-  String? duracaoEstimada,
   bool? aceito,
   String? idDaTask,
   String? status,
@@ -241,23 +225,22 @@ Map<String, dynamic> createTasksRecordData({
   String? valorDeUrgencia,
   bool? acceptRenegociate,
   DocumentReference? usuarioQueAceitouaTask,
+  String? fornecedorDosMateriais,
+  EnderecoTasksStruct? localizacao,
+  LatLng? location,
+  String? fastpass,
+  DocumentReference? taskPrePronta,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'Titulo': titulo,
       'Descricao': descricao,
       'Categoria': categoria,
-      'Localizacao': localizacao,
-      'Modalidade': modalidade,
       'MateriaisNecessarios': materiaisNecessarios,
-      'InstrucoesEspeciais': instrucoesEspeciais,
       'userReference': userReference,
       'Tempo': tempo,
       'Data': data,
-      'NivelTrabalho': nivelTrabalho,
       'PagamentoPrecos': pagamentoPrecos,
-      'locationString': locationString,
-      'duracaoEstimada': duracaoEstimada,
       'aceito': aceito,
       'idDaTask': idDaTask,
       'status': status,
@@ -268,8 +251,16 @@ Map<String, dynamic> createTasksRecordData({
       'valorDeUrgencia': valorDeUrgencia,
       'acceptRenegociate': acceptRenegociate,
       'usuarioQueAceitouaTask': usuarioQueAceitouaTask,
+      'FornecedorDosMateriais': fornecedorDosMateriais,
+      'localizacao': EnderecoTasksStruct().toMap(),
+      'location': location,
+      'fastpass': fastpass,
+      'taskPrePronta': taskPrePronta,
     }.withoutNulls,
   );
+
+  // Handle nested data for "localizacao" field.
+  addEnderecoTasksStructData(firestoreData, localizacao, 'localizacao');
 
   return firestoreData;
 }
@@ -284,17 +275,11 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e1?.titulo == e2?.titulo &&
         e1?.descricao == e2?.descricao &&
         e1?.categoria == e2?.categoria &&
-        e1?.localizacao == e2?.localizacao &&
-        e1?.modalidade == e2?.modalidade &&
         e1?.materiaisNecessarios == e2?.materiaisNecessarios &&
-        e1?.instrucoesEspeciais == e2?.instrucoesEspeciais &&
         e1?.userReference == e2?.userReference &&
         e1?.tempo == e2?.tempo &&
         e1?.data == e2?.data &&
-        e1?.nivelTrabalho == e2?.nivelTrabalho &&
         e1?.pagamentoPrecos == e2?.pagamentoPrecos &&
-        e1?.locationString == e2?.locationString &&
-        e1?.duracaoEstimada == e2?.duracaoEstimada &&
         e1?.aceito == e2?.aceito &&
         e1?.idDaTask == e2?.idDaTask &&
         e1?.status == e2?.status &&
@@ -303,11 +288,15 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e1?.priority == e2?.priority &&
         e1?.valor == e2?.valor &&
         e1?.valorDeUrgencia == e2?.valorDeUrgencia &&
-        listEquality.equals(e1?.fotos, e2?.fotos) &&
         e1?.acceptRenegociate == e2?.acceptRenegociate &&
         listEquality.equals(
             e1?.usuariosDisputandoPelaTask, e2?.usuariosDisputandoPelaTask) &&
-        e1?.usuarioQueAceitouaTask == e2?.usuarioQueAceitouaTask;
+        e1?.usuarioQueAceitouaTask == e2?.usuarioQueAceitouaTask &&
+        e1?.fornecedorDosMateriais == e2?.fornecedorDosMateriais &&
+        e1?.localizacao == e2?.localizacao &&
+        e1?.location == e2?.location &&
+        e1?.fastpass == e2?.fastpass &&
+        e1?.taskPrePronta == e2?.taskPrePronta;
   }
 
   @override
@@ -316,17 +305,11 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e?.titulo,
         e?.descricao,
         e?.categoria,
-        e?.localizacao,
-        e?.modalidade,
         e?.materiaisNecessarios,
-        e?.instrucoesEspeciais,
         e?.userReference,
         e?.tempo,
         e?.data,
-        e?.nivelTrabalho,
         e?.pagamentoPrecos,
-        e?.locationString,
-        e?.duracaoEstimada,
         e?.aceito,
         e?.idDaTask,
         e?.status,
@@ -335,10 +318,14 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e?.priority,
         e?.valor,
         e?.valorDeUrgencia,
-        e?.fotos,
         e?.acceptRenegociate,
         e?.usuariosDisputandoPelaTask,
-        e?.usuarioQueAceitouaTask
+        e?.usuarioQueAceitouaTask,
+        e?.fornecedorDosMateriais,
+        e?.localizacao,
+        e?.location,
+        e?.fastpass,
+        e?.taskPrePronta
       ]);
 
   @override

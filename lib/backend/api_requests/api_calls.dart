@@ -258,6 +258,119 @@ class SessionCall {
 
 /// End Stripe Group Code
 
+/// Start Banco de dados Quicky Group Code
+
+class BancoDeDadosQuickyGroup {
+  static String getBaseUrl() =>
+      'https://us-central1-quick-b108e.cloudfunctions.net';
+  static Map<String, String> headers = {};
+  static CriarContaStripeCall criarContaStripeCall = CriarContaStripeCall();
+  static UpdateAccountStripeCall updateAccountStripeCall =
+      UpdateAccountStripeCall();
+  static VerifySessionStripeIdentifyCall verifySessionStripeIdentifyCall =
+      VerifySessionStripeIdentifyCall();
+}
+
+class CriarContaStripeCall {
+  Future<ApiCallResponse> call({
+    String? email = '',
+  }) async {
+    final baseUrl = BancoDeDadosQuickyGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Criar Conta Stripe',
+      apiUrl: '${baseUrl}/createAccountStripe',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'email': email,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? accountId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.accountId''',
+      ));
+}
+
+class UpdateAccountStripeCall {
+  Future<ApiCallResponse> call({
+    String? accountId = '',
+    String? tosAcceptanceIp = '',
+    String? firstName = '',
+    String? lastName = '',
+    String? dob = '',
+    String? ssnLast4 = '',
+    String? email = '',
+    String? mcc = '',
+    dynamic bankAccountInfoJson,
+  }) async {
+    final baseUrl = BancoDeDadosQuickyGroup.getBaseUrl();
+
+    final bankAccountInfo = _serializeJson(bankAccountInfoJson);
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'update Account Stripe',
+      apiUrl: '${baseUrl}/updateAccountStripe',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'accountId': accountId,
+        'tosAcceptanceIp': tosAcceptanceIp,
+        'firstName': firstName,
+        'lastName': lastName,
+        'dob': dob,
+        'ssnLast4': ssnLast4,
+        'email': email,
+        'mcc': mcc,
+        'bankAccountInfo': bankAccountInfo,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class VerifySessionStripeIdentifyCall {
+  Future<ApiCallResponse> call({
+    String? clientStripeId = '',
+  }) async {
+    final baseUrl = BancoDeDadosQuickyGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Verify session stripe identify',
+      apiUrl: '${baseUrl}/createVerificationSession',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'clientStripeId': clientStripeId,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End Banco de dados Quicky Group Code
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

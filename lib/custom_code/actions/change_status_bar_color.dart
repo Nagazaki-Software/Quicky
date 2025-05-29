@@ -11,10 +11,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 
-Future<void> changeStatusBarColor() async {
+Future<void> changeStatusBarColor(Color? cor) async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: Color(0xFFE8DCDC), // Cor atualizada para #e8dcdc
+      statusBarColor: cor ?? Colors.transparent,
+      statusBarIconBrightness:
+          Brightness.dark, // ou Brightness.light dependendo da cor
+      statusBarBrightness: Brightness.light, // para iOS
     ),
   );
 }

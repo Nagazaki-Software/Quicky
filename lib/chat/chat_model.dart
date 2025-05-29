@@ -1,33 +1,40 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
 import 'chat_widget.dart' show ChatWidget;
 import 'package:flutter/material.dart';
+import 'package:record/record.dart';
 
 class ChatModel extends FlutterFlowModel<ChatWidget> {
   ///  Local state fields for this page.
 
-  String? direcao = '';
-
-  bool recentTasks = true;
-
-  bool allTasks = false;
-
-  bool completedTask = false;
+  bool recorder = false;
 
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for PageView widget.
-  PageController? pageViewController;
+  // State field(s) for ListView widget.
+  ScrollController? listViewController;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
+  bool isDataUploading_uploadData4jcc2 = false;
+  FFUploadedFile uploadedLocalFile_uploadData4jcc2 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl_uploadData4jcc2 = '';
 
-  int get pageViewCurrentIndex => pageViewController != null &&
-          pageViewController!.hasClients &&
-          pageViewController!.page != null
-      ? pageViewController!.page!.round()
-      : 0;
+  AudioRecorder? audioRecorder;
+  String? audio;
+  FFUploadedFile recordedFileBytes =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    listViewController = ScrollController();
+  }
 
   @override
-  void dispose() {}
+  void dispose() {
+    listViewController?.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
+  }
 }
