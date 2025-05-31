@@ -922,9 +922,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                                   }
 
                                   _model.accountStripe =
-                                      await BancoDeDadosQuickyGroup
-                                          .criarContaStripeCall
-                                          .call(
+                                      await CreateaccountstripeAllCall.call(
                                     email: _model.emailTextController.text,
                                   );
 
@@ -935,11 +933,11 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                                     photoUrl:
                                         _model.uploadedFileUrl_uploadDataSfu34,
                                     taskOrTaskee: 'Taskee',
-                                    clienteStripeId: BancoDeDadosQuickyGroup
-                                        .criarContaStripeCall
-                                        .accountId(
+                                    clienteStripeId: getJsonField(
                                       (_model.accountStripe?.jsonBody ?? ''),
-                                    ),
+                                      r'''$.accountId''',
+                                    ).toString(),
+                                    verifyaccount: false,
                                   ));
 
                                   context.pushNamedAuth(

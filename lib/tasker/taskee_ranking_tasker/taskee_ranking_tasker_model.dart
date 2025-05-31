@@ -8,12 +8,11 @@ class TaskeeRankingTaskerModel
     extends FlutterFlowModel<TaskeeRankingTaskerWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // Model for navBarCopy component.
+  late NavBarCopyModel navBarCopyModel;
   // State field(s) for Carousel widget.
   CarouselSliderController? carouselController;
   int carouselCurrentIndex = 1;
-
-  // Model for navBarCopy component.
-  late NavBarCopyModel navBarCopyModel;
 
   @override
   void initState(BuildContext context) {

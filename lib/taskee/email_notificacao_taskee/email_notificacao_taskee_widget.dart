@@ -4,28 +4,30 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'email_notificacao_model.dart';
-export 'email_notificacao_model.dart';
+import 'email_notificacao_taskee_model.dart';
+export 'email_notificacao_taskee_model.dart';
 
-class EmailNotificacaoWidget extends StatefulWidget {
-  const EmailNotificacaoWidget({super.key});
+class EmailNotificacaoTaskeeWidget extends StatefulWidget {
+  const EmailNotificacaoTaskeeWidget({super.key});
 
-  static String routeName = 'emailNotificacao';
-  static String routePath = '/emailNotificacao';
+  static String routeName = 'emailNotificacaoTaskee';
+  static String routePath = '/emailNotificacaoTaskee';
 
   @override
-  State<EmailNotificacaoWidget> createState() => _EmailNotificacaoWidgetState();
+  State<EmailNotificacaoTaskeeWidget> createState() =>
+      _EmailNotificacaoTaskeeWidgetState();
 }
 
-class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
-  late EmailNotificacaoModel _model;
+class _EmailNotificacaoTaskeeWidgetState
+    extends State<EmailNotificacaoTaskeeWidget> {
+  late EmailNotificacaoTaskeeModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EmailNotificacaoModel());
+    _model = createModel(context, () => EmailNotificacaoTaskeeModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -52,7 +54,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: Stack(
           children: [
             Align(
@@ -88,7 +90,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                                   child: Icon(
                                     Icons.arrow_back_ios,
                                     color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
+                                        .secondaryBackground,
                                     size: 24.0,
                                   ),
                                 ),
@@ -126,7 +128,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                                               fontStyle: FontStyle.italic,
                                             ),
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
+                                                .secondaryBackground,
                                             fontSize: 24.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -146,7 +148,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                                                   1.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
+                                                .secondaryBackground,
                                             boxShadow: [
                                               BoxShadow(
                                                 blurRadius: 1.0,
@@ -328,7 +330,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                                             .fontStyle,
                                       ),
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                          .secondaryBackground,
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w300,
@@ -348,7 +350,8 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 1.0,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 1.0,
@@ -393,7 +396,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                                                       .fontStyle,
                                             ),
                                             color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                                .primaryBackground,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                             fontStyle:
@@ -452,7 +455,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                                                       .fontStyle,
                                             ),
                                             color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                                .primaryBackground,
                                             letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
@@ -523,7 +526,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                                                   ),
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .secondaryBackground,
+                                                      .primaryBackground,
                                                   fontSize: 16.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight:
@@ -538,40 +541,39 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                                                           .fontStyle,
                                                 ),
                                           ),
-                                          Flexible(
-                                            child: Text(
-                                              'I want to receive news, updates and offers from Quicky',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font:
-                                                            GoogleFonts.poppins(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        fontSize: 12.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                            ),
+                                          Text(
+                                            'I want to receive news, updates and offers from Quicky',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                  fontSize: 12.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ],
                                       ),
@@ -615,7 +617,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: Image.asset(
-                              'assets/images/Artboard_20.png',
+                              'assets/images/Artboard_21_(1).png',
                             ).image,
                           ),
                         ),
@@ -655,7 +657,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                                         MediaQuery.sizeOf(context).width * 0.74,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                          .secondaryBackground,
                                       boxShadow: [
                                         BoxShadow(
                                           blurRadius: 4.0,
@@ -679,7 +681,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                                           Icon(
                                             Icons.chevron_left_sharp,
                                             color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                                .primaryBackground,
                                             size: 30.0,
                                           ),
                                           Text(
@@ -698,7 +700,7 @@ class _EmailNotificacaoWidgetState extends State<EmailNotificacaoWidget> {
                                                   ),
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .secondaryBackground,
+                                                      .primaryBackground,
                                                   fontSize: 22.0,
                                                   letterSpacing: 6.0,
                                                   fontWeight: FontWeight.normal,

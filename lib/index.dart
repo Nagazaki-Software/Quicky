@@ -38,7 +38,8 @@ export '/tasker/taskee_ranking_tasker/taskee_ranking_tasker_widget.dart'
 export '/tasker/profile_page_tasker/profile_page_tasker_widget.dart'
     show ProfilePageTaskerWidget;
 export '/tasker/swipe_tasker/swipe_tasker_widget.dart' show SwipeTaskerWidget;
-export '/taskee/configuracao/configuracao_widget.dart' show ConfiguracaoWidget;
+export '/taskee/configuracao_taskee/configuracao_taskee_widget.dart'
+    show ConfiguracaoTaskeeWidget;
 export '/taskee/ratings_taskee/ratings_taskee_widget.dart'
     show RatingsTaskeeWidget;
 export '/taskee/login/login_widget.dart' show LoginWidget;
@@ -46,8 +47,8 @@ export '/taskee/ratings_taskees/ratings_taskees_widget.dart'
     show RatingsTaskeesWidget;
 export '/taskee/ratings_taskees_copy/ratings_taskees_copy_widget.dart'
     show RatingsTaskeesCopyWidget;
-export '/taskee/configuracao_copy/configuracao_copy_widget.dart'
-    show ConfiguracaoCopyWidget;
+export '/taskee/configuracao_tasker/configuracao_tasker_widget.dart'
+    show ConfiguracaoTaskerWidget;
 export '/taskee/phone_number_tasker/phone_number_tasker_widget.dart'
     show PhoneNumberTaskerWidget;
 export '/taskee/configuracao_copy_copy_copy/configuracao_copy_copy_copy_widget.dart'
@@ -55,11 +56,20 @@ export '/taskee/configuracao_copy_copy_copy/configuracao_copy_copy_copy_widget.d
 export '/taskee/email_tasker/email_tasker_widget.dart' show EmailTaskerWidget;
 export '/taskee/phone_number_copy2/phone_number_copy2_widget.dart'
     show PhoneNumberCopy2Widget;
-export '/taskee/password/password_widget.dart' show PasswordWidget;
-export '/taskee/email_notificacao/email_notificacao_widget.dart'
-    show EmailNotificacaoWidget;
-export '/taskee/quicky_team_notificacoes/quicky_team_notificacoes_widget.dart'
-    show QuickyTeamNotificacoesWidget;
+export '/taskee/password_tasker/password_tasker_widget.dart'
+    show PasswordTaskerWidget;
+export '/taskee/email_notificacao_tasker/email_notificacao_tasker_widget.dart'
+    show EmailNotificacaoTaskerWidget;
+export '/taskee/quicky_team_notificacoes_tasker/quicky_team_notificacoes_tasker_widget.dart'
+    show QuickyTeamNotificacoesTaskerWidget;
 export '/taskee/phone_number_taskee/phone_number_taskee_widget.dart'
     show PhoneNumberTaskeeWidget;
 export '/taskee/email_taskee/email_taskee_widget.dart' show EmailTaskeeWidget;
+export '/taskee/password_taskee/password_taskee_widget.dart'
+    show PasswordTaskeeWidget;
+export '/taskee/email_notificacao_taskee/email_notificacao_taskee_widget.dart'
+    show EmailNotificacaoTaskeeWidget;
+export '/taskee/quicky_team_notificacoes_taskee/quicky_team_notificacoes_taskee_widget.dart'
+    show QuickyTeamNotificacoesTaskeeWidget;
+export '/taskee/phone_number_copy2_copy/phone_number_copy2_copy_widget.dart'
+    show PhoneNumberCopy2CopyWidget;

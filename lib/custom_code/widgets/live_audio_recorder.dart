@@ -10,21 +10,31 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'dart:async';
 import 'package:audio_waveforms/audio_waveforms.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class LiveAudioRecorder extends StatefulWidget {
   final double width;
   final double height;
-  const LiveAudioRecorder({Key? key, required this.width, required this.height})
-      : super(key: key);
+
+  const LiveAudioRecorder({
+    Key? key,
+    required this.width,
+    required this.height,
+  }) : super(key: key);
 
   @override
   _LiveAudioRecorderState createState() => _LiveAudioRecorderState();
 }
 
 class _LiveAudioRecorderState extends State<LiveAudioRecorder> {
-  late RecorderController recorderController;
+  late final RecorderController recorderController;
   bool isRecording = false;
+  bool hasPermission = false;
+  Timer? timer;
+  int recordDuration = 0;
+  String recordedPath = '';
 
   @override
   void initState() {
@@ -34,44 +44,129 @@ class _LiveAudioRecorderState extends State<LiveAudioRecorder> {
       ..androidOutputFormat = AndroidOutputFormat.mpeg4
       ..iosEncoder = IosEncoder.kAudioFormatMPEG4AAC
       ..sampleRate = 16000;
+
+    // Checa permissão após o build para evitar travar na tela
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _checkPermission();
+    });
   }
 
-  void startOrStopRecording() async {
-    if (isRecording) {
-      final path = await recorderController.stop();
-      print("Recording saved at: $path");
-      setState(() => isRecording = false);
-    } else {
-      await recorderController.record(path: '');
-      setState(() => isRecording = true);
+  Future<void> _checkPermission() async {
+    final status = await Permission.microphone.request();
+    debugPrint("📢 Permissão do microfone: $status");
+    setState(() {
+      hasPermission = status == PermissionStatus.granted;
+    });
+
+    if (!hasPermission && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Permissão de microfone negada.")),
+      );
     }
+  }
+
+  void startRecording() async {
+    if (!hasPermission || isRecording) return;
+
+    await recorderController.record();
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      setState(() => recordDuration++);
+    });
+    setState(() {
+      isRecording = true;
+      recordedPath = '';
+    });
+  }
+
+  void stopRecording() async {
+    if (!isRecording) return;
+
+    final path = await recorderController.stop();
+    debugPrint("🎙️ Gravação salva em: $path");
+    recordedPath = path ?? '';
+    timer?.cancel();
+    setState(() {
+      isRecording = false;
+      recordDuration = 0;
+    });
+  }
+
+  String formatDuration(int seconds) {
+    final min = (seconds ~/ 60).toString().padLeft(2, '0');
+    final sec = (seconds % 60).toString().padLeft(2, '0');
+    return '$min:$sec';
   }
 
   @override
   void dispose() {
+    timer?.cancel();
     recorderController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AudioWaveforms(
-          enableGesture: false,
-          size: Size(MediaQuery.of(context).size.width, 50),
-          recorderController: recorderController,
-          waveStyle: const WaveStyle(
-            waveColor: Colors.blue,
-            extendWaveform: true,
-            showMiddleLine: false,
+    return Container(
+      width: widget.width,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade100,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (isRecording)
+            AudioWaveforms(
+              enableGesture: false,
+              size: Size(widget.width, widget.height),
+              recorderController: recorderController,
+              waveStyle: const WaveStyle(
+                waveColor: Colors.blueAccent,
+                extendWaveform: true,
+                showMiddleLine: false,
+                spacing: 6.0,
+                showBottom: true,
+              ),
+            ),
+          if (isRecording)
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: Text(
+                formatDuration(recordDuration),
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onLongPressStart: (_) => startRecording(),
+                onLongPressEnd: (_) => stopRecording(),
+                child: Icon(
+                  isRecording ? Icons.stop_circle : Icons.mic,
+                  size: 40,
+                  color: isRecording ? Colors.red : Colors.blue,
+                ),
+              ),
+            ],
           ),
-        ),
-        IconButton(
-          icon: Icon(isRecording ? Icons.stop : Icons.mic),
-          onPressed: startOrStopRecording,
-        ),
-      ],
+          if (!isRecording && recordedPath.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(
+                "Áudio salvo em:\n$recordedPath",
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

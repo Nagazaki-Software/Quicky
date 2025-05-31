@@ -4,6 +4,18 @@ import 'ratings_taskees_widget.dart' show RatingsTaskeesWidget;
 import 'package:flutter/material.dart';
 
 class RatingsTaskeesModel extends FlutterFlowModel<RatingsTaskeesWidget> {
+  ///  Local state fields for this page.
+
+  int? feedback1;
+
+  int? feedback2;
+
+  int? feedback3;
+
+  int? feedback4;
+
+  int? feedback5;
+
   ///  State fields for stateful widgets in this page.
 
   // Model for navBar component.

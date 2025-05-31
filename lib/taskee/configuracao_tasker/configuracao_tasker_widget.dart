@@ -4,28 +4,29 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'configuracao_copy_model.dart';
-export 'configuracao_copy_model.dart';
+import 'configuracao_tasker_model.dart';
+export 'configuracao_tasker_model.dart';
 
-class ConfiguracaoCopyWidget extends StatefulWidget {
-  const ConfiguracaoCopyWidget({super.key});
+class ConfiguracaoTaskerWidget extends StatefulWidget {
+  const ConfiguracaoTaskerWidget({super.key});
 
-  static String routeName = 'ConfiguracaoCopy';
-  static String routePath = '/configuracaoCopy';
+  static String routeName = 'ConfiguracaoTasker';
+  static String routePath = '/configuracaoTasker';
 
   @override
-  State<ConfiguracaoCopyWidget> createState() => _ConfiguracaoCopyWidgetState();
+  State<ConfiguracaoTaskerWidget> createState() =>
+      _ConfiguracaoTaskerWidgetState();
 }
 
-class _ConfiguracaoCopyWidgetState extends State<ConfiguracaoCopyWidget> {
-  late ConfiguracaoCopyModel _model;
+class _ConfiguracaoTaskerWidgetState extends State<ConfiguracaoTaskerWidget> {
+  late ConfiguracaoTaskerModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ConfiguracaoCopyModel());
+    _model = createModel(context, () => ConfiguracaoTaskerModel());
 
     _model.switchValue = true;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -442,7 +443,7 @@ class _ConfiguracaoCopyWidgetState extends State<ConfiguracaoCopyWidget> {
                                                           Colors.transparent,
                                                       onTap: () async {
                                                         context.pushNamed(
-                                                            PasswordWidget
+                                                            PasswordTaskerWidget
                                                                 .routeName);
                                                       },
                                                       child: Row(
@@ -558,21 +559,59 @@ class _ConfiguracaoCopyWidgetState extends State<ConfiguracaoCopyWidget> {
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(12.0, 0.0,
                                                                 12.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          'Verified account',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyLarge
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .poppins(
+                                                    child: InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        if (valueOrDefault<
+                                                                bool>(
+                                                            currentUserDocument
+                                                                ?.verifyaccount,
+                                                            false)) {
+                                                          context.pushNamed(
+                                                              PhoneNumberCopy2CopyWidget
+                                                                  .routeName);
+                                                        } else {
+                                                          context.pushNamed(
+                                                              PhoneNumberCopy2Widget
+                                                                  .routeName);
+                                                        }
+                                                      },
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            'Verified account',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyLarge
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .poppins(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLarge
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLarge
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  letterSpacing:
+                                                                      0.0,
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyLarge
@@ -582,42 +621,42 @@ class _ConfiguracaoCopyWidgetState extends State<ConfiguracaoCopyWidget> {
                                                                       .bodyLarge
                                                                       .fontStyle,
                                                                 ),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLarge
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLarge
-                                                                    .fontStyle,
-                                                              ),
-                                                        ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            AuthUserStreamWidget(
-                                                              builder:
-                                                                  (context) =>
-                                                                      Text(
-                                                                valueOrDefault<
-                                                                            bool>(
-                                                                        currentUserDocument
-                                                                            ?.verifyaccount,
-                                                                        false)
-                                                                    ? 'Verified'
-                                                                    : 'Not Verified',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .poppins(
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              AuthUserStreamWidget(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Text(
+                                                                  valueOrDefault<
+                                                                              bool>(
+                                                                          currentUserDocument
+                                                                              ?.verifyaccount,
+                                                                          false)
+                                                                      ? 'Verified'
+                                                                      : 'Not Verified',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .poppins(
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                        color: valueOrDefault<bool>(currentUserDocument?.verifyaccount,
+                                                                                false)
+                                                                            ? FlutterFlowTheme.of(context).tertiary
+                                                                            : FlutterFlowTheme.of(context).error,
+                                                                        letterSpacing:
+                                                                            0.0,
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .fontWeight,
@@ -625,39 +664,21 @@ class _ConfiguracaoCopyWidgetState extends State<ConfiguracaoCopyWidget> {
                                                                             .bodyMedium
                                                                             .fontStyle,
                                                                       ),
-                                                                      color: valueOrDefault<bool>(
-                                                                              currentUserDocument
-                                                                                  ?.verifyaccount,
-                                                                              false)
-                                                                          ? FlutterFlowTheme.of(context)
-                                                                              .tertiary
-                                                                          : FlutterFlowTheme.of(context)
-                                                                              .error,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
+                                                                ),
                                                               ),
-                                                            ),
-                                                            Icon(
-                                                              Icons
-                                                                  .chevron_right,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              size: 24.0,
-                                                            ),
-                                                          ].divide(SizedBox(
-                                                              width: 8.0)),
-                                                        ),
-                                                      ],
+                                                              Icon(
+                                                                Icons
+                                                                    .chevron_right,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                                size: 24.0,
+                                                              ),
+                                                            ].divide(SizedBox(
+                                                                width: 8.0)),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ].divide(SizedBox(height: 4.0)),
@@ -949,7 +970,7 @@ class _ConfiguracaoCopyWidgetState extends State<ConfiguracaoCopyWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   context.pushNamed(
-                                                      EmailNotificacaoWidget
+                                                      EmailNotificacaoTaskerWidget
                                                           .routeName);
                                                 },
                                                 child: Row(
@@ -1032,7 +1053,7 @@ class _ConfiguracaoCopyWidgetState extends State<ConfiguracaoCopyWidget> {
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   context.pushNamed(
-                                                      QuickyTeamNotificacoesWidget
+                                                      QuickyTeamNotificacoesTaskerWidget
                                                           .routeName);
                                                 },
                                                 child: Row(

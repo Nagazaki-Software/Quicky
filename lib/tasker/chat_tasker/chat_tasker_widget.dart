@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/upload_data.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -349,8 +348,7 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                             stream: queryChatHistoryRecord(
                               parent: widget.chat,
                               queryBuilder: (chatHistoryRecord) =>
-                                  chatHistoryRecord.orderBy('horario',
-                                      descending: true),
+                                  chatHistoryRecord.orderBy('horario'),
                             ),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
@@ -983,7 +981,7 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                                 ),
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                                        .secondaryBackground,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w300,
                                                 fontStyle:
@@ -1012,7 +1010,7 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                               ),
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
+                                                      .secondaryBackground,
                                               letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
@@ -1179,60 +1177,45 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 6.0, 0.0),
-                                    child: GestureDetector(
-                                      onLongPressCancel: () async {
-                                        await stopAudioRecording(
-                                          audioRecorder: _model.audioRecorder,
-                                          audioName: 'recordedFileBytes',
-                                          onRecordingComplete:
-                                              (audioFilePath, audioBytes) {
-                                            _model.audio = audioFilePath;
-                                            _model.recordedFileBytes =
-                                                audioBytes;
-                                          },
-                                        );
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        if (_model.recorder) {
+                                          await stopAudioRecording(
+                                            audioRecorder: _model.audioRecorder,
+                                            audioName: 'recordedFileBytes',
+                                            onRecordingComplete:
+                                                (audioFilePath, audioBytes) {
+                                              _model.audio = audioFilePath;
+                                              _model.recordedFileBytes =
+                                                  audioBytes;
+                                            },
+                                          );
 
-                                        await ChatHistoryRecord.createDoc(
-                                                widget.chat!)
-                                            .set(createChatHistoryRecordData(
-                                          documentUser: currentUserReference,
-                                          audio: _model.audio,
-                                          horario: getCurrentTimestamp,
-                                        ));
-                                        if (animationsMap[
-                                                'iconOnActionTriggerAnimation'] !=
-                                            null) {
-                                          animationsMap[
-                                                  'iconOnActionTriggerAnimation']!
-                                              .controller
-                                              .stop();
+                                          await ChatHistoryRecord.createDoc(
+                                                  widget.chat!)
+                                              .set(createChatHistoryRecordData(
+                                            documentUser: currentUserReference,
+                                            audio: _model.audio,
+                                            horario: getCurrentTimestamp,
+                                          ));
+                                          _model.recorder = false;
+                                          safeSetState(() {});
+                                        } else {
+                                          await startAudioRecording(
+                                            context,
+                                            audioRecorder:
+                                                _model.audioRecorder ??=
+                                                    AudioRecorder(),
+                                          );
+
+                                          _model.recorder = true;
+                                          safeSetState(() {});
                                         }
-                                        _model.recorder = false;
-                                        safeSetState(() {});
 
-                                        safeSetState(() {});
-                                      },
-                                      onLongPressStart: (details) async {
-                                        await startAudioRecording(
-                                          context,
-                                          audioRecorder:
-                                              _model.audioRecorder ??=
-                                                  AudioRecorder(),
-                                        );
-
-                                        if (animationsMap[
-                                                'iconOnActionTriggerAnimation'] !=
-                                            null) {
-                                          safeSetState(
-                                              () => hasIconTriggered = true);
-                                          SchedulerBinding.instance
-                                              .addPostFrameCallback((_) async =>
-                                                  await animationsMap[
-                                                          'iconOnActionTriggerAnimation']!
-                                                      .controller
-                                                      .forward());
-                                        }
-                                        _model.recorder = true;
                                         safeSetState(() {});
                                       },
                                       child: Icon(

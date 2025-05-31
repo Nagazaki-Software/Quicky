@@ -34,8 +34,8 @@ class CreateProfileTaskerModel
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
-  // Stores action output result for [Backend Call - API (Criar Conta Stripe)] action in Icon widget.
-  ApiCallResponse? stripeAccount;
+  // Stores action output result for [Backend Call - API (createaccountstripe all)] action in Icon widget.
+  ApiCallResponse? accountStripe;
 
   @override
   void initState(BuildContext context) {

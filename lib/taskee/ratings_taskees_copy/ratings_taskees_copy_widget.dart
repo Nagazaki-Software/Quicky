@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/components/nav_bar_copy_widget.dart';
-import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -1117,7 +1116,7 @@ class _RatingsTaskeesCopyWidgetState extends State<RatingsTaskeesCopyWidget> {
                         child: Stack(
                           children: [
                             wrapWithModel(
-                              model: _model.navBarCopyModel,
+                              model: _model.navBarCopyModel1,
                               updateCallback: () => safeSetState(() {}),
                               child: NavBarCopyWidget(),
                             ),
@@ -5936,9 +5935,9 @@ class _RatingsTaskeesCopyWidgetState extends State<RatingsTaskeesCopyWidget> {
                         child: Stack(
                           children: [
                             wrapWithModel(
-                              model: _model.navBarModel,
+                              model: _model.navBarCopyModel2,
                               updateCallback: () => safeSetState(() {}),
-                              child: NavBarWidget(),
+                              child: NavBarCopyWidget(),
                             ),
                           ],
                         ),

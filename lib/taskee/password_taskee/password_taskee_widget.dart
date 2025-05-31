@@ -4,28 +4,28 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'password_model.dart';
-export 'password_model.dart';
+import 'password_taskee_model.dart';
+export 'password_taskee_model.dart';
 
-class PasswordWidget extends StatefulWidget {
-  const PasswordWidget({super.key});
+class PasswordTaskeeWidget extends StatefulWidget {
+  const PasswordTaskeeWidget({super.key});
 
-  static String routeName = 'Password';
-  static String routePath = '/password';
+  static String routeName = 'PasswordTaskee';
+  static String routePath = '/passwordTaskee';
 
   @override
-  State<PasswordWidget> createState() => _PasswordWidgetState();
+  State<PasswordTaskeeWidget> createState() => _PasswordTaskeeWidgetState();
 }
 
-class _PasswordWidgetState extends State<PasswordWidget> {
-  late PasswordModel _model;
+class _PasswordTaskeeWidgetState extends State<PasswordTaskeeWidget> {
+  late PasswordTaskeeModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PasswordModel());
+    _model = createModel(context, () => PasswordTaskeeModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -49,7 +49,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: Stack(
           children: [
             Align(
@@ -85,7 +85,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                   child: Icon(
                                     Icons.arrow_back_ios,
                                     color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
+                                        .secondaryBackground,
                                     size: 24.0,
                                   ),
                                 ),
@@ -123,7 +123,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                               fontStyle: FontStyle.italic,
                                             ),
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
+                                                .secondaryBackground,
                                             fontSize: 24.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -143,7 +143,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                                   1.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
+                                                .secondaryBackground,
                                             boxShadow: [
                                               BoxShadow(
                                                 blurRadius: 1.0,
@@ -326,7 +326,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                             .fontStyle,
                                       ),
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                          .secondaryBackground,
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w300,
@@ -360,7 +360,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: Image.asset(
-                              'assets/images/Artboard_20.png',
+                              'assets/images/Artboard_21_(1).png',
                             ).image,
                           ),
                         ),
@@ -400,7 +400,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                         MediaQuery.sizeOf(context).width * 0.74,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                          .secondaryBackground,
                                       boxShadow: [
                                         BoxShadow(
                                           blurRadius: 4.0,
@@ -424,7 +424,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                           Icon(
                                             Icons.chevron_left_sharp,
                                             color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                                .primaryBackground,
                                             size: 30.0,
                                           ),
                                           Text(
@@ -443,7 +443,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                                   ),
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .secondaryBackground,
+                                                      .primaryBackground,
                                                   fontSize: 22.0,
                                                   letterSpacing: 6.0,
                                                   fontWeight: FontWeight.normal,

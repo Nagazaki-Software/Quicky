@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/components/deposit_success_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -65,9 +66,27 @@ class _StripePaymentIntentWidgetState extends State<StripePaymentIntentWidget> {
           onPaymentSuccess: (status, paymentId) async {
             if (widget.momento == 'requestTask') {
               if (paymentId != null && paymentId != '') {
-                Navigator.pop(context);
+                _model.saldoAdd = await AddSaldoNoStripeConnectCall.call(
+                  connectedAccountId:
+                      valueOrDefault(currentUserDocument?.clienteStripeId, ''),
+                  amount: widget.value.toString(),
+                  paymentIntentId: paymentId,
+                );
 
-                context.pushNamed(RequestEvaluationWidget.routeName);
+                if (getJsonField(
+                  (_model.saldoAdd?.jsonBody ?? ''),
+                  r'''$.success''',
+                )) {
+                  await currentUserReference!.update(createUsersRecordData(
+                    transferId: getJsonField(
+                      (_model.saldoAdd?.jsonBody ?? ''),
+                      r'''$.transferId''',
+                    ).toString(),
+                  ));
+                  Navigator.pop(context);
+
+                  context.pushNamed(RequestEvaluationWidget.routeName);
+                }
               }
             } else {
               if (paymentId != null && paymentId != '') {
@@ -109,6 +128,8 @@ class _StripePaymentIntentWidgetState extends State<StripePaymentIntentWidget> {
                 ).then((value) => safeSetState(() {}));
               }
             }
+
+            safeSetState(() {});
           },
         ),
       ),

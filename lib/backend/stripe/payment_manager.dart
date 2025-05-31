@@ -18,7 +18,7 @@ const _kProdStripePublishableKey =
     'pk_live_51Ob84ED9xvi658VGPoaM5vMMOS4bt2lAeYjyRMyTuyRnz1QU7Chh2nla8PLqaZc6iGCaCGBdkiggMpIPgdAaqG2800EX4DMTFI';
 const _kTestStripePublishableKey =
     'pk_test_51Ob84ED9xvi658VGwPcYbfLk65Hysgp0wxlV4GiWmfxHOOo7dVcJecpbWhG5vrCu3pYEylLWnH5GDuy47XvQ58oX00aT3dk5vY';
-const _kAppleMerchantId = '';
+const _kAppleMerchantId = 'merchant.com.nagazakisoftware.quick';
 
 String stripePublishableKey() =>
     _isProd ? _kProdStripePublishableKey : _kTestStripePublishableKey;
@@ -95,14 +95,14 @@ Future<StripePaymentResponse> processStripePayment(
         merchantDisplayName: 'Quick',
         googlePay: allowGooglePay
             ? PaymentSheetGooglePay(
-                merchantCountryCode: 'US',
+                merchantCountryCode: 'BR',
                 currencyCode: currency,
                 testEnv: !_isProd,
               )
             : null,
         applePay: isiOS && allowApplePay
             ? PaymentSheetApplePay(
-                merchantCountryCode: 'US',
+                merchantCountryCode: 'BR',
               )
             : null,
         style: themeStyle,

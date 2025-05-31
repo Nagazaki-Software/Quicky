@@ -1,5 +1,7 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'login_model.dart';
@@ -25,10 +27,10 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.initState();
     _model = createModel(context, () => LoginModel());
 
-    _model.textController1 ??= TextEditingController();
+    _model.emailTextController ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -84,7 +86,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           children: [
                             Container(
                               width: MediaQuery.sizeOf(context).width * 0.85,
-                              height: 40.0,
+                              height: 50.0,
                               decoration: BoxDecoration(
                                 color: Color(0xFFAC996D),
                                 boxShadow: [
@@ -106,7 +108,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     child: Container(
                                       width: 200.0,
                                       child: TextFormField(
-                                        controller: _model.textController1,
+                                        controller: _model.emailTextController,
                                         focusNode: _model.textFieldFocusNode1,
                                         autofocus: false,
                                         obscureText: false,
@@ -194,7 +196,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             FlutterFlowTheme.of(context)
                                                 .primaryText,
                                         validator: _model
-                                            .textController1Validator
+                                            .emailTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -216,7 +218,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                             ),
                             Container(
                               width: MediaQuery.sizeOf(context).width * 0.85,
-                              height: 40.0,
+                              height: 50.0,
                               decoration: BoxDecoration(
                                 color: Color(0xFFAC996D),
                                 boxShadow: [
@@ -238,7 +240,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     child: Container(
                                       width: 200.0,
                                       child: TextFormField(
-                                        controller: _model.textController2,
+                                        controller:
+                                            _model.passwordTextController,
                                         focusNode: _model.textFieldFocusNode2,
                                         autofocus: false,
                                         obscureText: !_model.passwordVisibility,
@@ -341,7 +344,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             FlutterFlowTheme.of(context)
                                                 .primaryText,
                                         validator: _model
-                                            .textController2Validator
+                                            .passwordTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -392,150 +395,123 @@ class _LoginWidgetState extends State<LoginWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 120.0, 0.0, 0.0),
-                                  child: Container(
-                                    width: 182.0,
-                                    height: 40.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(0.0),
-                                        bottomRight: Radius.circular(10.0),
-                                        topLeft: Radius.circular(0.0),
-                                        topRight: Radius.circular(10.0),
-                                      ),
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(4.24, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.chevron_left,
-                                                color: Colors.white,
-                                                size: 30.0,
-                                              ),
-                                              Text(
-                                                'REGISTER',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      font: GoogleFonts.poppins(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      fontSize: 24.0,
-                                                      letterSpacing: 5.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                              ),
-                                            ],
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 1.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 120.0, 0.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed(
+                                            ContinueAsWidget.routeName);
+                                      },
+                                      child: Container(
+                                        width: 190.0,
+                                        height: 50.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(0.0),
+                                            bottomRight: Radius.circular(10.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(10.0),
                                           ),
                                         ),
-                                      ],
+                                        child: Stack(
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  4.24, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.chevron_left,
+                                                    color: Colors.white,
+                                                    size: 30.0,
+                                                  ),
+                                                  Text(
+                                                    'REGISTER',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .poppins(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          fontSize: 24.0,
+                                                          letterSpacing: 5.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0.1, 0.98),
-                                  child: Container(
-                                    width: 150.0,
-                                    height: 40.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(10.0),
-                                        bottomRight: Radius.circular(10.0),
-                                        topLeft: Radius.circular(10.0),
-                                        topRight: Radius.circular(10.0),
-                                      ),
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(4.24, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'LOGIN',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      font: GoogleFonts.poppins(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      fontSize: 24.0,
-                                                      letterSpacing: 5.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                              ),
-                                              Icon(
-                                                Icons.chevron_right_rounded,
-                                                color: Colors.white,
-                                                size: 30.0,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
+                                  alignment: AlignmentDirectional(1.0, 1.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      GoRouter.of(context).prepareAuthEvent();
+
+                                      final user =
+                                          await authManager.signInWithEmail(
+                                        context,
+                                        _model.emailTextController.text,
+                                        _model.passwordTextController.text,
+                                      );
+                                      if (user == null) {
+                                        return;
+                                      }
+
+                                      context.goNamedAuth(
+                                          CurrentTasksWidget.routeName,
+                                          context.mounted);
+                                    },
+                                    child: Icon(
+                                      Icons.chevron_right_rounded,
+                                      color: Colors.white,
+                                      size: 30.0,
                                     ),
                                   ),
                                 ),

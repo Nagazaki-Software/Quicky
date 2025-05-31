@@ -1,5 +1,6 @@
 import '/components/nav_bar_copy_widget.dart';
 import '/components/nav_bar_widget.dart';
+import '/components/verifiyaccounturgent_widget.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -9,6 +10,8 @@ import 'package:flutter/material.dart';
 class CurrentTasksModel extends FlutterFlowModel<CurrentTasksWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // Model for verifiyaccounturgent component.
+  late VerifiyaccounturgentModel verifiyaccounturgentModel;
   // State field(s) for Calendar widget.
   DateTimeRange? calendarSelectedDay1;
   // Model for navBarCopy component.
@@ -20,6 +23,8 @@ class CurrentTasksModel extends FlutterFlowModel<CurrentTasksWidget> {
 
   @override
   void initState(BuildContext context) {
+    verifiyaccounturgentModel =
+        createModel(context, () => VerifiyaccounturgentModel());
     calendarSelectedDay1 = DateTimeRange(
       start: DateTime.now().startOfDay,
       end: DateTime.now().endOfDay,
@@ -34,6 +39,7 @@ class CurrentTasksModel extends FlutterFlowModel<CurrentTasksWidget> {
 
   @override
   void dispose() {
+    verifiyaccounturgentModel.dispose();
     navBarCopyModel.dispose();
     navBarModel.dispose();
   }

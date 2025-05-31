@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -57,25 +58,29 @@ class _NoactivetaskWidgetState extends State<NoactivetaskWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  'No Active Tasks',
-                  style: FlutterFlowTheme.of(context).headlineSmall.override(
-                        font: GoogleFonts.poppins(
+                AuthUserStreamWidget(
+                  builder: (context) => Text(
+                    'No Active Tasks',
+                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                          font: GoogleFonts.poppins(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .fontWeight,
+                            fontStyle: FontStyle.italic,
+                          ),
+                          color: valueOrDefault(
+                                      currentUserDocument?.taskOrTaskee, '') ==
+                                  'Tasker'
+                              ? FlutterFlowTheme.of(context).primaryBackground
+                              : FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                          letterSpacing: 0.0,
                           fontWeight: FlutterFlowTheme.of(context)
                               .headlineSmall
                               .fontWeight,
-                          fontStyle: FlutterFlowTheme.of(context)
-                              .headlineSmall
-                              .fontStyle,
+                          fontStyle: FontStyle.italic,
                         ),
-                        letterSpacing: 0.0,
-                        fontWeight: FlutterFlowTheme.of(context)
-                            .headlineSmall
-                            .fontWeight,
-                        fontStyle: FlutterFlowTheme.of(context)
-                            .headlineSmall
-                            .fontStyle,
-                      ),
+                  ),
                 ),
                 Text(
                   'You don\'t have any tasks assigned to you at the moment. Enjoy your break!',

@@ -33,7 +33,7 @@ class CreateProfileModel extends FlutterFlowModel<CreateProfileWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
-  // Stores action output result for [Backend Call - API (Criar Conta Stripe)] action in Icon widget.
+  // Stores action output result for [Backend Call - API (createaccountstripe all)] action in Icon widget.
   ApiCallResponse? accountStripe;
 
   @override

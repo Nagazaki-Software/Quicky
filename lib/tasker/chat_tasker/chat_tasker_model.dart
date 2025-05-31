@@ -21,10 +21,10 @@ class ChatTaskerModel extends FlutterFlowModel<ChatTaskerWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl_uploadData4jcc = '';
 
-  AudioRecorder? audioRecorder;
   String? audio;
   FFUploadedFile recordedFileBytes =
       FFUploadedFile(bytes: Uint8List.fromList([]));
+  AudioRecorder? audioRecorder;
 
   @override
   void initState(BuildContext context) {

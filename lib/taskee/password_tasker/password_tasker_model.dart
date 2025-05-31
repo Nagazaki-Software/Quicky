@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'password_widget.dart' show PasswordWidget;
+import 'password_tasker_widget.dart' show PasswordTaskerWidget;
 import 'package:flutter/material.dart';
 
-class PasswordModel extends FlutterFlowModel<PasswordWidget> {
+class PasswordTaskerModel extends FlutterFlowModel<PasswordTaskerWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.

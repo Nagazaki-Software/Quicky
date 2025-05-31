@@ -385,3 +385,10 @@ List<String> separarTexto(String texto) {
   // separe o texto por espaço
   return texto.split(' '); // Separa o texto por espaço
 }
+
+int indexList1(String indexList) {
+  // faça q quando o indexlist retornar 0 no front end ser 1 e etc
+  int index =
+      int.tryParse(indexList) ?? 0; // Convert string to int, default to 0
+  return index + 1; // Increment index by 1
+}

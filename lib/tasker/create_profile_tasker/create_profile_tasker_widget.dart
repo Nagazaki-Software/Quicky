@@ -879,9 +879,8 @@ class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget> {
                               return;
                             }
 
-                            _model.stripeAccount = await BancoDeDadosQuickyGroup
-                                .criarContaStripeCall
-                                .call(
+                            _model.accountStripe =
+                                await CreateaccountstripeAllCall.call(
                               email: _model.emailTextController.text,
                             );
 
@@ -892,11 +891,11 @@ class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget> {
                               photoUrl: _model.uploadedFileUrl_uploadDataSfu,
                               email: '',
                               taskOrTaskee: 'Tasker',
-                              clienteStripeId: BancoDeDadosQuickyGroup
-                                  .criarContaStripeCall
-                                  .accountId(
-                                (_model.stripeAccount?.jsonBody ?? ''),
-                              ),
+                              clienteStripeId: getJsonField(
+                                (_model.accountStripe?.jsonBody ?? ''),
+                                r'''$.accountId''',
+                              ).toString(),
+                              verifyaccount: false,
                             ));
 
                             context.pushNamedAuth(

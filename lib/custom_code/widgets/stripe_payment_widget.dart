@@ -149,8 +149,8 @@ class _StripePaymentWidgetState extends State<StripePaymentWidget> {
 
       await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
-          paymentIntentClientSecret: paymentIntent,
-          merchantDisplayName: 'Quicky',
+          paymentIntentClientSecret: paymentIntent, // Gerado no backend
+          merchantDisplayName: 'Quicky Tasks',
           applePay: const PaymentSheetApplePay(
             merchantCountryCode: 'US',
           ),
@@ -159,6 +159,19 @@ class _StripePaymentWidgetState extends State<StripePaymentWidget> {
             testEnv: true,
           ),
           style: themeStyle,
+          billingDetails: BillingDetails(
+            email: widget.emailDoCliente,
+            phone: '+15555555555',
+            name: widget.customerName,
+            address: Address(
+              city: 'San Francisco',
+              country: 'US',
+              line1: '123 Main St',
+              line2: '',
+              state: 'CA',
+              postalCode: '94111',
+            ),
+          ),
         ),
       );
 

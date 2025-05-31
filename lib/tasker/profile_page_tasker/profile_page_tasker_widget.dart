@@ -120,7 +120,7 @@ class _ProfilePageTaskerWidgetState extends State<ProfilePageTaskerWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       context.pushNamed(
-                                          ConfiguracaoCopyWidget.routeName);
+                                          ConfiguracaoTaskerWidget.routeName);
                                     },
                                     child: Icon(
                                       Icons.settings,

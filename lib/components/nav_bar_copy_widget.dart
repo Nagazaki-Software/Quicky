@@ -66,17 +66,6 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.trending_up_rounded,
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    size: 24.0,
-                  ),
-                ],
-              ),
               InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -84,6 +73,26 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
                 highlightColor: Colors.transparent,
                 onTap: () async {
                   context.pushNamed(TaskeeRankingTaskerWidget.routeName);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.scoreboard_rounded,
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      size: 24.0,
+                    ),
+                  ],
+                ),
+              ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed(RatingsTaskeesCopyWidget.routeName);
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,

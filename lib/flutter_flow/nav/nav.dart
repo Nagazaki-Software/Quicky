@@ -244,9 +244,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => SwipeTaskerWidget(),
         ),
         FFRoute(
-          name: ConfiguracaoWidget.routeName,
-          path: ConfiguracaoWidget.routePath,
-          builder: (context, params) => ConfiguracaoWidget(),
+          name: ConfiguracaoTaskeeWidget.routeName,
+          path: ConfiguracaoTaskeeWidget.routePath,
+          builder: (context, params) => ConfiguracaoTaskeeWidget(),
         ),
         FFRoute(
           name: RatingsTaskeeWidget.routeName,
@@ -269,9 +269,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => RatingsTaskeesCopyWidget(),
         ),
         FFRoute(
-          name: ConfiguracaoCopyWidget.routeName,
-          path: ConfiguracaoCopyWidget.routePath,
-          builder: (context, params) => ConfiguracaoCopyWidget(),
+          name: ConfiguracaoTaskerWidget.routeName,
+          path: ConfiguracaoTaskerWidget.routePath,
+          builder: (context, params) => ConfiguracaoTaskerWidget(),
         ),
         FFRoute(
           name: PhoneNumberTaskerWidget.routeName,
@@ -294,19 +294,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => PhoneNumberCopy2Widget(),
         ),
         FFRoute(
-          name: PasswordWidget.routeName,
-          path: PasswordWidget.routePath,
-          builder: (context, params) => PasswordWidget(),
+          name: PasswordTaskerWidget.routeName,
+          path: PasswordTaskerWidget.routePath,
+          builder: (context, params) => PasswordTaskerWidget(),
         ),
         FFRoute(
-          name: EmailNotificacaoWidget.routeName,
-          path: EmailNotificacaoWidget.routePath,
-          builder: (context, params) => EmailNotificacaoWidget(),
+          name: EmailNotificacaoTaskerWidget.routeName,
+          path: EmailNotificacaoTaskerWidget.routePath,
+          builder: (context, params) => EmailNotificacaoTaskerWidget(),
         ),
         FFRoute(
-          name: QuickyTeamNotificacoesWidget.routeName,
-          path: QuickyTeamNotificacoesWidget.routePath,
-          builder: (context, params) => QuickyTeamNotificacoesWidget(),
+          name: QuickyTeamNotificacoesTaskerWidget.routeName,
+          path: QuickyTeamNotificacoesTaskerWidget.routePath,
+          builder: (context, params) => QuickyTeamNotificacoesTaskerWidget(),
         ),
         FFRoute(
           name: PhoneNumberTaskeeWidget.routeName,
@@ -317,6 +317,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: EmailTaskeeWidget.routeName,
           path: EmailTaskeeWidget.routePath,
           builder: (context, params) => EmailTaskeeWidget(),
+        ),
+        FFRoute(
+          name: PasswordTaskeeWidget.routeName,
+          path: PasswordTaskeeWidget.routePath,
+          builder: (context, params) => PasswordTaskeeWidget(),
+        ),
+        FFRoute(
+          name: EmailNotificacaoTaskeeWidget.routeName,
+          path: EmailNotificacaoTaskeeWidget.routePath,
+          builder: (context, params) => EmailNotificacaoTaskeeWidget(),
+        ),
+        FFRoute(
+          name: QuickyTeamNotificacoesTaskeeWidget.routeName,
+          path: QuickyTeamNotificacoesTaskeeWidget.routePath,
+          builder: (context, params) => QuickyTeamNotificacoesTaskeeWidget(),
+        ),
+        FFRoute(
+          name: PhoneNumberCopy2CopyWidget.routeName,
+          path: PhoneNumberCopy2CopyWidget.routePath,
+          builder: (context, params) => PhoneNumberCopy2CopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -1,10 +1,11 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'quicky_team_notificacoes_widget.dart' show QuickyTeamNotificacoesWidget;
+import 'quicky_team_notificacoes_taskee_widget.dart'
+    show QuickyTeamNotificacoesTaskeeWidget;
 import 'package:flutter/material.dart';
 
-class QuickyTeamNotificacoesModel
-    extends FlutterFlowModel<QuickyTeamNotificacoesWidget> {
+class QuickyTeamNotificacoesTaskeeModel
+    extends FlutterFlowModel<QuickyTeamNotificacoesTaskeeWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for Switch widget.

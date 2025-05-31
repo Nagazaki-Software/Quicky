@@ -262,13 +262,17 @@ class SessionCall {
 
 class BancoDeDadosQuickyGroup {
   static String getBaseUrl() =>
-      'https://us-central1-quick-b108e.cloudfunctions.net';
+      'https://southamerica-east1-quick-b108e.cloudfunctions.net';
   static Map<String, String> headers = {};
   static CriarContaStripeCall criarContaStripeCall = CriarContaStripeCall();
-  static UpdateAccountStripeCall updateAccountStripeCall =
-      UpdateAccountStripeCall();
+  static CriarContaStripeCopyCall criarContaStripeCopyCall =
+      CriarContaStripeCopyCall();
+  static UpdateAccountStripeCopyCall updateAccountStripeCopyCall =
+      UpdateAccountStripeCopyCall();
   static VerifySessionStripeIdentifyCall verifySessionStripeIdentifyCall =
       VerifySessionStripeIdentifyCall();
+  static StripeIdentyVerifyCall stripeIdentyVerifyCall =
+      StripeIdentyVerifyCall();
 }
 
 class CriarContaStripeCall {
@@ -277,15 +281,18 @@ class CriarContaStripeCall {
   }) async {
     final baseUrl = BancoDeDadosQuickyGroup.getBaseUrl();
 
+    final ffApiRequestBody = '''
+{
+  "email": "${email}"
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'Criar Conta Stripe',
       apiUrl: '${baseUrl}/createAccountStripe',
       callType: ApiCallType.POST,
       headers: {},
-      params: {
-        'email': email,
-      },
-      bodyType: BodyType.MULTIPART,
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -301,16 +308,45 @@ class CriarContaStripeCall {
       ));
 }
 
-class UpdateAccountStripeCall {
+class CriarContaStripeCopyCall {
+  Future<ApiCallResponse> call({
+    String? email = '',
+  }) async {
+    final baseUrl = BancoDeDadosQuickyGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Criar Conta Stripe Copy',
+      apiUrl: '${baseUrl}/createAccountStripe',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'email': email,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? accountId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.accountId''',
+      ));
+}
+
+class UpdateAccountStripeCopyCall {
   Future<ApiCallResponse> call({
     String? accountId = '',
     String? tosAcceptanceIp = '',
     String? firstName = '',
     String? lastName = '',
-    String? dob = '',
+    String? dobDay = '',
     String? ssnLast4 = '',
     String? email = '',
-    String? mcc = '',
     dynamic bankAccountInfoJson,
   }) async {
     final baseUrl = BancoDeDadosQuickyGroup.getBaseUrl();
@@ -318,7 +354,7 @@ class UpdateAccountStripeCall {
     final bankAccountInfo = _serializeJson(bankAccountInfoJson);
 
     return ApiManager.instance.makeApiCall(
-      callName: 'update Account Stripe',
+      callName: 'update Account Stripe Copy',
       apiUrl: '${baseUrl}/updateAccountStripe',
       callType: ApiCallType.POST,
       headers: {},
@@ -327,11 +363,153 @@ class UpdateAccountStripeCall {
         'tosAcceptanceIp': tosAcceptanceIp,
         'firstName': firstName,
         'lastName': lastName,
-        'dob': dob,
+        'dob': dobDay,
         'ssnLast4': ssnLast4,
         'email': email,
-        'mcc': mcc,
         'bankAccountInfo': bankAccountInfo,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: true,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class VerifySessionStripeIdentifyCall {
+  Future<ApiCallResponse> call({
+    String? accountId = '',
+  }) async {
+    final baseUrl = BancoDeDadosQuickyGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Verify session stripe identify',
+      apiUrl: '${baseUrl}/createVerificationSession',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'accountId': accountId,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? url(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.url''',
+      ));
+  String? session(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.sessionId''',
+      ));
+}
+
+class StripeIdentyVerifyCall {
+  Future<ApiCallResponse> call({
+    String? accountId = '',
+  }) async {
+    final baseUrl = BancoDeDadosQuickyGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'stripeIdenty Verify',
+      apiUrl: '${baseUrl}/stripeIdentyWebhoock',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'accountId': accountId,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? status(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.status''',
+      ));
+}
+
+/// End Banco de dados Quicky Group Code
+
+class UpdateAccountCall {
+  static Future<ApiCallResponse> call({
+    String? accountId = '',
+    String? tosAcceptanceIp = '',
+    String? firstName = '',
+    String? lastName = '',
+    dynamic dobJson,
+    String? ssnLast4 = '',
+    String? email = '',
+    dynamic bankAccountInfoJson,
+  }) async {
+    final dob = _serializeJson(dobJson);
+    final bankAccountInfo = _serializeJson(bankAccountInfoJson);
+    final ffApiRequestBody = '''
+{
+  "accountId": "${escapeStringForJson(accountId)}",
+  "tosAcceptanceIp": "${escapeStringForJson(tosAcceptanceIp)}",
+  "firstName": "${escapeStringForJson(firstName)}",
+  "lastName": "${escapeStringForJson(lastName)}",
+  "dob": ${dob},
+  "ssnLast4": "${escapeStringForJson(ssnLast4)}",
+  "email": "${escapeStringForJson(email)}",
+  "bankAccountInfo": ${bankAccountInfo}
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateAccount',
+      apiUrl:
+          'https://southamerica-east1-quick-b108e.cloudfunctions.net/updateAccountStripe',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static bool? sucess(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.success''',
+      ));
+  static String? capacidadeDeTransferencia(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.account.capabilities.transfers''',
+      ));
+}
+
+class CreateAccountStripeCall {
+  static Future<ApiCallResponse> call({
+    String? email = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'createAccountStripe',
+      apiUrl:
+          'https://southamerica-east1-quick-b108e.cloudfunctions.net/createAccountStripe',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'email': email,
       },
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
       returnBody: true,
@@ -344,24 +522,23 @@ class UpdateAccountStripeCall {
   }
 }
 
-class VerifySessionStripeIdentifyCall {
-  Future<ApiCallResponse> call({
-    String? clientStripeId = '',
+class CreateaccountstripeAllCall {
+  static Future<ApiCallResponse> call({
+    String? email = '',
   }) async {
-    final baseUrl = BancoDeDadosQuickyGroup.getBaseUrl();
-
     return ApiManager.instance.makeApiCall(
-      callName: 'Verify session stripe identify',
-      apiUrl: '${baseUrl}/createVerificationSession',
+      callName: 'createaccountstripe all',
+      apiUrl:
+          'https://us-central1-quick-b108e.cloudfunctions.net/createAccountStripe',
       callType: ApiCallType.POST,
       headers: {},
       params: {
-        'clientStripeId': clientStripeId,
+        'email': email,
       },
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
       returnBody: true,
       encodeBodyUtf8: false,
-      decodeUtf8: true,
+      decodeUtf8: false,
       cache: false,
       isStreamingApi: false,
       alwaysAllowBody: false,
@@ -369,7 +546,33 @@ class VerifySessionStripeIdentifyCall {
   }
 }
 
-/// End Banco de dados Quicky Group Code
+class AddSaldoNoStripeConnectCall {
+  static Future<ApiCallResponse> call({
+    String? connectedAccountId = '',
+    String? amount = '',
+    String? paymentIntentId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'add saldo no stripe connect',
+      apiUrl:
+          'https://us-central1-quick-b108e.cloudfunctions.net/addSaldoStripe',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'connectedAccountId': connectedAccountId,
+        'amount': amount,
+        'paymentIntentId': paymentIntentId,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
 
 class ApiPagingParams {
   int nextPageNumber = 0;
@@ -416,4 +619,15 @@ String _serializeJson(dynamic jsonVar, [bool isList = false]) {
     }
     return isList ? '[]' : '{}';
   }
+}
+
+String? escapeStringForJson(String? input) {
+  if (input == null) {
+    return null;
+  }
+  return input
+      .replaceAll('\\', '\\\\')
+      .replaceAll('"', '\\"')
+      .replaceAll('\n', '\\n')
+      .replaceAll('\t', '\\t');
 }

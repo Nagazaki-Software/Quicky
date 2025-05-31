@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'chose_payment_method_copy_widget.dart'
     show ChosePaymentMethodCopyWidget;
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ChosePaymentMethodCopyModel
     extends FlutterFlowModel<ChosePaymentMethodCopyWidget> {
@@ -19,10 +20,12 @@ class ChosePaymentMethodCopyModel
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
+  final textFieldMask2 = MaskTextInputFormatter(mask: '##/##/####');
   String? Function(BuildContext, String?)? textController2Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController3;
+  final textFieldMask3 = MaskTextInputFormatter(mask: '##/##/####');
   String? Function(BuildContext, String?)? textController3Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode4;
@@ -32,7 +35,11 @@ class ChosePaymentMethodCopyModel
   FocusNode? textFieldFocusNode5;
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
-  // Stores action output result for [Backend Call - API (update Account Stripe)] action in Button widget.
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode6;
+  TextEditingController? textController6;
+  String? Function(BuildContext, String?)? textController6Validator;
+  // Stores action output result for [Backend Call - API (updateAccount)] action in Button widget.
   ApiCallResponse? apiResultqv3;
 
   @override
@@ -54,5 +61,8 @@ class ChosePaymentMethodCopyModel
 
     textFieldFocusNode5?.dispose();
     textController5?.dispose();
+
+    textFieldFocusNode6?.dispose();
+    textController6?.dispose();
   }
 }

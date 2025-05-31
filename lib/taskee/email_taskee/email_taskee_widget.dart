@@ -49,7 +49,7 @@ class _EmailTaskeeWidgetState extends State<EmailTaskeeWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: Stack(
           children: [
             Align(
@@ -143,7 +143,7 @@ class _EmailTaskeeWidgetState extends State<EmailTaskeeWidget> {
                                                   1.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
+                                                .secondaryBackground,
                                             boxShadow: [
                                               BoxShadow(
                                                 blurRadius: 1.0,
@@ -325,7 +325,7 @@ class _EmailTaskeeWidgetState extends State<EmailTaskeeWidget> {
                                             .fontStyle,
                                       ),
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                          .secondaryBackground,
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w300,
@@ -359,7 +359,7 @@ class _EmailTaskeeWidgetState extends State<EmailTaskeeWidget> {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: Image.asset(
-                              'assets/images/Artboard_20.png',
+                              'assets/images/Artboard_21_(1).png',
                             ).image,
                           ),
                         ),
@@ -399,7 +399,7 @@ class _EmailTaskeeWidgetState extends State<EmailTaskeeWidget> {
                                         MediaQuery.sizeOf(context).width * 0.74,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                          .secondaryBackground,
                                       boxShadow: [
                                         BoxShadow(
                                           blurRadius: 4.0,
@@ -423,7 +423,7 @@ class _EmailTaskeeWidgetState extends State<EmailTaskeeWidget> {
                                           Icon(
                                             Icons.chevron_left_sharp,
                                             color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                                .primaryBackground,
                                             size: 30.0,
                                           ),
                                           Text(
@@ -442,7 +442,7 @@ class _EmailTaskeeWidgetState extends State<EmailTaskeeWidget> {
                                                   ),
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .secondaryBackground,
+                                                      .primaryBackground,
                                                   fontSize: 22.0,
                                                   letterSpacing: 6.0,
                                                   fontWeight: FontWeight.normal,

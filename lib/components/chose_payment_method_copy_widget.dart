@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/backend.dart';
-import '/components/youraccontfoiverificadocomsucesso_widget.dart';
+import '/components/stripe_identify_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -55,6 +54,9 @@ class _ChosePaymentMethodCopyWidgetState
 
     _model.textController5 ??= TextEditingController();
     _model.textFieldFocusNode5 ??= FocusNode();
+
+    _model.textController6 ??= TextEditingController();
+    _model.textFieldFocusNode6 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -373,6 +375,139 @@ class _ChosePaymentMethodCopyWidgetState
                           cursorColor: FlutterFlowTheme.of(context).primaryText,
                           validator: _model.textController2Validator
                               .asValidator(context),
+                          inputFormatters: [_model.textFieldMask2],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          'assets/images/Artboard_11.png',
+                          width: 20.0,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                width: MediaQuery.sizeOf(context).width * 0.85,
+                height: 40.0,
+                decoration: BoxDecoration(
+                  color: Color(0xFFAC996D),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 4.0,
+                      color: Color(0x33000000),
+                      offset: Offset(
+                        0.0,
+                        2.0,
+                      ),
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: 200.0,
+                        child: TextFormField(
+                          controller: _model.textController3,
+                          focusNode: _model.textFieldFocusNode3,
+                          autofocus: false,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  font: GoogleFonts.poppins(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontStyle,
+                                  ),
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
+                                ),
+                            hintText: ' Type your phone number here...',
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  font: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w300,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontStyle,
+                                  ),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w300,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
+                                ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w300,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w300,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                          cursorColor: FlutterFlowTheme.of(context).primaryText,
+                          validator: _model.textController3Validator
+                              .asValidator(context),
+                          inputFormatters: [_model.textFieldMask3],
                         ),
                       ),
                     ),
@@ -435,8 +570,8 @@ class _ChosePaymentMethodCopyWidgetState
                           child: Container(
                             width: 200.0,
                             child: TextFormField(
-                              controller: _model.textController3,
-                              focusNode: _model.textFieldFocusNode3,
+                              controller: _model.textController4,
+                              focusNode: _model.textFieldFocusNode4,
                               autofocus: false,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -524,7 +659,7 @@ class _ChosePaymentMethodCopyWidgetState
                                   ),
                               cursorColor:
                                   FlutterFlowTheme.of(context).primaryText,
-                              validator: _model.textController3Validator
+                              validator: _model.textController4Validator
                                   .asValidator(context),
                             ),
                           ),
@@ -568,8 +703,8 @@ class _ChosePaymentMethodCopyWidgetState
                           child: Container(
                             width: 200.0,
                             child: TextFormField(
-                              controller: _model.textController4,
-                              focusNode: _model.textFieldFocusNode4,
+                              controller: _model.textController5,
+                              focusNode: _model.textFieldFocusNode5,
                               autofocus: false,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -657,7 +792,7 @@ class _ChosePaymentMethodCopyWidgetState
                                   ),
                               cursorColor:
                                   FlutterFlowTheme.of(context).primaryText,
-                              validator: _model.textController4Validator
+                              validator: _model.textController5Validator
                                   .asValidator(context),
                             ),
                           ),
@@ -703,8 +838,8 @@ class _ChosePaymentMethodCopyWidgetState
                       child: Container(
                         width: 200.0,
                         child: TextFormField(
-                          controller: _model.textController5,
-                          focusNode: _model.textFieldFocusNode5,
+                          controller: _model.textController6,
+                          focusNode: _model.textFieldFocusNode6,
                           autofocus: false,
                           obscureText: false,
                           decoration: InputDecoration(
@@ -790,7 +925,7 @@ class _ChosePaymentMethodCopyWidgetState
                                         .fontStyle,
                                   ),
                           cursorColor: FlutterFlowTheme.of(context).primaryText,
-                          validator: _model.textController5Validator
+                          validator: _model.textController6Validator
                               .asValidator(context),
                         ),
                       ),
@@ -838,16 +973,14 @@ class _ChosePaymentMethodCopyWidgetState
                   onPressed: () async {
                     FFAppState().bankAccount = <String, String?>{
                       'country': 'BR',
-                      'currency': 'USD',
+                      'currency': 'BRL',
                       'accountHolderName': currentUserDisplayName,
                       'accountHolderType': 'individual',
-                      'routingNumber': '110000000',
-                      'accountNumber': '000123456789',
+                      'routingNumber': '001-0001',
+                      'accountNumber': '0001234',
                     };
                     safeSetState(() {});
-                    _model.apiResultqv3 = await BancoDeDadosQuickyGroup
-                        .updateAccountStripeCall
-                        .call(
+                    _model.apiResultqv3 = await UpdateAccountCall.call(
                       accountId: valueOrDefault(
                           currentUserDocument?.clienteStripeId, ''),
                       tosAcceptanceIp: '0.0.0.0',
@@ -857,15 +990,16 @@ class _ChosePaymentMethodCopyWidgetState
                       lastName: functions
                           .separarTexto(currentUserDisplayName)
                           .lastOrNull,
-                      dob: _model.textController2.text,
-                      ssnLast4: _model.textController1.text,
+                      dobJson: <String, String?>{
+                        'day': '05',
+                        'month': '03',
+                        'year': '1990',
+                      },
+                      email: currentUserEmail,
                       bankAccountInfoJson: FFAppState().bankAccount,
                     );
 
                     if ((_model.apiResultqv3?.succeeded ?? true)) {
-                      await currentUserReference!.update(createUsersRecordData(
-                        verifyaccount: true,
-                      ));
                       await showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: Colors.transparent,
@@ -874,7 +1008,7 @@ class _ChosePaymentMethodCopyWidgetState
                         builder: (context) {
                           return Padding(
                             padding: MediaQuery.viewInsetsOf(context),
-                            child: YouraccontfoiverificadocomsucessoWidget(),
+                            child: StripeIdentifyWidget(),
                           );
                         },
                       ).then((value) => safeSetState(() {}));

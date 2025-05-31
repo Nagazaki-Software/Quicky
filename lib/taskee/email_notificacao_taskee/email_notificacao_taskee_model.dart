@@ -1,9 +1,10 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'email_notificacao_widget.dart' show EmailNotificacaoWidget;
+import 'email_notificacao_taskee_widget.dart' show EmailNotificacaoTaskeeWidget;
 import 'package:flutter/material.dart';
 
-class EmailNotificacaoModel extends FlutterFlowModel<EmailNotificacaoWidget> {
+class EmailNotificacaoTaskeeModel
+    extends FlutterFlowModel<EmailNotificacaoTaskeeWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.

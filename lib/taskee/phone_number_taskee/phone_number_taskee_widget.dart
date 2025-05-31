@@ -361,7 +361,7 @@ class _PhoneNumberTaskeeWidgetState extends State<PhoneNumberTaskeeWidget> {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: Image.asset(
-                              'assets/images/Artboard_20.png',
+                              'assets/images/Artboard_21_(1).png',
                             ).image,
                           ),
                         ),
@@ -401,7 +401,7 @@ class _PhoneNumberTaskeeWidgetState extends State<PhoneNumberTaskeeWidget> {
                                         MediaQuery.sizeOf(context).width * 0.74,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                          .secondaryBackground,
                                       boxShadow: [
                                         BoxShadow(
                                           blurRadius: 4.0,
@@ -425,7 +425,7 @@ class _PhoneNumberTaskeeWidgetState extends State<PhoneNumberTaskeeWidget> {
                                           Icon(
                                             Icons.chevron_left_sharp,
                                             color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                                .primaryBackground,
                                             size: 30.0,
                                           ),
                                           Text(
@@ -444,7 +444,7 @@ class _PhoneNumberTaskeeWidgetState extends State<PhoneNumberTaskeeWidget> {
                                                   ),
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .secondaryBackground,
+                                                      .primaryBackground,
                                                   fontSize: 22.0,
                                                   letterSpacing: 6.0,
                                                   fontWeight: FontWeight.normal,
