@@ -10,6 +10,10 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/custom_code/widgets/index.dart';
+import '/custom_code/actions/index.dart';
+import '/flutter_flow/custom_functions.dart';
+
 import 'package:stripe_identity_plugin/stripe_identity_plugin.dart';
 import 'package:stripe_identity_plugin/utils/enum.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,7 +22,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class IdentityVerificationWidget extends StatefulWidget {
-  final String accountId; // Exemplo: 'acct_1RUTxhDHIdKedYiX'
+  final String accountId;
   final double width;
   final double height;
   final String uid;
@@ -45,7 +49,7 @@ class _IdentityVerificationWidgetState
   @override
   void initState() {
     super.initState();
-    startVerification(); // inicia automaticamente
+    startVerification();
   }
 
   Future<void> startVerification() async {
@@ -72,7 +76,6 @@ class _IdentityVerificationWidgetState
       if (response.statusCode != 200 || data['success'] != true) {
         setState(() => _statusMessage =
             '❌ Erro na criação da sessão: ${data['message'] ?? 'Erro desconhecido.'}');
-        print('❌ Detalhes do erro: $data');
         return;
       }
 
@@ -82,7 +85,6 @@ class _IdentityVerificationWidgetState
       if (sessionId == null || ephemeralKey == null) {
         setState(() => _statusMessage =
             '❌ sessionId ou ephemeralKey ausente na resposta.');
-        print('⚠️ sessionId: $sessionId | ephemeralKey: $ephemeralKey');
         return;
       }
 
@@ -102,24 +104,47 @@ class _IdentityVerificationWidgetState
 
       switch (status) {
         case VerificationResult.completed:
-          setState(() =>
-              _statusMessage = '✅ Verificação concluída! Atualizando conta...');
-          final userId = FirebaseAuth.instance.currentUser?.uid;
-          if (userId != null) {
-            await FirebaseFirestore.instance
-                .collection('users')
-                .doc(userId)
-                .update({'verifyaccount': true});
+          setState(() => _statusMessage =
+              '✅ Verificação concluída! Validando documentos...');
 
+          // 🔍 Verifica e atualiza documentos (chama outra cloud function)
+          final verifyResponse = await http.post(
+            Uri.parse(
+                'https://southamerica-east1-quick-b108e.cloudfunctions.net/stripeIdentyWebhoock'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({
+              'sessionId': sessionId,
+              'accountId': widget.accountId,
+            }),
+          );
+
+          final verifyBody = jsonDecode(verifyResponse.body);
+          print('🧾 Verificação dos documentos: $verifyBody');
+
+          if (verifyResponse.statusCode == 200 &&
+              verifyBody['success'] == true) {
+            final userId = FirebaseAuth.instance.currentUser?.uid;
+            if (userId != null) {
+              await FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(userId)
+                  .update({'verifyaccount': true});
+            }
             if (!mounted) return;
-
             if (widget.onVerificationSuccess != null) {
               await widget.onVerificationSuccess!(
-                  "✅ Verificação concluída com sucesso.");
+                  "✅ Documentos verificados com sucesso.");
             }
+            setState(() => _statusMessage = "✅ Tudo pronto! Conta verificada.");
+
+            Future.delayed(Duration(seconds: 2), () {
+              if (mounted) Navigator.of(context).pop(true);
+            });
           } else {
-            setState(() => _statusMessage = '⚠️ Usuário não autenticado.');
+            setState(() => _statusMessage =
+                "⚠️ Verificação visual falhou: ${verifyBody['message'] ?? 'Erro desconhecido.'}");
           }
+
           break;
 
         case VerificationResult.canceled:

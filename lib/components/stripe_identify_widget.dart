@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/components/youraccontfoiverificadocomsucesso_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
@@ -38,16 +39,34 @@ class _StripeIdentifyWidgetState extends State<StripeIdentifyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return AuthUserStreamWidget(
-      builder: (context) => Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: custom_widgets.IdentityVerificationWidget(
+    return Opacity(
+      opacity: 0.0,
+      child: AuthUserStreamWidget(
+        builder: (context) => Container(
           width: double.infinity,
           height: double.infinity,
-          accountId: valueOrDefault(currentUserDocument?.clienteStripeId, ''),
-          uid: currentUserReference!.id,
-          onVerificationSuccess: (onSuccess) async {},
+          child: custom_widgets.IdentityVerificationWidget(
+            width: double.infinity,
+            height: double.infinity,
+            accountId: valueOrDefault(currentUserDocument?.clienteStripeId, ''),
+            uid: currentUserReference!.id,
+            onVerificationSuccess: (onSuccess) async {
+              if (onSuccess == '✅ Documentos verificados com sucesso.') {
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  enableDrag: false,
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding: MediaQuery.viewInsetsOf(context),
+                      child: YouraccontfoiverificadocomsucessoWidget(),
+                    );
+                  },
+                ).then((value) => safeSetState(() {}));
+              }
+            },
+          ),
         ),
       ),
     );

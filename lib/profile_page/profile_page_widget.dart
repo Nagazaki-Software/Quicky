@@ -3,6 +3,7 @@ import '/components/money_to_deposity_taskee_widget.dart';
 import '/components/nav_bar_copy_widget.dart';
 import '/components/nav_bar_widget.dart';
 import '/components/switch_taskee_or_tasker_widget.dart';
+import '/components/withdrawvalue_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -87,20 +88,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
             children: [
               Stack(
                 alignment: AlignmentDirectional(-1.0, -1.0),
-                children: [
-                  Container(
-                    width: 200.0,
-                    height: 145.37,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: Image.asset(
-                          'assets/images/Canto_Esquerdo.preto.png',
-                        ).image,
-                      ),
-                    ),
-                  ),
-                ],
+                children: [],
               ),
               if (valueOrDefault(currentUserDocument?.taskOrTaskee, '') ==
                   'Tasker')
@@ -311,7 +299,14 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                               ),
                                         ),
                                         Text(
-                                          '\$60.00',
+                                          formatNumber(
+                                            valueOrDefault(
+                                                currentUserDocument?.saldo,
+                                                0.0),
+                                            formatType: FormatType.decimal,
+                                            decimalType: DecimalType.automatic,
+                                            currency: '\$ ',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -326,37 +321,76 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                 fontStyle: FontStyle.italic,
                                               ),
                                         ),
-                                      ].divide(SizedBox(width: 14.0)),
+                                      ].divide(SizedBox(width: 6.0)),
                                     ),
-                                    Text(
-                                      valueOrDefault<String>(
-                                        valueOrDefault<bool>(
-                                                currentUserDocument
-                                                    ?.verifyaccount,
-                                                false)
-                                            ? 'Withdraw'
-                                            : 'No verification',
-                                        'No verification',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.poppins(
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        if (valueOrDefault<bool>(
+                                            currentUserDocument?.verifyaccount,
+                                            false)) {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  FocusScope.of(context)
+                                                      .unfocus();
+                                                  FocusManager
+                                                      .instance.primaryFocus
+                                                      ?.unfocus();
+                                                },
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child: WithdrawvalueWidget(),
+                                                ),
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        } else {
+                                          context.pushNamed(
+                                              PhoneNumberCopy2Widget.routeName);
+                                        }
+                                      },
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                          valueOrDefault<bool>(
+                                                  currentUserDocument
+                                                      ?.verifyaccount,
+                                                  false)
+                                              ? 'Withdraw'
+                                              : 'No verification',
+                                          'No verification',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.poppins(
+                                                fontWeight: FontWeight.w600,
+                                                fontStyle: FontStyle.italic,
+                                              ),
+                                              color: valueOrDefault<bool>(
+                                                      currentUserDocument
+                                                          ?.verifyaccount,
+                                                      false)
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primaryBackground
+                                                  : Color(0xFFF12D37),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                               fontStyle: FontStyle.italic,
                                             ),
-                                            color: valueOrDefault<bool>(
-                                                    currentUserDocument
-                                                        ?.verifyaccount,
-                                                    false)
-                                                ? FlutterFlowTheme.of(context)
-                                                    .primaryBackground
-                                                : Color(0xFFF12D37),
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FontStyle.italic,
-                                          ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -1319,7 +1353,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                               formatType: FormatType.decimal,
                                               decimalType:
                                                   DecimalType.automatic,
-                                              currency: '\$',
+                                              currency: '\$ ',
                                             )}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium

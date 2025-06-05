@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/navbar_create_tasks_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -738,6 +739,10 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              _model.pretasks =
+                                  await TasksPreProntasRecord.getDocumentOnce(
+                                      widget.pretasks!);
+
                               context.pushNamed(
                                 RequestCreateTaskWidget.routeName,
                                 queryParameters: {
@@ -745,8 +750,15 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                                     widget.pretasks,
                                     ParamType.DocumentReference,
                                   ),
+                                  'materialsList': serializeParam(
+                                    _model.pretasks?.material,
+                                    ParamType.String,
+                                    isList: true,
+                                  ),
                                 }.withoutNulls,
                               );
+
+                              safeSetState(() {});
                             },
                             child: Icon(
                               Icons.arrow_forward_ios,

@@ -141,6 +141,26 @@ class TasksRecord extends FirestoreRecord {
   DocumentReference? get taskPrePronta => _taskPrePronta;
   bool hasTaskPrePronta() => _taskPrePronta != null;
 
+  // "stepsFinalizadas" field.
+  int? _stepsFinalizadas;
+  int get stepsFinalizadas => _stepsFinalizadas ?? 0;
+  bool hasStepsFinalizadas() => _stepsFinalizadas != null;
+
+  // "fotosFinaisTask" field.
+  List<String>? _fotosFinaisTask;
+  List<String> get fotosFinaisTask => _fotosFinaisTask ?? const [];
+  bool hasFotosFinaisTask() => _fotosFinaisTask != null;
+
+  // "stepsInText" field.
+  List<String>? _stepsInText;
+  List<String> get stepsInText => _stepsInText ?? const [];
+  bool hasStepsInText() => _stepsInText != null;
+
+  // "avaliado" field.
+  bool? _avaliado;
+  bool get avaliado => _avaliado ?? false;
+  bool hasAvaliado() => _avaliado != null;
+
   void _initializeFields() {
     _foto = getDataList(snapshotData['Foto']);
     _titulo = snapshotData['Titulo'] as String?;
@@ -171,6 +191,10 @@ class TasksRecord extends FirestoreRecord {
     _location = snapshotData['location'] as LatLng?;
     _fastpass = snapshotData['fastpass'] as String?;
     _taskPrePronta = snapshotData['taskPrePronta'] as DocumentReference?;
+    _stepsFinalizadas = castToType<int>(snapshotData['stepsFinalizadas']);
+    _fotosFinaisTask = getDataList(snapshotData['fotosFinaisTask']);
+    _stepsInText = getDataList(snapshotData['stepsInText']);
+    _avaliado = snapshotData['avaliado'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -230,6 +254,8 @@ Map<String, dynamic> createTasksRecordData({
   LatLng? location,
   String? fastpass,
   DocumentReference? taskPrePronta,
+  int? stepsFinalizadas,
+  bool? avaliado,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -256,6 +282,8 @@ Map<String, dynamic> createTasksRecordData({
       'location': location,
       'fastpass': fastpass,
       'taskPrePronta': taskPrePronta,
+      'stepsFinalizadas': stepsFinalizadas,
+      'avaliado': avaliado,
     }.withoutNulls,
   );
 
@@ -296,7 +324,11 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e1?.localizacao == e2?.localizacao &&
         e1?.location == e2?.location &&
         e1?.fastpass == e2?.fastpass &&
-        e1?.taskPrePronta == e2?.taskPrePronta;
+        e1?.taskPrePronta == e2?.taskPrePronta &&
+        e1?.stepsFinalizadas == e2?.stepsFinalizadas &&
+        listEquality.equals(e1?.fotosFinaisTask, e2?.fotosFinaisTask) &&
+        listEquality.equals(e1?.stepsInText, e2?.stepsInText) &&
+        e1?.avaliado == e2?.avaliado;
   }
 
   @override
@@ -325,7 +357,11 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e?.localizacao,
         e?.location,
         e?.fastpass,
-        e?.taskPrePronta
+        e?.taskPrePronta,
+        e?.stepsFinalizadas,
+        e?.fotosFinaisTask,
+        e?.stepsInText,
+        e?.avaliado
       ]);
 
   @override

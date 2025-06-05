@@ -2,6 +2,7 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,6 +10,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'create_profile_tasker_model.dart';
 export 'create_profile_tasker_model.dart';
@@ -24,10 +26,13 @@ class CreateProfileTaskerWidget extends StatefulWidget {
       _CreateProfileTaskerWidgetState();
 }
 
-class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget> {
+class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget>
+    with TickerProviderStateMixin {
   late CreateProfileTaskerModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -45,6 +50,33 @@ class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget> {
 
     _model.passwordTextController ??= TextEditingController();
     _model.textFieldFocusNode4 ??= FocusNode();
+
+    animationsMap.addAll({
+      'iconOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -867,6 +899,8 @@ class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            _model.clicou = true;
+                            safeSetState(() {});
                             GoRouter.of(context).prepareAuthEvent(true);
 
                             final user =
@@ -889,7 +923,6 @@ class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget> {
                               displayName:
                                   '${_model.textController1.text} ${_model.textController2.text}',
                               photoUrl: _model.uploadedFileUrl_uploadDataSfu,
-                              email: '',
                               taskOrTaskee: 'Tasker',
                               clienteStripeId: getJsonField(
                                 (_model.accountStripe?.jsonBody ?? ''),
@@ -912,7 +945,34 @@ class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget> {
                                 .secondaryBackground,
                             size: 40.0,
                           ),
-                        ),
+                        ).animateOnPageLoad(
+                            animationsMap['iconOnPageLoadAnimation']!),
+                        if (_model.clicou)
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 0.0),
+                            child: Text(
+                              'Authenticating...',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.poppins(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation']!),
+                          ),
                       ],
                     ),
                   ),

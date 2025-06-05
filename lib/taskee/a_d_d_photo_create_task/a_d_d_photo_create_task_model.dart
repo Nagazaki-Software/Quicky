@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/components/navbar_create_tasks_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -29,6 +30,9 @@ class ADDPhotoCreateTaskModel
   FFUploadedFile uploadedLocalFile_uploadData572v =
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl_uploadData572v = '';
+
+  // Stores action output result for [Backend Call - Read Document] action in Icon widget.
+  TasksPreProntasRecord? pretasks;
 
   @override
   void initState(BuildContext context) {

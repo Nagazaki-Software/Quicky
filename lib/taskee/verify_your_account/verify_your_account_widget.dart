@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'verify_your_account_model.dart';
 export 'verify_your_account_model.dart';
@@ -27,6 +28,11 @@ class _VerifyYourAccountWidgetState extends State<VerifyYourAccountWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => VerifyYourAccountModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await authManager.sendEmailVerification();
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }

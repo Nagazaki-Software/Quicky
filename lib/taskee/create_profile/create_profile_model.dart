@@ -6,6 +6,10 @@ import 'create_profile_widget.dart' show CreateProfileWidget;
 import 'package:flutter/material.dart';
 
 class CreateProfileModel extends FlutterFlowModel<CreateProfileWidget> {
+  ///  Local state fields for this page.
+
+  bool clicou = false;
+
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading_uploadDataSfu34 = false;

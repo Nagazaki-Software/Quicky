@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/components/navbar_create_tasks_widget.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
@@ -39,6 +40,8 @@ class RequestCreateTaskModel extends FlutterFlowModel<RequestCreateTaskWidget> {
   final googleMapsController = Completer<GoogleMapController>();
   // State field(s) for PlacePicker widget.
   FFPlace placePickerValue = FFPlace();
+  // Stores action output result for [Backend Call - Create Document] action in Container widget.
+  TasksRecord? taskDocument;
 
   @override
   void initState(BuildContext context) {

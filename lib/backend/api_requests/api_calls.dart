@@ -546,14 +546,46 @@ class CreateaccountstripeAllCall {
   }
 }
 
-class AddSaldoNoStripeConnectCall {
+class RetirarSaldoStripeConnectedCall {
   static Future<ApiCallResponse> call({
     String? connectedAccountId = '',
     String? amount = '',
     String? paymentIntentId = '',
   }) async {
     return ApiManager.instance.makeApiCall(
-      callName: 'add saldo no stripe connect',
+      callName: 'retirar saldo stripe connected',
+      apiUrl: 'https://us-central1-quick-b108e.cloudfunctions.net/retirarSaldo',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'connectedAccountId': connectedAccountId,
+        'amount': amount,
+        'paymentIntentId': paymentIntentId,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static bool? success(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.success''',
+      ));
+}
+
+class AddSaldoNoStripeConnectCopyCall {
+  static Future<ApiCallResponse> call({
+    String? connectedAccountId = '',
+    String? amount = '',
+    String? paymentIntentId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'add saldo no stripe connect Copy',
       apiUrl:
           'https://us-central1-quick-b108e.cloudfunctions.net/addSaldoStripe',
       callType: ApiCallType.POST,
@@ -563,7 +595,7 @@ class AddSaldoNoStripeConnectCall {
         'amount': amount,
         'paymentIntentId': paymentIntentId,
       },
-      bodyType: BodyType.MULTIPART,
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -572,6 +604,37 @@ class AddSaldoNoStripeConnectCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class GetSaldoCall {
+  static Future<ApiCallResponse> call({
+    String? connectedAccountId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'get saldo',
+      apiUrl: 'https://us-central1-quick-b108e.cloudfunctions.net/getSaldo',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'connectedAccountId': connectedAccountId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static int? pending(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.balance.pending[:].amount''',
+      ));
+  static int? avaliable(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.balance.available[:].amount''',
+      ));
 }
 
 class ApiPagingParams {

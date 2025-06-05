@@ -19,7 +19,18 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/number_symbols_data.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols_data.dart';
 
 const stripePublishableKey =
     'pk_test_51RFCsnGTOG08DTzfi58RUiJTJCsaitNde8z3v6fIAa6xgoMGwWKCHcp6W0aYdyuFzkFikhQk7McpQAyl2rqtq8cP00kHHZ6yZc';
@@ -41,6 +52,8 @@ class StripePaymentWidget extends StatefulWidget {
   final double width;
   final double height;
   final double amount;
+  final int fastpass;
+  final String clienteStripeId;
   final String description;
   final Future Function(String? status, String? paymentId)? onPaymentSuccess;
 
@@ -49,6 +62,8 @@ class StripePaymentWidget extends StatefulWidget {
     required this.emailDoCliente,
     required this.customerName,
     required this.width,
+    required this.fastpass,
+    required this.clienteStripeId,
     required this.description,
     required this.height,
     required this.amount,
@@ -59,24 +74,6 @@ class StripePaymentWidget extends StatefulWidget {
   State<StripePaymentWidget> createState() => _StripePaymentWidgetState();
 }
 
-Future<String?> verificarStatusPagamento(String paymentId) async {
-  final url = Uri.parse(
-      'https://us-central1-quick-b108e.cloudfunctions.net/verifiquePaymentIntent');
-
-  final response = await http.post(
-    url,
-    headers: {'Content-Type': 'application/json'},
-    body: jsonEncode({'paymentId': paymentId}),
-  );
-
-  if (response.statusCode != 200) {
-    return null;
-  }
-
-  final data = jsonDecode(response.body);
-  return data['status'] as String?;
-}
-
 class _StripePaymentWidgetState extends State<StripePaymentWidget> {
   Future<Map<String, dynamic>> _createPaymentIntent({
     required num amount,
@@ -84,6 +81,8 @@ class _StripePaymentWidgetState extends State<StripePaymentWidget> {
     required String email,
     required String name,
     required String description,
+    required int fastpass,
+    required String clienteStripeId,
   }) async {
     final url = Uri.parse(
         'https://us-central1-quick-b108e.cloudfunctions.net/createPaymentIntent');
@@ -93,10 +92,12 @@ class _StripePaymentWidgetState extends State<StripePaymentWidget> {
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'amount': (amount * 100).round(),
-        'currency': "USD",
+        'currency': currency,
         'email': email,
         'name': name,
         'description': description,
+        'connectedAccountId': clienteStripeId,
+        'fastpassPercentage': fastpass,
       }),
     );
 
@@ -123,10 +124,12 @@ class _StripePaymentWidgetState extends State<StripePaymentWidget> {
         email: widget.emailDoCliente,
         name: widget.customerName,
         description: description,
+        fastpass: widget.fastpass,
+        clienteStripeId: widget.clienteStripeId,
       );
 
-      final paymentIntent = response['paymentIntent'];
-      final paymentId = response['paymentId'];
+      final paymentIntent = response['clientSecret'];
+      final paymentId = response['paymentIntentId'];
 
       if (paymentIntent == null) {
         return StripePaymentResponse(
@@ -314,19 +317,32 @@ class _StripePaymentWidgetState extends State<StripePaymentWidget> {
     );
 
     if (result.paymentId != null) {
-      final status = await verificarStatusPagamento(result.paymentId!);
-      if (status == 'succeeded') {
-        debugPrint('Chamando onPaymentSuccess com sucesso');
+      // Após o pagamento, chama a função que transfere
+      final transferResponse = await http.post(
+        Uri.parse(
+            'https://us-central1-quick-b108e.cloudfunctions.net/verifiquePaymentIntent'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'paymentId': result.paymentId!,
+        }),
+      );
+
+      if (transferResponse.statusCode == 200) {
+        debugPrint('✅ Pagamento e transferência concluídos!');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Pagamento realizado com sucesso!')),
+          const SnackBar(
+              content: Text('Pagamento e transferência concluídos!')),
         );
         await paymentCallback?.call('success', result.paymentId);
       } else {
-        debugPrint('Pagamento falhou ou pendente. Status: $status');
+        debugPrint(
+            '⚠️ Pagamento OK, mas transferência falhou: ${transferResponse.body}');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Pagamento falhou ou foi cancelado.')),
+          const SnackBar(
+              content:
+                  Text('Pagamento feito, mas houve erro na transferência.')),
         );
-        await paymentCallback?.call(null, null);
+        await paymentCallback?.call('partial_success', result.paymentId);
       }
     } else {
       debugPrint('Erro no pagamento: ${result.errorMessage}');

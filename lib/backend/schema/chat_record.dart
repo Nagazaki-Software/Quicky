@@ -70,6 +70,11 @@ class ChatRecord extends FirestoreRecord {
   bool get taskRenegociate => _taskRenegociate ?? false;
   bool hasTaskRenegociate() => _taskRenegociate != null;
 
+  // "taskHora" field.
+  DateTime? _taskHora;
+  DateTime? get taskHora => _taskHora;
+  bool hasTaskHora() => _taskHora != null;
+
   void _initializeFields() {
     _userDocument = snapshotData['userDocument'] as DocumentReference?;
     _imgDoUser = snapshotData['imgDoUser'] as String?;
@@ -82,6 +87,7 @@ class ChatRecord extends FirestoreRecord {
     _referenceTask = snapshotData['referenceTask'] as DocumentReference?;
     _usersDoGrupo = getDataList(snapshotData['usersDoGrupo']);
     _taskRenegociate = snapshotData['taskRenegociate'] as bool?;
+    _taskHora = snapshotData['taskHora'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -128,6 +134,7 @@ Map<String, dynamic> createChatRecordData({
   String? imgDaTask,
   DocumentReference? referenceTask,
   bool? taskRenegociate,
+  DateTime? taskHora,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -141,6 +148,7 @@ Map<String, dynamic> createChatRecordData({
       'imgDaTask': imgDaTask,
       'referenceTask': referenceTask,
       'taskRenegociate': taskRenegociate,
+      'taskHora': taskHora,
     }.withoutNulls,
   );
 
@@ -163,7 +171,8 @@ class ChatRecordDocumentEquality implements Equality<ChatRecord> {
         e1?.imgDaTask == e2?.imgDaTask &&
         e1?.referenceTask == e2?.referenceTask &&
         listEquality.equals(e1?.usersDoGrupo, e2?.usersDoGrupo) &&
-        e1?.taskRenegociate == e2?.taskRenegociate;
+        e1?.taskRenegociate == e2?.taskRenegociate &&
+        e1?.taskHora == e2?.taskHora;
   }
 
   @override
@@ -178,7 +187,8 @@ class ChatRecordDocumentEquality implements Equality<ChatRecord> {
         e?.imgDaTask,
         e?.referenceTask,
         e?.usersDoGrupo,
-        e?.taskRenegociate
+        e?.taskRenegociate,
+        e?.taskHora
       ]);
 
   @override

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'serialization_util.dart';
-import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -81,11 +81,11 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: Color(0xFF0F0700),
+          color: FlutterFlowTheme.of(context).primaryBackground,
           child: Center(
             child: Image.asset(
-              'assets/images/Ativo_2.png',
-              width: 250.0,
+              'assets/images/Animation_-_Teste_1.gif',
+              width: MediaQuery.sizeOf(context).width * 0.6,
               fit: BoxFit.contain,
             ),
           ),
@@ -146,7 +146,11 @@ final parametersBuilderMap =
   'ProfilePage': ParameterData.none(),
   'createProfileTasker': ParameterData.none(),
   'verifyYourAccountTasker': ParameterData.none(),
-  'taskOverviewTasker': ParameterData.none(),
+  'taskOverviewTasker': (data) async => ParameterData(
+        allParams: {
+          'task': getParameter<DocumentReference>(data, 'task'),
+        },
+      ),
   'ChatTasker': (data) async => ParameterData(
         allParams: {
           'chat': getParameter<DocumentReference>(data, 'chat'),
@@ -174,6 +178,12 @@ final parametersBuilderMap =
   'emailNotificacaoTaskee': ParameterData.none(),
   'QuickyTeamNotificacoesTaskee': ParameterData.none(),
   'PhoneNumberCopy2Copy': ParameterData.none(),
+  'fazendoTask': (data) async => ParameterData(
+        allParams: {
+          'task': getParameter<DocumentReference>(data, 'task'),
+        },
+      ),
+  'RatingsTasker': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

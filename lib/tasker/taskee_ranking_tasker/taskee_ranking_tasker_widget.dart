@@ -109,7 +109,7 @@ class _TaskeeRankingTaskerWidgetState extends State<TaskeeRankingTaskerWidget>
                             alignment: AlignmentDirectional(0.0, -1.0),
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 30.0, 0.0, 0.0),
+                                  0.0, 50.0, 0.0, 0.0),
                               child: Text(
                                 'Quicky Rewards',
                                 style: FlutterFlowTheme.of(context)
@@ -428,7 +428,7 @@ class _TaskeeRankingTaskerWidgetState extends State<TaskeeRankingTaskerWidget>
                         ),
                       ),
                     ),
-                  ],
+                  ].divide(SizedBox(height: 8.0)),
                 ),
                 Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
@@ -582,9 +582,8 @@ class _TaskeeRankingTaskerWidgetState extends State<TaskeeRankingTaskerWidget>
                                   child: StreamBuilder<List<UsersRecord>>(
                                     stream: queryUsersRecord(
                                       queryBuilder: (usersRecord) => usersRecord
-                                          .orderBy('requestFeitas',
-                                              descending: true)
-                                          .orderBy('rating', descending: true),
+                                          .orderBy('quantTasksRealizadas')
+                                          .orderBy('rating'),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -789,7 +788,7 @@ class _TaskeeRankingTaskerWidgetState extends State<TaskeeRankingTaskerWidget>
                                 ),
                               ],
                             ),
-                          ],
+                          ].divide(SizedBox(height: 8.0)),
                         ),
                       ].divide(SizedBox(height: 20.0)),
                     ),

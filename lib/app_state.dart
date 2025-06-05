@@ -42,6 +42,12 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _betaPreview = prefs.getBool('ff_betaPreview') ?? _betaPreview;
     });
+    _safeInit(() {
+      _horarioCurrentTasks = prefs.containsKey('ff_horarioCurrentTasks')
+          ? DateTime.fromMillisecondsSinceEpoch(
+              prefs.getInt('ff_horarioCurrentTasks')!)
+          : _horarioCurrentTasks;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -434,6 +440,16 @@ class FFAppState extends ChangeNotifier {
   dynamic get bankAccount => _bankAccount;
   set bankAccount(dynamic value) {
     _bankAccount = value;
+  }
+
+  DateTime? _horarioCurrentTasks =
+      DateTime.fromMillisecondsSinceEpoch(1748986680000);
+  DateTime? get horarioCurrentTasks => _horarioCurrentTasks;
+  set horarioCurrentTasks(DateTime? value) {
+    _horarioCurrentTasks = value;
+    value != null
+        ? prefs.setInt('ff_horarioCurrentTasks', value.millisecondsSinceEpoch)
+        : prefs.remove('ff_horarioCurrentTasks');
   }
 }
 

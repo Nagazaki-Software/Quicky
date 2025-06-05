@@ -19,12 +19,26 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "requestFeitas",
+          "fieldPath": "rating",
           "order": "DESCENDING"
         },
         {
+          "fieldPath": "requestEmNumber",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "quantTasksRealizadas",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "rating",
-          "order": "DESCENDING"
+          "order": "ASCENDING"
         }
       ]
     }

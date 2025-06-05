@@ -92,7 +92,7 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed(RatingsTaskeesCopyWidget.routeName);
+                  context.pushNamed(RatingsTaskerWidget.routeName);
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,

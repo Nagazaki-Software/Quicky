@@ -392,3 +392,92 @@ int indexList1(String indexList) {
       int.tryParse(indexList) ?? 0; // Convert string to int, default to 0
   return index + 1; // Increment index by 1
 }
+
+double progressBar(
+  int stepsParaFinalizar,
+  int? stepsFinalizadas,
+) {
+  // para o progessBar precisa retornar de 0 a 1 quero q se basee nas stepsParafinalizar  e finalizada e retorne
+  if (stepsParaFinalizar <= 0) return 0.0; // Prevent division by zero
+  return (stepsFinalizadas ?? 0) / stepsParaFinalizar; // Calculate progress
+}
+
+int mediadevalorestasks(List<TasksRecord> valores) {
+  // valores.valor(valor é string tira tudo que nao seja numero dentro pra retornar somente o numero) sendo as medias de valores
+  int total = 0;
+  int count = 0;
+
+  for (var valor in valores) {
+    String numericString = valor.valor.replaceAll(RegExp(r'[^0-9]'), '');
+    if (numericString.isNotEmpty) {
+      total += int.parse(numericString);
+      count++;
+    }
+  }
+
+  return count > 0
+      ? (total ~/ count)
+      : 0; // Return average or 0 if no valid values
+}
+
+String retorneAstringmaisadicionada(List<String> mostOrded) {
+  // retorne a string mais adicionada
+  Map<String, int> frequencyMap = {};
+  for (var item in mostOrded) {
+    frequencyMap[item] = (frequencyMap[item] ?? 0) + 1;
+  }
+
+  String mostAddedString =
+      frequencyMap.entries.reduce((a, b) => a.value > b.value ? a : b).key;
+  return mostAddedString;
+}
+
+List<TasksRecord> tasksRatingForIndexs(
+  List<TasksRecord> tasks,
+  int acaodemudanca,
+) {
+  // preciso q esse codigo aparece 1 da lista e depois na acao de mudança(int) mudar o index q ele esta (0,1,2,3,4)
+// Ensure the index is within the bounds of the tasks list
+  if (acaodemudanca < 0 || acaodemudanca >= tasks.length) {
+    return tasks; // Return the original list if the index is out of bounds
+  }
+
+  // Create a new list to hold the reordered tasks
+  List<TasksRecord> reorderedTasks = List.from(tasks);
+
+  // Move the task at the specified index to the front of the list
+  TasksRecord taskToMove = reorderedTasks.removeAt(acaodemudanca);
+  reorderedTasks.insert(0, taskToMove);
+
+  return reorderedTasks; // Return the reordered list
+}
+
+DateTime dateTimeCombine(
+  DateTime hora,
+  DateTime dia,
+) {
+  // combine as datas
+  return DateTime(
+    dia.year,
+    dia.month,
+    dia.day,
+    hora.hour,
+    hora.minute,
+    hora.second,
+    hora.millisecond,
+    hora.microsecond,
+  );
+}
+
+List<ChatRecord> retorneBaseadoNahora(
+  DateTime horario,
+  List<ChatRecord> chatList,
+) {
+  return chatList.where((chat) {
+    final chatTime = chat.ultimaMsg;
+    if (chatTime == null) return false;
+
+    return chatTime.isAfter(horario.subtract(Duration(hours: 1))) &&
+        chatTime.isBefore(horario.add(Duration(hours: 1)));
+  }).toList();
+}

@@ -73,3 +73,6 @@ export '/taskee/quicky_team_notificacoes_taskee/quicky_team_notificacoes_taskee_
     show QuickyTeamNotificacoesTaskeeWidget;
 export '/taskee/phone_number_copy2_copy/phone_number_copy2_copy_widget.dart'
     show PhoneNumberCopy2CopyWidget;
+export '/tasker/fazendo_task/fazendo_task_widget.dart' show FazendoTaskWidget;
+export '/taskee/ratings_tasker/ratings_tasker_widget.dart'
+    show RatingsTaskerWidget;

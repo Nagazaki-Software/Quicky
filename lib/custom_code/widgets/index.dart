@@ -2,6 +2,7 @@ export 'stripe_checkout_screen.dart' show StripeCheckoutScreen;
 export 'stripe_onboarding_launcher.dart' show StripeOnboardingLauncher;
 export 'side_tab_selector.dart' show SideTabSelector;
 export 'time_list30_min.dart' show TimeList30Min;
+export 'time_list30_min_horizontal.dart' show TimeList30MinHorizontal;
 export 'stripe_payment_widget.dart' show StripePaymentWidget;
 export 'rotated_text_bold.dart' show RotatedTextBold;
 export 'rotated_task_texts.dart' show RotatedTaskTexts;

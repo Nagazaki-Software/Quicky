@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 
 class CreateProfileTaskerModel
     extends FlutterFlowModel<CreateProfileTaskerWidget> {
+  ///  Local state fields for this page.
+
+  bool clicou = false;
+
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading_uploadDataSfu = false;

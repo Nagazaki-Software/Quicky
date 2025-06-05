@@ -146,11 +146,6 @@ class UsersRecord extends FirestoreRecord {
   bool get verifyaccount => _verifyaccount ?? false;
   bool hasVerifyaccount() => _verifyaccount != null;
 
-  // "requestFeitas" field.
-  DocumentReference? _requestFeitas;
-  DocumentReference? get requestFeitas => _requestFeitas;
-  bool hasRequestFeitas() => _requestFeitas != null;
-
   // "rating" field.
   double? _rating;
   double get rating => _rating ?? 0.0;
@@ -160,6 +155,21 @@ class UsersRecord extends FirestoreRecord {
   String? _transferId;
   String get transferId => _transferId ?? '';
   bool hasTransferId() => _transferId != null;
+
+  // "requestPedidos" field.
+  List<DocumentReference>? _requestPedidos;
+  List<DocumentReference> get requestPedidos => _requestPedidos ?? const [];
+  bool hasRequestPedidos() => _requestPedidos != null;
+
+  // "requestEmNumber" field.
+  int? _requestEmNumber;
+  int get requestEmNumber => _requestEmNumber ?? 0;
+  bool hasRequestEmNumber() => _requestEmNumber != null;
+
+  // "mostOrded" field.
+  List<String>? _mostOrded;
+  List<String> get mostOrded => _mostOrded ?? const [];
+  bool hasMostOrded() => _mostOrded != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -198,9 +208,11 @@ class UsersRecord extends FirestoreRecord {
     _clienteStripeId = snapshotData['clienteStripeId'] as String?;
     _dob = snapshotData['dob'] as DateTime?;
     _verifyaccount = snapshotData['verifyaccount'] as bool?;
-    _requestFeitas = snapshotData['requestFeitas'] as DocumentReference?;
     _rating = castToType<double>(snapshotData['rating']);
     _transferId = snapshotData['transferId'] as String?;
+    _requestPedidos = getDataList(snapshotData['requestPedidos']);
+    _requestEmNumber = castToType<int>(snapshotData['requestEmNumber']);
+    _mostOrded = getDataList(snapshotData['mostOrded']);
   }
 
   static CollectionReference get collection =>
@@ -257,9 +269,9 @@ Map<String, dynamic> createUsersRecordData({
   String? clienteStripeId,
   DateTime? dob,
   bool? verifyaccount,
-  DocumentReference? requestFeitas,
   double? rating,
   String? transferId,
+  int? requestEmNumber,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -283,9 +295,9 @@ Map<String, dynamic> createUsersRecordData({
       'clienteStripeId': clienteStripeId,
       'dob': dob,
       'verifyaccount': verifyaccount,
-      'requestFeitas': requestFeitas,
       'rating': rating,
       'transferId': transferId,
+      'requestEmNumber': requestEmNumber,
     }.withoutNulls,
   );
 
@@ -324,9 +336,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.clienteStripeId == e2?.clienteStripeId &&
         e1?.dob == e2?.dob &&
         e1?.verifyaccount == e2?.verifyaccount &&
-        e1?.requestFeitas == e2?.requestFeitas &&
         e1?.rating == e2?.rating &&
-        e1?.transferId == e2?.transferId;
+        e1?.transferId == e2?.transferId &&
+        listEquality.equals(e1?.requestPedidos, e2?.requestPedidos) &&
+        e1?.requestEmNumber == e2?.requestEmNumber &&
+        listEquality.equals(e1?.mostOrded, e2?.mostOrded);
   }
 
   @override
@@ -357,9 +371,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.clienteStripeId,
         e?.dob,
         e?.verifyaccount,
-        e?.requestFeitas,
         e?.rating,
-        e?.transferId
+        e?.transferId,
+        e?.requestPedidos,
+        e?.requestEmNumber,
+        e?.mostOrded
       ]);
 
   @override

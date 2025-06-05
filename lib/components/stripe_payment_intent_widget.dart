@@ -1,5 +1,4 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/components/deposit_success_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -14,10 +13,14 @@ class StripePaymentIntentWidget extends StatefulWidget {
     super.key,
     required this.value,
     required this.momento,
+    this.task,
+    this.fastpass,
   });
 
   final double? value;
   final String? momento;
+  final DocumentReference? task;
+  final int? fastpass;
 
   @override
   State<StripePaymentIntentWidget> createState() =>
@@ -63,54 +66,53 @@ class _StripePaymentIntentWidgetState extends State<StripePaymentIntentWidget> {
           description: widget.momento == 'requestTask'
               ? 'Request Task in Quicky'
               : 'Deposit Quicky Wallet',
+          clienteStripeId:
+              valueOrDefault(currentUserDocument?.clienteStripeId, ''),
+          fastpass: valueOrDefault<int>(
+            widget.fastpass,
+            0,
+          ),
           onPaymentSuccess: (status, paymentId) async {
             if (widget.momento == 'requestTask') {
               if (paymentId != null && paymentId != '') {
-                _model.saldoAdd = await AddSaldoNoStripeConnectCall.call(
-                  connectedAccountId:
-                      valueOrDefault(currentUserDocument?.clienteStripeId, ''),
-                  amount: widget.value.toString(),
-                  paymentIntentId: paymentId,
-                );
-
-                if (getJsonField(
-                  (_model.saldoAdd?.jsonBody ?? ''),
-                  r'''$.success''',
-                )) {
-                  await currentUserReference!.update(createUsersRecordData(
-                    transferId: getJsonField(
-                      (_model.saldoAdd?.jsonBody ?? ''),
-                      r'''$.transferId''',
-                    ).toString(),
+                if (widget.task != null) {
+                  await currentUserReference!.update({
+                    ...createUsersRecordData(
+                      transferId: paymentId,
+                    ),
+                    ...mapToFirestore(
+                      {
+                        'requestEmNumber': FieldValue.increment(1),
+                        'requestPedidos': FieldValue.arrayUnion([widget.task]),
+                      },
+                    ),
+                  });
+                } else {
+                  await widget.task!.update(createTasksRecordData(
+                    status: 'Not paid',
                   ));
-                  Navigator.pop(context);
-
-                  context.pushNamed(RequestEvaluationWidget.routeName);
                 }
+
+                Navigator.pop(context);
+
+                context.pushNamed(RequestEvaluationWidget.routeName);
+              } else {
+                await widget.task!.update(createTasksRecordData(
+                  status: 'Not paid',
+                ));
               }
             } else {
               if (paymentId != null && paymentId != '') {
                 await currentUserReference!.update({
+                  ...createUsersRecordData(
+                    transferId: paymentId,
+                  ),
                   ...mapToFirestore(
                     {
                       'saldo': FieldValue.increment(widget.value!),
-                      'deposityTransacoes': FieldValue.arrayUnion([
-                        getDepositsTaskeeFirestoreData(
-                          updateDepositsTaskeeStruct(
-                            DepositsTaskeeStruct(
-                              amount: widget.value,
-                              day: getCurrentTimestamp,
-                              idDeTransacao: paymentId,
-                            ),
-                            clearUnsetFields: false,
-                          ),
-                          true,
-                        )
-                      ]),
                     },
                   ),
                 });
-                Navigator.pop(context);
                 await showModalBottomSheet(
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,
@@ -128,8 +130,6 @@ class _StripePaymentIntentWidgetState extends State<StripePaymentIntentWidget> {
                 ).then((value) => safeSetState(() {}));
               }
             }
-
-            safeSetState(() {});
           },
         ),
       ),

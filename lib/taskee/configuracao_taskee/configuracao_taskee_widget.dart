@@ -81,8 +81,7 @@ class _ConfiguracaoTaskeeWidgetState extends State<ConfiguracaoTaskeeWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context.pushNamed(
-                                          CurrentTasksWidget.routeName);
+                                      context.safePop();
                                     },
                                     child: Icon(
                                       Icons.arrow_back_ios,

@@ -24,9 +24,11 @@ class RequestCreateTaskWidget extends StatefulWidget {
   const RequestCreateTaskWidget({
     super.key,
     required this.pretasks,
+    required this.materialsList,
   });
 
   final DocumentReference? pretasks;
+  final List<String>? materialsList;
 
   static String routeName = 'RequestCreateTask';
   static String routePath = '/requestCreateTask';
@@ -111,7 +113,7 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
               Align(
                 alignment: AlignmentDirectional(0.0, -1.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 90.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 120.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -323,188 +325,87 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                   ),
                                 ],
                               ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Container(
-                                        width: 80.0,
-                                        height: 22.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiary,
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(5.0),
-                                            bottomRight: Radius.circular(5.0),
-                                            topLeft: Radius.circular(5.0),
-                                            topRight: Radius.circular(5.0),
-                                          ),
-                                        ),
-                                        child: Align(
+                              Builder(
+                                builder: (context) {
+                                  final materials =
+                                      widget.materialsList!.toList();
+
+                                  return SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: List.generate(materials.length,
+                                          (materialsIndex) {
+                                        final materialsItem =
+                                            materials[materialsIndex];
+                                        return Align(
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            'Detergent',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.poppins(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  color: FlutterFlowTheme.of(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: materialsItem == '0'
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .tertiary
+                                                  : FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(5.0),
+                                                bottomRight:
+                                                    Radius.circular(5.0),
+                                                topLeft: Radius.circular(5.0),
+                                                topRight: Radius.circular(5.0),
+                                              ),
+                                            ),
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Padding(
+                                                padding: EdgeInsets.all(6.0),
+                                                child: Text(
+                                                  materialsItem,
+                                                  style: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryBackground,
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
+                                                      .bodyMedium
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.poppins(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
                                                 ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
+                                        );
+                                      }).divide(SizedBox(width: 4.0)),
                                     ),
-                                    Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          width: 80.0,
-                                          height: 22.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(5.0),
-                                              bottomRight: Radius.circular(5.0),
-                                              topLeft: Radius.circular(5.0),
-                                              topRight: Radius.circular(5.0),
-                                            ),
-                                          ),
-                                          child: Align(
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Text(
-                                              'Soap',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    fontSize: 12.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          width: 80.0,
-                                          height: 22.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(5.0),
-                                              bottomRight: Radius.circular(5.0),
-                                              topLeft: Radius.circular(5.0),
-                                              topRight: Radius.circular(5.0),
-                                            ),
-                                          ),
-                                          child: Align(
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Text(
-                                              'Soap',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    fontSize: 12.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  );
+                                },
                               ),
                             ].divide(SizedBox(width: 2.0)),
                           ),
@@ -575,7 +476,6 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                 children: [
                                   Container(
                                     width: 217.4,
-                                    height: 224.53,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
@@ -586,25 +486,38 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                         topRight: Radius.circular(15.0),
                                       ),
                                     ),
-                                    child: FlutterFlowCalendar(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      iconColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      weekFormat: false,
-                                      weekStartsMonday: true,
-                                      initialDate: getCurrentTimestamp,
-                                      rowHeight: 28.0,
-                                      onChange:
-                                          (DateTimeRange? newSelectedDate) {
-                                        safeSetState(() =>
-                                            _model.calendarSelectedDay =
-                                                newSelectedDate);
-                                      },
-                                      titleStyle: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .override(
-                                            font: GoogleFonts.poppins(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(4.0),
+                                      child: FlutterFlowCalendar(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        iconColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        weekFormat: false,
+                                        weekStartsMonday: true,
+                                        initialDate: getCurrentTimestamp,
+                                        rowHeight: 28.0,
+                                        onChange:
+                                            (DateTimeRange? newSelectedDate) {
+                                          safeSetState(() =>
+                                              _model.calendarSelectedDay =
+                                                  newSelectedDate);
+                                        },
+                                        titleStyle: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              font: GoogleFonts.poppins(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontStyle,
+                                              ),
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .titleLarge
@@ -614,22 +527,22 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                                       .titleLarge
                                                       .fontStyle,
                                             ),
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleLarge
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleLarge
-                                                    .fontStyle,
-                                          ),
-                                      dayOfWeekStyle: FlutterFlowTheme.of(
-                                              context)
-                                          .bodyLarge
-                                          .override(
-                                            font: GoogleFonts.poppins(
+                                        dayOfWeekStyle: FlutterFlowTheme.of(
+                                                context)
+                                            .bodyLarge
+                                            .override(
+                                              font: GoogleFonts.poppins(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .fontStyle,
+                                              ),
+                                              fontSize: 10.0,
+                                              letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
@@ -639,21 +552,21 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                                       .bodyLarge
                                                       .fontStyle,
                                             ),
-                                            fontSize: 10.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLarge
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLarge
-                                                    .fontStyle,
-                                          ),
-                                      dateStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.poppins(
+                                        dateStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.poppins(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              fontSize: 9.0,
+                                              letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -663,22 +576,25 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
-                                            fontSize: 9.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                      selectedDateStyle: FlutterFlowTheme.of(
-                                              context)
-                                          .titleSmall
-                                          .override(
-                                            font: GoogleFonts.poppins(
+                                        selectedDateStyle: FlutterFlowTheme.of(
+                                                context)
+                                            .titleSmall
+                                            .override(
+                                              font: GoogleFonts.poppins(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 9.0,
+                                              letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall
@@ -688,24 +604,22 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                                       .titleSmall
                                                       .fontStyle,
                                             ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            fontSize: 9.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontStyle,
-                                          ),
-                                      inactiveDateStyle: FlutterFlowTheme.of(
-                                              context)
-                                          .labelMedium
-                                          .override(
-                                            font: GoogleFonts.poppins(
+                                        inactiveDateStyle: FlutterFlowTheme.of(
+                                                context)
+                                            .labelMedium
+                                            .override(
+                                              font: GoogleFonts.poppins(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontStyle,
+                                              ),
+                                              fontSize: 10.0,
+                                              letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .labelMedium
@@ -715,17 +629,7 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                                       .labelMedium
                                                       .fontStyle,
                                             ),
-                                            fontSize: 10.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontStyle,
-                                          ),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -1496,7 +1400,7 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Container(
                                           width: 25.0,
@@ -2047,7 +1951,7 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                       ),
                                       Text(
                                         formatNumber(
-                                          columnTasksPreProntasRecord.valor,
+                                          columnTasksPreProntasRecord.preco,
                                           formatType: FormatType.decimal,
                                           decimalType: DecimalType.automatic,
                                           currency: '\$',
@@ -2104,7 +2008,16 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                             ),
                                       ),
                                       Text(
-                                        '\$4.00',
+                                        _model.checkboxValue1!
+                                            ? formatNumber(
+                                                columnTasksPreProntasRecord
+                                                    .materialCusto,
+                                                formatType: FormatType.decimal,
+                                                decimalType:
+                                                    DecimalType.automatic,
+                                                currency: '\$ ',
+                                              )
+                                            : '0.00',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -2189,7 +2102,7 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                               }()
                                                   .toString(),
                                               columnTasksPreProntasRecord
-                                                  .valor),
+                                                  .preco),
                                           formatType: FormatType.decimal,
                                           decimalType: DecimalType.automatic,
                                           currency: '\$',
@@ -2262,12 +2175,12 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                           functions.somatoriaPorcetagem(
                                               formatNumber(
                                                 columnTasksPreProntasRecord
-                                                    .valor,
+                                                    .preco,
                                                 formatType: FormatType.decimal,
                                                 decimalType:
                                                     DecimalType.automatic,
                                               ),
-                                              '0'),
+                                              '8'),
                                           formatType: FormatType.decimal,
                                           decimalType: DecimalType.automatic,
                                           currency: '\$',
@@ -2361,7 +2274,7 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                                     }
                                                   }(),
                                                       columnTasksPreProntasRecord
-                                                          .valor),
+                                                          .preco),
                                                   formatType:
                                                       FormatType.decimal,
                                                   decimalType:
@@ -2369,9 +2282,15 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                                   currency: '\$',
                                                 ),
                                                 columnTasksPreProntasRecord
-                                                    .valor
+                                                    .preco
                                                     .toString(),
-                                                '0',
+                                                columnTasksPreProntasRecord
+                                                            .materialCusto >
+                                                        0.0
+                                                    ? columnTasksPreProntasRecord
+                                                        .materialCusto
+                                                        .toString()
+                                                    : '0',
                                                 '8'),
                                             formatType: FormatType.decimal,
                                             decimalType: DecimalType.automatic,
@@ -2475,7 +2394,9 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  await TasksRecord.collection.doc().set({
+                                  var tasksRecordReference =
+                                      TasksRecord.collection.doc();
+                                  await tasksRecordReference.set({
                                     ...createTasksRecordData(
                                       userReference: currentUserReference,
                                       status: 'approved',
@@ -2536,23 +2457,33 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                                 }
                                               }(),
                                                   containerTasksPreProntasRecord
-                                                      .valor),
+                                                      .preco),
                                               formatType: FormatType.decimal,
                                               decimalType:
                                                   DecimalType.automatic,
                                               currency: '\$',
                                             ),
-                                            containerTasksPreProntasRecord.valor
+                                            containerTasksPreProntasRecord.preco
                                                 .toString(),
-                                            '0',
+                                            containerTasksPreProntasRecord
+                                                        .materialCusto >
+                                                    0.0
+                                                ? containerTasksPreProntasRecord
+                                                    .materialCusto
+                                                    .toString()
+                                                : '0',
                                             '8'),
                                         formatType: FormatType.decimal,
                                         decimalType: DecimalType.automatic,
                                         currency: '\$',
                                       ),
-                                      titulo: containerTasksPreProntasRecord
-                                          .taskName,
+                                      titulo:
+                                          containerTasksPreProntasRecord.titulo,
                                       taskPrePronta: widget.pretasks,
+                                      descricao: '',
+                                      categoria: containerTasksPreProntasRecord
+                                          .categoria,
+                                      avaliado: false,
                                     ),
                                     ...mapToFirestore(
                                       {
@@ -2560,6 +2491,102 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                       },
                                     ),
                                   });
+                                  _model.taskDocument =
+                                      TasksRecord.getDocumentFromData({
+                                    ...createTasksRecordData(
+                                      userReference: currentUserReference,
+                                      status: 'approved',
+                                      data: _model.calendarSelectedDay?.end,
+                                      location: _model.googleMapsCenter,
+                                      localizacao: updateEnderecoTasksStruct(
+                                        EnderecoTasksStruct(
+                                          nomedarua:
+                                              _model.textController1.text,
+                                          housename:
+                                              _model.textController2.text,
+                                          numero: _model.textController3.text,
+                                        ),
+                                        clearUnsetFields: false,
+                                        create: true,
+                                      ),
+                                      fornecedorDosMateriais: () {
+                                        if (_model.checkboxValue1!) {
+                                          return 'Me';
+                                        } else if (_model.checkboxValue2!) {
+                                          return 'Tasker';
+                                        } else {
+                                          return 'Nothing';
+                                        }
+                                      }(),
+                                      tempo: _model.horas,
+                                      aceito: false,
+                                      fastpass: () {
+                                        if (_model.fastPass == 0) {
+                                          return 'Free';
+                                        } else if (_model.fastPass == 1) {
+                                          return 'Priority';
+                                        } else if (_model.fastPass == 2) {
+                                          return 'Express';
+                                        } else if (_model.fastPass == 3) {
+                                          return 'ASAP';
+                                        } else {
+                                          return 'Not Chosen';
+                                        }
+                                      }(),
+                                      valor: formatNumber(
+                                        functions.somatoriaSimples(
+                                            formatNumber(
+                                              functions.fastPass(() {
+                                                if (_model.fastPass == 0) {
+                                                  return '0';
+                                                } else if (_model.fastPass ==
+                                                    1) {
+                                                  return '15';
+                                                } else if (_model.fastPass ==
+                                                    2) {
+                                                  return '25';
+                                                } else if (_model.fastPass ==
+                                                    3) {
+                                                  return '35';
+                                                } else {
+                                                  return '0';
+                                                }
+                                              }(),
+                                                  containerTasksPreProntasRecord
+                                                      .preco),
+                                              formatType: FormatType.decimal,
+                                              decimalType:
+                                                  DecimalType.automatic,
+                                              currency: '\$',
+                                            ),
+                                            containerTasksPreProntasRecord.preco
+                                                .toString(),
+                                            containerTasksPreProntasRecord
+                                                        .materialCusto >
+                                                    0.0
+                                                ? containerTasksPreProntasRecord
+                                                    .materialCusto
+                                                    .toString()
+                                                : '0',
+                                            '8'),
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.automatic,
+                                        currency: '\$',
+                                      ),
+                                      titulo:
+                                          containerTasksPreProntasRecord.titulo,
+                                      taskPrePronta: widget.pretasks,
+                                      descricao: '',
+                                      categoria: containerTasksPreProntasRecord
+                                          .categoria,
+                                      avaliado: false,
+                                    ),
+                                    ...mapToFirestore(
+                                      {
+                                        'Foto': FFAppState().fotosDaTask,
+                                      },
+                                    ),
+                                  }, tasksRecordReference);
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
                                     backgroundColor: Colors.transparent,
@@ -2598,7 +2625,7 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                                     }
                                                   }(),
                                                       containerTasksPreProntasRecord
-                                                          .valor),
+                                                          .preco),
                                                   formatType:
                                                       FormatType.decimal,
                                                   decimalType:
@@ -2606,15 +2633,25 @@ class _RequestCreateTaskWidgetState extends State<RequestCreateTaskWidget> {
                                                   currency: '\$',
                                                 ),
                                                 containerTasksPreProntasRecord
-                                                    .valor
+                                                    .preco
                                                     .toString(),
-                                                '0',
+                                                containerTasksPreProntasRecord
+                                                            .materialCusto >
+                                                        0.0
+                                                    ? containerTasksPreProntasRecord
+                                                        .materialCusto
+                                                        .toString()
+                                                    : '0',
                                                 '8'),
+                                            task:
+                                                _model.taskDocument!.reference,
                                           ),
                                         ),
                                       );
                                     },
                                   ).then((value) => safeSetState(() {}));
+
+                                  safeSetState(() {});
                                 },
                                 child: Container(
                                   key: ValueKey('Container_clzu'),

@@ -16,6 +16,8 @@ class RatingsTaskeesModel extends FlutterFlowModel<RatingsTaskeesWidget> {
 
   int? feedback5;
 
+  int? indexs = 0;
+
   ///  State fields for stateful widgets in this page.
 
   // Model for navBar component.

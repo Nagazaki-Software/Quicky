@@ -9,6 +9,7 @@ import '/auth/base_auth_user_provider.dart';
 
 import '/backend/push_notifications/push_notifications_handler.dart'
     show PushNotificationsHandler;
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 import '/index.dart';
@@ -174,6 +175,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               isList: false,
               collectionNamePath: ['tasksPreProntas'],
             ),
+            materialsList: params.getParam<String>(
+              'materialsList',
+              ParamType.String,
+              isList: true,
+            ),
           ),
         ),
         FFRoute(
@@ -214,7 +220,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
           name: TaskOverviewTaskerWidget.routeName,
           path: TaskOverviewTaskerWidget.routePath,
-          builder: (context, params) => TaskOverviewTaskerWidget(),
+          builder: (context, params) => TaskOverviewTaskerWidget(
+            task: params.getParam(
+              'task',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['tasks'],
+            ),
+          ),
         ),
         FFRoute(
           name: ChatTaskerWidget.routeName,
@@ -337,6 +350,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: PhoneNumberCopy2CopyWidget.routeName,
           path: PhoneNumberCopy2CopyWidget.routePath,
           builder: (context, params) => PhoneNumberCopy2CopyWidget(),
+        ),
+        FFRoute(
+          name: FazendoTaskWidget.routeName,
+          path: FazendoTaskWidget.routePath,
+          builder: (context, params) => FazendoTaskWidget(
+            task: params.getParam(
+              'task',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['tasks'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: RatingsTaskerWidget.routeName,
+          path: RatingsTaskerWidget.routePath,
+          builder: (context, params) => RatingsTaskerWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -524,11 +554,11 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: Color(0xFF0F0700),
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                   child: Center(
                     child: Image.asset(
-                      'assets/images/Ativo_2.png',
-                      width: 250.0,
+                      'assets/images/Animation_-_Teste_1.gif',
+                      width: MediaQuery.sizeOf(context).width * 0.6,
                       fit: BoxFit.contain,
                     ),
                   ),

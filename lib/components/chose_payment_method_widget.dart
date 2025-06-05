@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/components/stripe_payment_intent_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -15,9 +16,11 @@ class ChosePaymentMethodWidget extends StatefulWidget {
   const ChosePaymentMethodWidget({
     super.key,
     required this.value,
+    required this.task,
   });
 
   final double? value;
+  final DocumentReference? task;
 
   @override
   State<ChosePaymentMethodWidget> createState() =>
@@ -390,6 +393,11 @@ class _ChosePaymentMethodWidgetState extends State<ChosePaymentMethodWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    _model.getSaldo = await GetSaldoCall.call(
+                      connectedAccountId: valueOrDefault(
+                          currentUserDocument?.clienteStripeId, ''),
+                    );
+
                     if (_model.chose == 'creditCard') {
                       await showModalBottomSheet(
                         isScrollControlled: true,
@@ -400,15 +408,16 @@ class _ChosePaymentMethodWidgetState extends State<ChosePaymentMethodWidget> {
                           return Padding(
                             padding: MediaQuery.viewInsetsOf(context),
                             child: StripePaymentIntentWidget(
-                              value: 0.0,
+                              value: widget.value!,
                               momento: 'requestTask',
+                              task: widget.task,
                             ),
                           );
                         },
                       ).then((value) => safeSetState(() {}));
                     } else {
-                      if (widget.value! <=
-                          valueOrDefault(currentUserDocument?.saldo, 0.0)) {
+                      if (valueOrDefault(currentUserDocument?.saldo, 0.0) >=
+                          widget.value!) {
                         await currentUserReference!.update({
                           ...mapToFirestore(
                             {
@@ -430,12 +439,15 @@ class _ChosePaymentMethodWidgetState extends State<ChosePaymentMethodWidget> {
                               child: StripePaymentIntentWidget(
                                 value: 0.0,
                                 momento: 'deposit',
+                                task: widget.task,
                               ),
                             );
                           },
                         ).then((value) => safeSetState(() {}));
                       }
                     }
+
+                    safeSetState(() {});
                   },
                   text: 'CONTINUE',
                   icon: Icon(

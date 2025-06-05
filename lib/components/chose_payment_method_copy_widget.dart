@@ -1013,6 +1013,7 @@ class _ChosePaymentMethodCopyWidgetState
                         },
                       ).then((value) => safeSetState(() {}));
                     }
+                    Navigator.pop(context);
 
                     safeSetState(() {});
                   },
