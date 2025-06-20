@@ -52,7 +52,7 @@ class _SwipePageViewWidgetState extends State<SwipePageViewWidget> {
 
         return Container(
           width: double.infinity,
-          height: 270.0,
+          height: 200.0,
           child: PageView.builder(
             physics: const NeverScrollableScrollPhysics(),
             controller: _model.pageViewController ??=
@@ -73,6 +73,8 @@ class _SwipePageViewWidgetState extends State<SwipePageViewWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent('SWIPE_VIEW_Stack_u9lg73fv_ON_TAP');
+                          logFirebaseEvent('Stack_page_view');
                           await _model.pageViewController?.previousPage(
                             duration: Duration(milliseconds: 300),
                             curve: Curves.ease,
@@ -91,14 +93,17 @@ class _SwipePageViewWidgetState extends State<SwipePageViewWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent('SWIPE_VIEW_Stack_02s119kz_ON_TAP');
                           if (_model.pageViewCurrentIndex ==
                               widget.parameter2) {
+                            logFirebaseEvent('Stack_page_view');
                             await _model.pageViewController?.animateToPage(
                               0,
                               duration: Duration(milliseconds: 500),
                               curve: Curves.ease,
                             );
                           } else {
+                            logFirebaseEvent('Stack_page_view');
                             await _model.pageViewController?.nextPage(
                               duration: Duration(milliseconds: 300),
                               curve: Curves.ease,

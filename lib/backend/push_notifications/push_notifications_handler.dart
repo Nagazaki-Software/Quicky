@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'serialization_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +121,11 @@ final parametersBuilderMap =
   'continueAs': ParameterData.none(),
   'createProfile': ParameterData.none(),
   'verifyYourAccount': ParameterData.none(),
-  'Progress': ParameterData.none(),
+  'Progress': (data) async => ParameterData(
+        allParams: {
+          'task': getParameter<DocumentReference>(data, 'task'),
+        },
+      ),
   'Chat': (data) async => ParameterData(
         allParams: {
           'chat': getParameter<DocumentReference>(data, 'chat'),
@@ -184,6 +188,9 @@ final parametersBuilderMap =
         },
       ),
   'RatingsTasker': ParameterData.none(),
+  'dkjfjdskfsd4': ParameterData.none(),
+  'capturaDeCamera': ParameterData.none(),
+  'quickySolutions': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

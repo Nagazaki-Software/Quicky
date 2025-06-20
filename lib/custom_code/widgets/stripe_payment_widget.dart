@@ -1,7 +1,7 @@
 // Automatic FlutterFlow imports
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
@@ -33,7 +33,7 @@ import 'package:intl/number_symbols_data.dart';
 import 'package:intl/number_symbols_data.dart';
 
 const stripePublishableKey =
-    'pk_test_51RFCsnGTOG08DTzfi58RUiJTJCsaitNde8z3v6fIAa6xgoMGwWKCHcp6W0aYdyuFzkFikhQk7McpQAyl2rqtq8cP00kHHZ6yZc';
+    'pk_test_51RbYviCFk8wl8pruJ2cR2bIaSrhXjBq4QU4kW4WlR2cRgJdxOtVpTRJ7l3VIPSbegoj8PBCs8ODLMA5QtVtg4ZED00Zhn4kfQK';
 
 Future initializeStripe() async {
   Stripe.publishableKey = stripePublishableKey;

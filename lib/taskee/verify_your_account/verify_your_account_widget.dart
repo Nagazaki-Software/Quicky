@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,8 +29,12 @@ class _VerifyYourAccountWidgetState extends State<VerifyYourAccountWidget> {
     super.initState();
     _model = createModel(context, () => VerifyYourAccountModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'verifyYourAccount'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('VERIFY_YOUR_ACCOUNT_verifyYourAccount_ON');
+      logFirebaseEvent('verifyYourAccount_auth');
       await authManager.sendEmailVerification();
     });
 
@@ -148,8 +152,12 @@ class _VerifyYourAccountWidgetState extends State<VerifyYourAccountWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'VERIFY_YOUR_ACCOUNT_Container_lptkkt5q_O');
                           await authManager.refreshUser();
                           if (currentUserEmailVerified) {
+                            logFirebaseEvent('Container_navigate_to');
+
                             context.pushNamed(CurrentTasksWidget.routeName);
                           }
                         },

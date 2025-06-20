@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 
 class ADDPhotoCreateTaskModel
     extends FlutterFlowModel<ADDPhotoCreateTaskWidget> {
+  ///  Local state fields for this page.
+
+  bool addphoto = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Model for navbarCreateTasks component.

@@ -451,6 +451,12 @@ class FFAppState extends ChangeNotifier {
         ? prefs.setInt('ff_horarioCurrentTasks', value.millisecondsSinceEpoch)
         : prefs.remove('ff_horarioCurrentTasks');
   }
+
+  String _pages = '';
+  String get pages => _pages;
+  set pages(String value) {
+    _pages = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

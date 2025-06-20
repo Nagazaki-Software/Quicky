@@ -8,3 +8,4 @@ export 'deposits_taskee_struct.dart';
 export 'endereco_tasks_struct.dart';
 export 'newcartaodecredito_struct.dart';
 export 'tasks_aceitas_struct.dart';
+export 'tempodeesperatasks_struct.dart';

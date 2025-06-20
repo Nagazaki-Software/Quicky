@@ -21,10 +21,10 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl_uploadData4jcc2 = '';
 
-  AudioRecorder? audioRecorder;
   String? audio;
   FFUploadedFile recordedFileBytes =
       FFUploadedFile(bytes: Uint8List.fromList([]));
+  AudioRecorder? audioRecorder;
 
   @override
   void initState(BuildContext context) {

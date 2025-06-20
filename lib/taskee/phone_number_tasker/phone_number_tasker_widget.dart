@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'phone_number_tasker_model.dart';
@@ -28,6 +28,8 @@ class _PhoneNumberTaskerWidgetState extends State<PhoneNumberTaskerWidget> {
     super.initState();
     _model = createModel(context, () => PhoneNumberTaskerModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'PhoneNumberTasker'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -81,6 +83,9 @@ class _PhoneNumberTaskerWidgetState extends State<PhoneNumberTaskerWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'PHONE_NUMBER_TASKER_Icon_thhcepr0_ON_TAP');
+                                    logFirebaseEvent('Icon_navigate_back');
                                     context.safePop();
                                   },
                                   child: Icon(
@@ -387,6 +392,9 @@ class _PhoneNumberTaskerWidgetState extends State<PhoneNumberTaskerWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'PHONE_NUMBER_TASKER_Container_ubsqgeol_O');
+                                    logFirebaseEvent('Container_auth');
                                     GoRouter.of(context).prepareAuthEvent();
                                     await authManager.signOut();
                                     GoRouter.of(context)

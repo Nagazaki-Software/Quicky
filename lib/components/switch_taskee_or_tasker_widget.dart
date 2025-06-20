@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'switch_taskee_or_tasker_model.dart';
 export 'switch_taskee_or_tasker_model.dart';
@@ -51,23 +51,33 @@ class _SwitchTaskeeOrTaskerWidgetState
           onChanged: (newValue) async {
             safeSetState(() => _model.switchValue = newValue);
             if (newValue) {
+              logFirebaseEvent('SWITCH_TASKEE_OR_TASKER_Switch_3go8n5so_');
               if (valueOrDefault(currentUserDocument?.taskOrTaskee, '') ==
                   'Taskee') {
+                logFirebaseEvent('Switch_backend_call');
+
                 await currentUserReference!.update(createUsersRecordData(
                   taskOrTaskee: 'Tasker',
                 ));
               } else {
+                logFirebaseEvent('Switch_backend_call');
+
                 await currentUserReference!.update(createUsersRecordData(
                   taskOrTaskee: 'Taskee',
                 ));
               }
             } else {
+              logFirebaseEvent('SWITCH_TASKEE_OR_TASKER_Switch_3go8n5so_');
               if (valueOrDefault(currentUserDocument?.taskOrTaskee, '') ==
                   'Tasker') {
+                logFirebaseEvent('Switch_backend_call');
+
                 await currentUserReference!.update(createUsersRecordData(
                   taskOrTaskee: 'Taskee',
                 ));
               } else {
+                logFirebaseEvent('Switch_backend_call');
+
                 await currentUserReference!.update(createUsersRecordData(
                   taskOrTaskee: 'Tasker',
                 ));

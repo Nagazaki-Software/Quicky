@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'configuracao_copy_copy_copy_model.dart';
@@ -29,6 +29,8 @@ class _ConfiguracaoCopyCopyCopyWidgetState
     super.initState();
     _model = createModel(context, () => ConfiguracaoCopyCopyCopyModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ConfiguracaoCopyCopyCopy'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -81,6 +83,10 @@ class _ConfiguracaoCopyCopyCopyWidgetState
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CONFIGURACAO_COPY_COPY_COPY_Icon_77mwm91');
+                                      logFirebaseEvent('Icon_navigate_to');
+
                                       context.pushNamed(
                                           CurrentTasksWidget.routeName);
                                     },
@@ -377,6 +383,9 @@ class _ConfiguracaoCopyCopyCopyWidgetState
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'CONFIGURACAO_COPY_COPY_COPY_Icon_dlfr0zi');
+                                  logFirebaseEvent('Icon_navigate_back');
                                   context.safePop();
                                 },
                                 child: Icon(
@@ -399,6 +408,9 @@ class _ConfiguracaoCopyCopyCopyWidgetState
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'CONFIGURACAO_COPY_COPY_COPY_Container_yu');
+                                  logFirebaseEvent('Container_auth');
                                   GoRouter.of(context).prepareAuthEvent();
                                   await authManager.signOut();
                                   GoRouter.of(context).clearRedirectLocation();

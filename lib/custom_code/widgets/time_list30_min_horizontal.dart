@@ -1,7 +1,7 @@
 // Automatic FlutterFlow imports
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
@@ -11,15 +11,17 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 class TimeList30MinHorizontal extends StatefulWidget {
-  final double width;
-  final double height;
-  final Future<void> Function(DateTime selectedTime)? onTimeSelected;
+  final double? width;
+  final double? height;
+  final Future Function(DateTime selectedTime)? onTimeSelected;
+  final List<TasksRecord> tasks; // ✅ Correto agora
 
   const TimeList30MinHorizontal({
     Key? key,
     required this.width,
     required this.height,
     this.onTimeSelected,
+    required this.tasks,
   }) : super(key: key);
 
   @override
@@ -77,7 +79,7 @@ class _TimeList30MinState extends State<TimeList30MinHorizontal> {
   }
 
   Future<void> _scrollToInitialIndex() async {
-    final screenCenter = widget.width / 2;
+    final screenCenter = widget.width! / 2;
     final offset = (itemWidth + itemSpacing) * selectedIndex -
         screenCenter +
         itemWidth / 2;
@@ -86,7 +88,7 @@ class _TimeList30MinState extends State<TimeList30MinHorizontal> {
   }
 
   Future<void> _scrollToIndex(int index) async {
-    final screenCenter = widget.width / 2;
+    final screenCenter = widget.width! / 2;
     final offset =
         (itemWidth + itemSpacing) * index - screenCenter + itemWidth / 2;
     await _scrollController.animateTo(
@@ -99,7 +101,7 @@ class _TimeList30MinState extends State<TimeList30MinHorizontal> {
   void _onScroll() {
     if (!_scrollController.hasClients) return;
 
-    final screenCenter = widget.width / 2;
+    final screenCenter = widget.width! / 2;
     final scrollOffset = _scrollController.offset;
     final centerPosition = scrollOffset + screenCenter;
     final index = (centerPosition / (itemWidth + itemSpacing)).round();
@@ -124,7 +126,6 @@ class _TimeList30MinState extends State<TimeList30MinHorizontal> {
       selected.minute,
     );
 
-    // Atualiza o AppState global
     FFAppState().horarioCurrentTasks = selectedDateTime;
 
     if (widget.onTimeSelected != null) {
@@ -144,11 +145,12 @@ class _TimeList30MinState extends State<TimeList30MinHorizontal> {
     return Container(
       width: widget.width,
       height: widget.height,
-      color: const Color.fromARGB(0, 253, 238, 220),
+      color: Colors.transparent, // SEM FUNDO PRETO NENHUM AQUI
       child: ListView.builder(
         controller: _scrollController,
         scrollDirection: Axis.horizontal,
         itemCount: times.length,
+        physics: BouncingScrollPhysics(), // toque suave
         itemBuilder: (context, index) {
           final time = times[index];
           final formatted = _formatTime(time);
@@ -159,12 +161,17 @@ class _TimeList30MinState extends State<TimeList30MinHorizontal> {
           final period = minuteAndPeriod[1];
           final isSelected = index == selectedIndex;
 
+          final hasTask = widget.tasks.any((task) {
+            final taskTime = task.tempo;
+            if (taskTime == null) return false;
+            return taskTime.hour == time.hour && taskTime.minute == time.minute;
+          });
+
           return GestureDetector(
             onTap: () async {
               setState(() {
                 selectedIndex = index;
               });
-
               await _scrollToIndex(index);
               _updateHorarioAppState(index);
             },
@@ -172,29 +179,50 @@ class _TimeList30MinState extends State<TimeList30MinHorizontal> {
               width: itemWidth,
               margin: const EdgeInsets.symmetric(horizontal: 8),
               alignment: Alignment.center,
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: '$hour:$minute ',
-                      style: TextStyle(
-                        color: Colors.brown.withOpacity(isSelected ? 1.0 : 0.3),
-                        fontSize: isSelected ? 22 : 16,
-                        fontWeight:
-                            isSelected ? FontWeight.bold : FontWeight.normal,
-                      ),
+              color: Colors.transparent, // SEM FUNDO PRETO AQUI TAMBÉM
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '$hour:$minute ',
+                          style: TextStyle(
+                            color: const Color(0xFF242424)
+                                .withOpacity(isSelected ? 1.0 : 0.3),
+                            fontSize: isSelected ? 22 : 16,
+                            fontWeight: isSelected
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
+                        ),
+                        TextSpan(
+                          text: period,
+                          style: TextStyle(
+                            color: const Color(0xFF242424)
+                                .withOpacity(isSelected ? 1.0 : 0.3),
+                            fontSize: isSelected ? 16 : 12,
+                            fontWeight: isSelected
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
+                        ),
+                      ],
                     ),
-                    TextSpan(
-                      text: period,
-                      style: TextStyle(
-                        color: Colors.brown.withOpacity(isSelected ? 1.0 : 0.3),
-                        fontSize: isSelected ? 16 : 12,
-                        fontWeight:
-                            isSelected ? FontWeight.bold : FontWeight.normal,
-                      ),
+                  ),
+                  const SizedBox(height: 8.0),
+                  Container(
+                    width: 10.0,
+                    height: 10.0,
+                    decoration: BoxDecoration(
+                      color: hasTask
+                          ? FlutterFlowTheme.of(context).primaryColor
+                          : Colors.transparent,
+                      shape: BoxShape.circle,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );

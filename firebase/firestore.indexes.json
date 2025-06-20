@@ -5,7 +5,11 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "usuarioQueAceitouaTask",
+          "fieldPath": "userReference",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
           "order": "ASCENDING"
         },
         {
@@ -38,6 +42,24 @@
         },
         {
           "fieldPath": "rating",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "tasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "aceito",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Data",
           "order": "ASCENDING"
         }
       ]

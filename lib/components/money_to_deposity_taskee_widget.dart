@@ -1,7 +1,7 @@
 import '/components/stripe_payment_intent_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'money_to_deposity_taskee_model.dart';
@@ -190,6 +190,8 @@ class _MoneyToDeposityTaskeeWidgetState
               children: [
                 FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('MONEY_TO_DEPOSITY_TASKEE_10_BTN_ON_TAP');
+                    logFirebaseEvent('Button_set_form_field');
                     safeSetState(() {
                       _model.textController?.text = '10';
                     });
@@ -229,6 +231,8 @@ class _MoneyToDeposityTaskeeWidgetState
                 ),
                 FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('MONEY_TO_DEPOSITY_TASKEE_25_BTN_ON_TAP');
+                    logFirebaseEvent('Button_set_form_field');
                     safeSetState(() {
                       _model.textController?.text = '25';
                     });
@@ -268,6 +272,8 @@ class _MoneyToDeposityTaskeeWidgetState
                 ),
                 FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('MONEY_TO_DEPOSITY_TASKEE_50_BTN_ON_TAP');
+                    logFirebaseEvent('Button_set_form_field');
                     safeSetState(() {
                       _model.textController?.text = '50';
                     });
@@ -307,6 +313,8 @@ class _MoneyToDeposityTaskeeWidgetState
                 ),
                 FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('MONEY_TO_DEPOSITY_TASKEE_100_BTN_ON_TAP');
+                    logFirebaseEvent('Button_set_form_field');
                     safeSetState(() {
                       _model.textController?.text = '100';
                     });
@@ -348,6 +356,8 @@ class _MoneyToDeposityTaskeeWidgetState
             ),
             FFButtonWidget(
               onPressed: () async {
+                logFirebaseEvent('MONEY_TO_DEPOSITY_TASKEE_DEPOSIT_NOW_BTN');
+                logFirebaseEvent('Button_bottom_sheet');
                 await showModalBottomSheet(
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,

@@ -235,7 +235,7 @@ const stripeModule = require("stripe");
 const kStripeProdSecretKey =
   "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";
 const kStripeTestSecretKey =
-  "sk_test_51Ob84ED9xvi658VGJiv72yprCVGQ6sLv7pHDu5ZbuS1JfqZbXzuWf9bKpUk47bhqb0gIs5750pX2n2yZ8bKuhZPI00N3sruzNx";
+  "sk_test_51RbYviCFk8wl8prumbR3QdAP4XSZCDVE337kzT0AQ18R2oEGVlKHOhfxV3nRLebBZOIgsQX2cCrQxXQQRKX9MyCn00sKHx7Lzt";
 
 const secretKey = (isProd) =>
   isProd ? kStripeProdSecretKey : kStripeTestSecretKey;

@@ -1,12 +1,13 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/components/stripe_identify_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'chose_payment_method_copy_model.dart';
 export 'chose_payment_method_copy_model.dart';
@@ -46,9 +47,11 @@ class _ChosePaymentMethodCopyWidgetState
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
+    _model.textFieldMask2 = MaskTextInputFormatter(mask: '##/##/####');
     _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
 
+    _model.textFieldMask3 = MaskTextInputFormatter(mask: '##/##/####');
     _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode4 ??= FocusNode();
 
@@ -971,6 +974,9 @@ class _ChosePaymentMethodCopyWidgetState
                 padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent(
+                        'CHOSE_PAYMENT_METHOD_COPY_CONTINUE_BTN_O');
+                    logFirebaseEvent('Button_update_app_state');
                     FFAppState().bankAccount = <String, String?>{
                       'country': 'BR',
                       'currency': 'BRL',
@@ -980,6 +986,7 @@ class _ChosePaymentMethodCopyWidgetState
                       'accountNumber': '0001234',
                     };
                     safeSetState(() {});
+                    logFirebaseEvent('Button_backend_call');
                     _model.apiResultqv3 = await UpdateAccountCall.call(
                       accountId: valueOrDefault(
                           currentUserDocument?.clienteStripeId, ''),
@@ -1000,19 +1007,11 @@ class _ChosePaymentMethodCopyWidgetState
                     );
 
                     if ((_model.apiResultqv3?.succeeded ?? true)) {
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        enableDrag: false,
-                        context: context,
-                        builder: (context) {
-                          return Padding(
-                            padding: MediaQuery.viewInsetsOf(context),
-                            child: StripeIdentifyWidget(),
-                          );
-                        },
-                      ).then((value) => safeSetState(() {}));
+                      logFirebaseEvent('Button_navigate_to');
+
+                      context.pushNamed(CapturaDeCameraWidget.routeName);
                     }
+                    logFirebaseEvent('Button_bottom_sheet');
                     Navigator.pop(context);
 
                     safeSetState(() {});

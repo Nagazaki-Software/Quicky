@@ -171,6 +171,12 @@ class UsersRecord extends FirestoreRecord {
   List<String> get mostOrded => _mostOrded ?? const [];
   bool hasMostOrded() => _mostOrded != null;
 
+  // "tasksemtempodeespera" field.
+  List<TempodeesperatasksStruct>? _tasksemtempodeespera;
+  List<TempodeesperatasksStruct> get tasksemtempodeespera =>
+      _tasksemtempodeespera ?? const [];
+  bool hasTasksemtempodeespera() => _tasksemtempodeespera != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -213,6 +219,10 @@ class UsersRecord extends FirestoreRecord {
     _requestPedidos = getDataList(snapshotData['requestPedidos']);
     _requestEmNumber = castToType<int>(snapshotData['requestEmNumber']);
     _mostOrded = getDataList(snapshotData['mostOrded']);
+    _tasksemtempodeespera = getStructList(
+      snapshotData['tasksemtempodeespera'],
+      TempodeesperatasksStruct.fromMap,
+    );
   }
 
   static CollectionReference get collection =>
@@ -340,7 +350,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.transferId == e2?.transferId &&
         listEquality.equals(e1?.requestPedidos, e2?.requestPedidos) &&
         e1?.requestEmNumber == e2?.requestEmNumber &&
-        listEquality.equals(e1?.mostOrded, e2?.mostOrded);
+        listEquality.equals(e1?.mostOrded, e2?.mostOrded) &&
+        listEquality.equals(e1?.tasksemtempodeespera, e2?.tasksemtempodeespera);
   }
 
   @override
@@ -375,7 +386,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.transferId,
         e?.requestPedidos,
         e?.requestEmNumber,
-        e?.mostOrded
+        e?.mostOrded,
+        e?.tasksemtempodeespera
       ]);
 
   @override

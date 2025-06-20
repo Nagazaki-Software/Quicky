@@ -1,7 +1,7 @@
 // Automatic FlutterFlow imports
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
@@ -45,9 +45,11 @@ class _LiveAudioRecorderState extends State<LiveAudioRecorder> {
       ..iosEncoder = IosEncoder.kAudioFormatMPEG4AAC
       ..sampleRate = 16000;
 
-    // Checa permissão após o build para evitar travar na tela
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _checkPermission();
+      if (hasPermission) {
+        startRecording();
+      }
     });
   }
 
@@ -146,8 +148,13 @@ class _LiveAudioRecorderState extends State<LiveAudioRecorder> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
-                onLongPressStart: (_) => startRecording(),
-                onLongPressEnd: (_) => stopRecording(),
+                onTap: () {
+                  if (isRecording) {
+                    stopRecording();
+                  } else {
+                    startRecording();
+                  }
+                },
                 child: Icon(
                   isRecording ? Icons.stop_circle : Icons.mic,
                   size: 40,

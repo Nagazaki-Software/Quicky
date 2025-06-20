@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'quicky_team_notificacoes_taskee_model.dart';
@@ -29,6 +29,8 @@ class _QuickyTeamNotificacoesTaskeeWidgetState
     super.initState();
     _model = createModel(context, () => QuickyTeamNotificacoesTaskeeModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'QuickyTeamNotificacoesTaskee'});
     _model.switchValue = true;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -80,6 +82,9 @@ class _QuickyTeamNotificacoesTaskeeWidgetState
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'QUICKY_TEAM_NOTIFICACOES_TASKEE_Icon_w6b');
+                                    logFirebaseEvent('Icon_navigate_back');
                                     context.safePop();
                                   },
                                   child: Icon(
@@ -343,6 +348,9 @@ class _QuickyTeamNotificacoesTaskeeWidgetState
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'QUICKY_TEAM_NOTIFICACOES_TASKEE_Containe');
+                                    logFirebaseEvent('Container_auth');
                                     GoRouter.of(context).prepareAuthEvent();
                                     await authManager.signOut();
                                     GoRouter.of(context)

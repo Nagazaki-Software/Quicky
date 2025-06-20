@@ -4,11 +4,11 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,6 +39,8 @@ class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget>
     super.initState();
     _model = createModel(context, () => CreateProfileTaskerModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'createProfileTasker'});
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
@@ -136,6 +138,9 @@ class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget>
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
+                      logFirebaseEvent(
+                          'CREATE_PROFILE_TASKER_Row_t5p4x22m_ON_TA');
+                      logFirebaseEvent('Row_upload_media_to_firebase');
                       final selectedMedia =
                           await selectMediaWithSourceBottomSheet(
                         context: context,
@@ -899,8 +904,12 @@ class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget>
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'CREATE_PROFILE_TASKER_Icon_kdd7md0w_ON_T');
+                            logFirebaseEvent('Icon_update_page_state');
                             _model.clicou = true;
                             safeSetState(() {});
+                            logFirebaseEvent('Icon_auth');
                             GoRouter.of(context).prepareAuthEvent(true);
 
                             final user =
@@ -913,10 +922,13 @@ class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget>
                               return;
                             }
 
+                            logFirebaseEvent('Icon_backend_call');
                             _model.accountStripe =
                                 await CreateaccountstripeAllCall.call(
                               email: _model.emailTextController.text,
                             );
+
+                            logFirebaseEvent('Icon_backend_call');
 
                             await currentUserReference!
                                 .update(createUsersRecordData(
@@ -930,6 +942,7 @@ class _CreateProfileTaskerWidgetState extends State<CreateProfileTaskerWidget>
                               ).toString(),
                               verifyaccount: false,
                             ));
+                            logFirebaseEvent('Icon_navigate_to');
 
                             context.pushNamedAuth(
                               VerifyYourAccountTaskerWidget.routeName,

@@ -1,6 +1,6 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'final_request_task_model.dart';
@@ -26,6 +26,8 @@ class _FinalRequestTaskWidgetState extends State<FinalRequestTaskWidget> {
     super.initState();
     _model = createModel(context, () => FinalRequestTaskModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'FinalRequestTask'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 

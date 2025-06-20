@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'login_model.dart';
@@ -27,6 +27,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.initState();
     _model = createModel(context, () => LoginModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Login'});
     _model.emailTextController ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
@@ -406,6 +407,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'LOGIN_PAGE_Container_sff3axmn_ON_TAP');
+                                        logFirebaseEvent(
+                                            'Container_navigate_to');
+
                                         context.pushNamed(
                                             ContinueAsWidget.routeName);
                                       },
@@ -492,6 +498,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'LOGIN_PAGE_Icon_7djeucho_ON_TAP');
+                                      logFirebaseEvent('Icon_auth');
                                       GoRouter.of(context).prepareAuthEvent();
 
                                       final user =
@@ -505,7 +514,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       }
 
                                       context.goNamedAuth(
-                                          CurrentTasksWidget.routeName,
+                                          SwipeTaskerWidget.routeName,
                                           context.mounted);
                                     },
                                     child: Icon(

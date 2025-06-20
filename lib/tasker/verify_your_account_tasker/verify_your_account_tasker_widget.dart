@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,8 +30,12 @@ class _VerifyYourAccountTaskerWidgetState
     super.initState();
     _model = createModel(context, () => VerifyYourAccountTaskerModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'verifyYourAccountTasker'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('VERIFY_YOUR_ACCOUNT_TASKER_verifyYourAcc');
+      logFirebaseEvent('verifyYourAccountTasker_auth');
       await authManager.sendEmailVerification();
     });
 
@@ -155,8 +159,12 @@ class _VerifyYourAccountTaskerWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'VERIFY_YOUR_ACCOUNT_TASKER_Container_dox');
                           await authManager.refreshUser();
                           if (currentUserEmailVerified) {
+                            logFirebaseEvent('Container_navigate_to');
+
                             context.pushNamed(CurrentTasksWidget.routeName);
                           }
                         },

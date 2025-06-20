@@ -1,8 +1,8 @@
 import '/backend/backend.dart';
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,6 +29,8 @@ class _TaskeeRankingWidgetState extends State<TaskeeRankingWidget> {
     super.initState();
     _model = createModel(context, () => TaskeeRankingModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'TaskeeRanking'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 

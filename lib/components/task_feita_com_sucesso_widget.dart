@@ -1,7 +1,7 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,9 +33,13 @@ class _TaskFeitaComSucessoWidgetState extends State<TaskFeitaComSucessoWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('TASK_FEITA_COM_SUCESSO_taskFeitaComSuces');
+      logFirebaseEvent('taskFeitaComSucesso_start_periodic_actio');
       _model.instantTimer = InstantTimer.periodic(
         duration: Duration(milliseconds: 6000),
         callback: (timer) async {
+          logFirebaseEvent('taskFeitaComSucesso_navigate_to');
+
           context.pushNamed(CurrentTasksWidget.routeName);
         },
         startImmediately: true,

@@ -3,10 +3,10 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/upload_data.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -43,6 +43,7 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
     super.initState();
     _model = createModel(context, () => ChatTaskerModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'ChatTasker'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -185,6 +186,9 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CHAT_TASKER_PAGE_Icon_1a6phul0_ON_TAP');
+                                    logFirebaseEvent('Icon_navigate_back');
                                     context.safePop();
                                   },
                                   child: Icon(
@@ -539,6 +543,10 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'CHAT_TASKER_PAGE_Image_ci61jjos_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'Image_expand_image');
                                                         await Navigator.push(
                                                           context,
                                                           PageTransition(
@@ -751,6 +759,10 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'CHAT_TASKER_PAGE_Image_8g6ri47y_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'Image_expand_image');
                                                         await Navigator.push(
                                                           context,
                                                           PageTransition(
@@ -945,6 +957,11 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                         controller: _model.textController,
                                         focusNode: _model.textFieldFocusNode,
                                         onFieldSubmitted: (_) async {
+                                          logFirebaseEvent(
+                                              'CHAT_TASKER_TextField_pdefs9ld_ON_TEXTFI');
+                                          logFirebaseEvent(
+                                              'TextField_backend_call');
+
                                           await ChatHistoryRecord.createDoc(
                                                   widget.chat!)
                                               .set(createChatHistoryRecordData(
@@ -952,6 +969,8 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                             horario: getCurrentTimestamp,
                                             documentUser: currentUserReference,
                                           ));
+                                          logFirebaseEvent(
+                                              'TextField_scroll_to');
                                           await _model.listViewController
                                               ?.animateTo(
                                             _model.listViewController!.position
@@ -1055,6 +1074,10 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHAT_TASKER_PAGE_Icon_gctnq4rm_ON_TAP');
+                                      logFirebaseEvent(
+                                          'Icon_upload_media_to_firebase');
                                       final selectedMedia =
                                           await selectMediaWithSourceBottomSheet(
                                         context: context,
@@ -1119,6 +1142,8 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                         }
                                       }
 
+                                      logFirebaseEvent('Icon_backend_call');
+
                                       await ChatHistoryRecord.createDoc(
                                               widget.chat!)
                                           .set(createChatHistoryRecordData(
@@ -1148,6 +1173,10 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'CHAT_TASKER_PAGE_Icon_jde0lmnk_ON_TAP');
+                                        logFirebaseEvent('Icon_backend_call');
+
                                         await ChatHistoryRecord.createDoc(
                                                 widget.chat!)
                                             .set(createChatHistoryRecordData(
@@ -1155,6 +1184,7 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                           horario: getCurrentTimestamp,
                                           documentUser: currentUserReference,
                                         ));
+                                        logFirebaseEvent('Icon_scroll_to');
                                         await _model.listViewController
                                             ?.animateTo(
                                           _model.listViewController!.position
@@ -1183,7 +1213,11 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'CHAT_TASKER_PAGE_Icon_oob2eh8e_ON_TAP');
                                         if (_model.recorder) {
+                                          logFirebaseEvent(
+                                              'Icon_stop_audio_recording');
                                           await stopAudioRecording(
                                             audioRecorder: _model.audioRecorder,
                                             audioName: 'recordedFileBytes',
@@ -1195,6 +1229,8 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                             },
                                           );
 
+                                          logFirebaseEvent('Icon_backend_call');
+
                                           await ChatHistoryRecord.createDoc(
                                                   widget.chat!)
                                               .set(createChatHistoryRecordData(
@@ -1202,9 +1238,13 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                             audio: _model.audio,
                                             horario: getCurrentTimestamp,
                                           ));
+                                          logFirebaseEvent(
+                                              'Icon_update_page_state');
                                           _model.recorder = false;
                                           safeSetState(() {});
                                         } else {
+                                          logFirebaseEvent(
+                                              'Icon_start_audio_recording');
                                           await startAudioRecording(
                                             context,
                                             audioRecorder:
@@ -1212,6 +1252,8 @@ class _ChatTaskerWidgetState extends State<ChatTaskerWidget>
                                                     AudioRecorder(),
                                           );
 
+                                          logFirebaseEvent(
+                                              'Icon_update_page_state');
                                           _model.recorder = true;
                                           safeSetState(() {});
                                         }

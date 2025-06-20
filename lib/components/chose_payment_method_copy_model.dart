@@ -20,12 +20,12 @@ class ChosePaymentMethodCopyModel
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
-  final textFieldMask2 = MaskTextInputFormatter(mask: '##/##/####');
+  late MaskTextInputFormatter textFieldMask2;
   String? Function(BuildContext, String?)? textController2Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController3;
-  final textFieldMask3 = MaskTextInputFormatter(mask: '##/##/####');
+  late MaskTextInputFormatter textFieldMask3;
   String? Function(BuildContext, String?)? textController3Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode4;

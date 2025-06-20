@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'stripe_identify_widget.dart' show StripeIdentifyWidget;
+import 'captura_de_camera_widget.dart' show CapturaDeCameraWidget;
 import 'package:flutter/material.dart';
 
-class StripeIdentifyModel extends FlutterFlowModel<StripeIdentifyWidget> {
+class CapturaDeCameraModel extends FlutterFlowModel<CapturaDeCameraWidget> {
   @override
   void initState(BuildContext context) {}
 

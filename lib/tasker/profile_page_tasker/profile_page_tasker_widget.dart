@@ -1,7 +1,7 @@
 import '/components/nav_bar_copy_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'profile_page_tasker_model.dart';
@@ -28,6 +28,8 @@ class _ProfilePageTaskerWidgetState extends State<ProfilePageTaskerWidget> {
     super.initState();
     _model = createModel(context, () => ProfilePageTaskerModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ProfilePageTasker'});
     _model.switchValue = true;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -119,6 +121,10 @@ class _ProfilePageTaskerWidgetState extends State<ProfilePageTaskerWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'PROFILE_TASKER_Icon_ud8h1a0i_ON_TAP');
+                                      logFirebaseEvent('Icon_navigate_to');
+
                                       context.pushNamed(
                                           ConfiguracaoTaskerWidget.routeName);
                                     },

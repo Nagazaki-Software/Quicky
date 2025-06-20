@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:quick/flutter_flow/flutter_flow_drop_down.dart';
-
-import 'package:quick/flutter_flow/flutter_flow_widgets.dart';
-import 'package:quick/flutter_flow/flutter_flow_theme.dart';
-import 'package:quick/index.dart';
-import 'package:quick/main.dart';
-import 'package:quick/flutter_flow/flutter_flow_util.dart';
+import 'package:quicky/flutter_flow/flutter_flow_drop_down.dart';
+import 'package:quicky/flutter_flow/flutter_flow_icon_button.dart';
+import 'package:quicky/flutter_flow/flutter_flow_widgets.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
+import 'package:quicky/index.dart';
+import 'package:quicky/main.dart';
+import 'package:quicky/flutter_flow/flutter_flow_util.dart';
 
 import 'package:provider/provider.dart';
-import 'package:quick/backend/firebase/firebase_config.dart';
-import 'package:quick/auth/firebase_auth/auth_util.dart';
+import 'package:quicky/backend/firebase/firebase_config.dart';
+import 'package:quicky/auth/firebase_auth/auth_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
@@ -35,8 +35,12 @@ void main() async {
     _overrideOnError();
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: 'forteste@teste.com', password: 'teste123');
-    await tester.pumpWidget(ChangeNotifierProvider(
-      create: (context) => FFAppState(),
+    await tester.pumpWidget(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => FFAppState(),
+        ),
+      ],
       child: const MyApp(),
     ));
     await GoogleFonts.pendingFonts();

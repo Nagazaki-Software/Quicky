@@ -1,7 +1,7 @@
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,6 +32,8 @@ class _RequestEvaluationWidgetState extends State<RequestEvaluationWidget>
     super.initState();
     _model = createModel(context, () => RequestEvaluationModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'RequestEvaluation'});
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
         loop: true,
@@ -113,6 +115,10 @@ class _RequestEvaluationWidgetState extends State<RequestEvaluationWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'REQUEST_EVALUATION_Icon_1yl80kl3_ON_TAP');
+                                  logFirebaseEvent('Icon_navigate_to');
+
                                   context
                                       .pushNamed(CurrentTasksWidget.routeName);
                                 },

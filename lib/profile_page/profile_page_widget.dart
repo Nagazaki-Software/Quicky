@@ -1,13 +1,14 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/components/money_to_deposity_taskee_widget.dart';
 import '/components/nav_bar_copy_widget.dart';
 import '/components/nav_bar_widget.dart';
-import '/components/switch_taskee_or_tasker_widget.dart';
 import '/components/withdrawvalue_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -38,6 +39,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
     super.initState();
     _model = createModel(context, () => ProfilePageModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'ProfilePage'});
     animationsMap.addAll({
       'containerOnActionTriggerAnimation': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
@@ -197,15 +199,54 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                 .fontStyle,
                                                       ),
                                                 ),
-                                                wrapWithModel(
-                                                  model: _model
-                                                      .switchTaskeeOrTaskerModel1,
-                                                  updateCallback: () =>
-                                                      safeSetState(() {}),
-                                                  child:
-                                                      SwitchTaskeeOrTaskerWidget(),
+                                                Container(
+                                                  width: 40.0,
+                                                  height: 20.0,
+                                                  child: custom_widgets
+                                                      .SwipeSwitch(
+                                                    width: 40.0,
+                                                    height: 20.0,
+                                                    activeColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                    inactiveColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryBackground,
+                                                    isTasker: valueOrDefault(
+                                                            currentUserDocument
+                                                                ?.taskOrTaskee,
+                                                            '') ==
+                                                        'Tasker',
+                                                    onSwitch: (onOrNot) async {
+                                                      logFirebaseEvent(
+                                                          'PROFILE_Container_7g3c7m9q_CALLBACK');
+                                                      if (onOrNot) {
+                                                        logFirebaseEvent(
+                                                            'SwipeSwitch_backend_call');
+
+                                                        await currentUserReference!
+                                                            .update(
+                                                                createUsersRecordData(
+                                                          taskOrTaskee:
+                                                              'Tasker',
+                                                        ));
+                                                      } else {
+                                                        logFirebaseEvent(
+                                                            'SwipeSwitch_backend_call');
+
+                                                        await currentUserReference!
+                                                            .update(
+                                                                createUsersRecordData(
+                                                          taskOrTaskee:
+                                                              'Taskee',
+                                                        ));
+                                                      }
+                                                    },
+                                                  ),
                                                 ),
-                                              ],
+                                              ].divide(SizedBox(width: 10.0)),
                                             ),
                                           ],
                                         ),
@@ -236,6 +277,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'PROFILE_PAGE_PAGE_Icon_h11q6jxe_ON_TAP');
+                                          logFirebaseEvent('Icon_navigate_to');
+
                                           context.pushNamed(
                                               ConfiguracaoTaskerWidget
                                                   .routeName);
@@ -329,9 +374,12 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'PROFILE_PAGE_PAGE_Text_6wdp4t6c_ON_TAP');
                                         if (valueOrDefault<bool>(
                                             currentUserDocument?.verifyaccount,
                                             false)) {
+                                          logFirebaseEvent('Text_bottom_sheet');
                                           await showModalBottomSheet(
                                             isScrollControlled: true,
                                             backgroundColor: Colors.transparent,
@@ -357,6 +405,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                           ).then(
                                               (value) => safeSetState(() {}));
                                         } else {
+                                          logFirebaseEvent('Text_navigate_to');
+
                                           context.pushNamed(
                                               PhoneNumberCopy2Widget.routeName);
                                         }
@@ -1169,6 +1219,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'PROFILE_PAGE_PAGE_Icon_xfvj0w0b_ON_TAP');
+                                          logFirebaseEvent('Icon_navigate_to');
+
                                           context.pushNamed(
                                               ConfiguracaoTaskeeWidget
                                                   .routeName);
@@ -1242,15 +1296,64 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                 .fontStyle,
                                                       ),
                                                 ),
-                                                wrapWithModel(
-                                                  model: _model
-                                                      .switchTaskeeOrTaskerModel2,
-                                                  updateCallback: () =>
-                                                      safeSetState(() {}),
-                                                  child:
-                                                      SwitchTaskeeOrTaskerWidget(),
+                                                Container(
+                                                  width: 40.0,
+                                                  height: 20.0,
+                                                  child: custom_widgets
+                                                      .SwipeSwitch(
+                                                    width: 40.0,
+                                                    height: 20.0,
+                                                    activeColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                    inactiveColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryBackground,
+                                                    isTasker: valueOrDefault(
+                                                            currentUserDocument
+                                                                ?.taskOrTaskee,
+                                                            '') ==
+                                                        'Tasker',
+                                                    onSwitch: (onOrNot) async {
+                                                      logFirebaseEvent(
+                                                          'PROFILE_Container_t6zci38t_CALLBACK');
+                                                      if (onOrNot) {
+                                                        logFirebaseEvent(
+                                                            'SwipeSwitch_backend_call');
+
+                                                        await currentUserReference!
+                                                            .update(
+                                                                createUsersRecordData(
+                                                          taskOrTaskee:
+                                                              'Tasker',
+                                                        ));
+                                                        logFirebaseEvent(
+                                                            'SwipeSwitch_update_app_state');
+                                                        FFAppState().pages =
+                                                            'profilePageTasker';
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        logFirebaseEvent(
+                                                            'SwipeSwitch_backend_call');
+
+                                                        await currentUserReference!
+                                                            .update(
+                                                                createUsersRecordData(
+                                                          taskOrTaskee:
+                                                              'Taskee',
+                                                        ));
+                                                        logFirebaseEvent(
+                                                            'SwipeSwitch_update_app_state');
+                                                        FFAppState().pages =
+                                                            'profilePageTaskee';
+                                                        safeSetState(() {});
+                                                      }
+                                                    },
+                                                  ),
                                                 ),
-                                              ],
+                                              ].divide(SizedBox(width: 10.0)),
                                             ),
                                           ],
                                         ),
@@ -1286,6 +1389,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'PROFILE_Container_2p07bgb4_ON_TAP');
+                                logFirebaseEvent('Container_widget_animation');
                                 if (animationsMap[
                                         'containerOnActionTriggerAnimation'] !=
                                     null) {
@@ -1297,6 +1403,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                           .controller
                                           .forward(from: 0.0));
                                 }
+                                logFirebaseEvent('Container_bottom_sheet');
                                 await showModalBottomSheet(
                                   isScrollControlled: true,
                                   backgroundColor: Colors.transparent,

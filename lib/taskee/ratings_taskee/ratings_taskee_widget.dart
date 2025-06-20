@@ -1,7 +1,7 @@
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -29,6 +29,8 @@ class _RatingsTaskeeWidgetState extends State<RatingsTaskeeWidget> {
     super.initState();
     _model = createModel(context, () => RatingsTaskeeModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ratingsTaskee'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -1092,6 +1094,10 @@ class _RatingsTaskeeWidgetState extends State<RatingsTaskeeWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'RATINGS_TASKEE_Stack_loym6yu3_ON_TAP');
+                                        logFirebaseEvent(
+                                            'Stack_update_app_state');
                                         FFAppState().selectedTabName =
                                             'Active Tasks';
                                         safeSetState(() {});
@@ -1151,6 +1157,10 @@ class _RatingsTaskeeWidgetState extends State<RatingsTaskeeWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'RATINGS_TASKEE_Stack_cdkmct1x_ON_TAP');
+                                        logFirebaseEvent(
+                                            'Stack_update_app_state');
                                         FFAppState().selectedTabName =
                                             'Messages & Calendar';
                                         safeSetState(() {});

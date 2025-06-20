@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/components/chose_payment_method_copy_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'phone_number_copy2_model.dart';
@@ -27,6 +27,8 @@ class _PhoneNumberCopy2WidgetState extends State<PhoneNumberCopy2Widget> {
     super.initState();
     _model = createModel(context, () => PhoneNumberCopy2Model());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'PhoneNumberCopy2'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -88,6 +90,10 @@ class _PhoneNumberCopy2WidgetState extends State<PhoneNumberCopy2Widget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'PHONE_NUMBER_COPY2_Icon_qnzn2j5r_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Icon_navigate_back');
                                           context.safePop();
                                         },
                                         child: Icon(
@@ -248,6 +254,10 @@ class _PhoneNumberCopy2WidgetState extends State<PhoneNumberCopy2Widget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'PHONE_NUMBER_COPY2_Icon_0cm94ll2_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Icon_navigate_back');
                                           context.safePop();
                                         },
                                         child: Icon(
@@ -397,7 +407,7 @@ class _PhoneNumberCopy2WidgetState extends State<PhoneNumberCopy2Widget> {
                     children: [
                       if (valueOrDefault(
                               currentUserDocument?.taskOrTaskee, '') ==
-                          'Tasker')
+                          'Taskee')
                         Align(
                           alignment: AlignmentDirectional(0.0, 1.0),
                           child: Container(
@@ -413,164 +423,9 @@ class _PhoneNumberCopy2WidgetState extends State<PhoneNumberCopy2Widget> {
                             ),
                           ),
                         ),
-                      Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 5.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(1.0, 1.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 20.0, 20.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: Colors.transparent,
-                                        enableDrag: false,
-                                        context: context,
-                                        builder: (context) {
-                                          return GestureDetector(
-                                            onTap: () {
-                                              FocusScope.of(context).unfocus();
-                                              FocusManager.instance.primaryFocus
-                                                  ?.unfocus();
-                                            },
-                                            child: Padding(
-                                              padding: MediaQuery.viewInsetsOf(
-                                                  context),
-                                              child:
-                                                  ChosePaymentMethodCopyWidget(
-                                                value: 1.0,
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ).then((value) => safeSetState(() {}));
-                                    },
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.8,
-                                      decoration: BoxDecoration(
-                                        color: valueOrDefault<Color>(
-                                          valueOrDefault(
-                                                      currentUserDocument
-                                                          ?.taskOrTaskee,
-                                                      '') ==
-                                                  'Tasker'
-                                              ? FlutterFlowTheme.of(context)
-                                                  .secondaryBackground
-                                              : FlutterFlowTheme.of(context)
-                                                  .primaryBackground,
-                                          FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 4.0,
-                                            color: Color(0x33000000),
-                                            offset: Offset(
-                                              0.0,
-                                              2.0,
-                                            ),
-                                          )
-                                        ],
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 8.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'VERIFY ACCOUNT',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyLarge
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLarge
-                                                              .fontStyle,
-                                                    ),
-                                                    color:
-                                                        valueOrDefault<Color>(
-                                                      valueOrDefault(
-                                                                  currentUserDocument
-                                                                      ?.taskOrTaskee,
-                                                                  '') ==
-                                                              'Tasker'
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBackground
-                                                          : FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryBackground,
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                    ),
-                                                    fontSize: 22.0,
-                                                    letterSpacing: 6.0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLarge
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                            Icon(
-                                              Icons.chevron_right_sharp,
-                                              color: valueOrDefault<Color>(
-                                                valueOrDefault(
-                                                            currentUserDocument
-                                                                ?.taskOrTaskee,
-                                                            '') ==
-                                                        'Tasker'
-                                                    ? FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground
-                                                    : FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                              ),
-                                              size: 30.0,
-                                            ),
-                                          ].divide(SizedBox(width: 8.0)),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
                       if (valueOrDefault(
                               currentUserDocument?.taskOrTaskee, '') ==
-                          'Taskee')
+                          'Tasker')
                         Align(
                           alignment: AlignmentDirectional(0.0, 1.0),
                           child: Container(
@@ -586,6 +441,168 @@ class _PhoneNumberCopy2WidgetState extends State<PhoneNumberCopy2Widget> {
                             ),
                           ),
                         ),
+                      Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 5.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              if (!valueOrDefault<bool>(
+                                  currentUserDocument?.verifyaccount, false))
+                                Align(
+                                  alignment: AlignmentDirectional(1.0, 1.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 20.0, 20.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'PHONE_NUMBER_COPY2_Container_e9ebj3d9_ON');
+                                        logFirebaseEvent(
+                                            'Container_bottom_sheet');
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                FocusScope.of(context)
+                                                    .unfocus();
+                                                FocusManager
+                                                    .instance.primaryFocus
+                                                    ?.unfocus();
+                                              },
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child:
+                                                    ChosePaymentMethodCopyWidget(
+                                                  value: 1.0,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      },
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.82,
+                                        decoration: BoxDecoration(
+                                          color: valueOrDefault(
+                                                      currentUserDocument
+                                                          ?.taskOrTaskee,
+                                                      '') ==
+                                                  'Tasker'
+                                              ? FlutterFlowTheme.of(context)
+                                                  .secondaryBackground
+                                              : FlutterFlowTheme.of(context)
+                                                  .primaryBackground,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 4.0,
+                                              color: Color(0x33000000),
+                                              offset: Offset(
+                                                0.0,
+                                                2.0,
+                                              ),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 8.0, 0.0, 8.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'VERIFY ACCOUNT',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyLarge
+                                                    .override(
+                                                      font: GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge
+                                                                .fontStyle,
+                                                      ),
+                                                      color:
+                                                          valueOrDefault<Color>(
+                                                        valueOrDefault(
+                                                                    currentUserDocument
+                                                                        ?.taskOrTaskee,
+                                                                    '') ==
+                                                                'Tasker'
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryBackground
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryBackground,
+                                                      ),
+                                                      fontSize: 22.0,
+                                                      letterSpacing: 6.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                              Icon(
+                                                Icons.chevron_right_sharp,
+                                                color: valueOrDefault<Color>(
+                                                  valueOrDefault(
+                                                              currentUserDocument
+                                                                  ?.taskOrTaskee,
+                                                              '') ==
+                                                          'Tasker'
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground,
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                                ),
+                                                size: 30.0,
+                                              ),
+                                            ].divide(SizedBox(width: 8.0)),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

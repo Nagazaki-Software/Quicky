@@ -1,6 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'phone_number_copy2_copy_model.dart';
@@ -28,6 +28,8 @@ class _PhoneNumberCopy2CopyWidgetState
     super.initState();
     _model = createModel(context, () => PhoneNumberCopy2CopyModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'PhoneNumberCopy2Copy'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -86,6 +88,9 @@ class _PhoneNumberCopy2CopyWidgetState
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'PHONE_NUMBER_COPY2_COPY_Icon_181zanf1_ON');
+                                        logFirebaseEvent('Icon_navigate_back');
                                         context.safePop();
                                       },
                                       child: Icon(

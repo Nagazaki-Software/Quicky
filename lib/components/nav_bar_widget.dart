@@ -1,7 +1,8 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'nav_bar_model.dart';
 export 'nav_bar_model.dart';
 
@@ -38,6 +39,8 @@ class _NavBarWidgetState extends State<NavBarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0.0, 1.0),
       child: Padding(
@@ -72,7 +75,22 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed(TaskeeRankingWidget.routeName);
+                  logFirebaseEvent('NAV_BAR_COMP_Column_9i7qda9w_ON_TAP');
+                  logFirebaseEvent('Column_update_app_state');
+                  FFAppState().pages = 'scoreboardTaskee';
+                  safeSetState(() {});
+                  logFirebaseEvent('Column_navigate_to');
+
+                  context.pushNamed(
+                    TaskeeRankingWidget.routeName,
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                      ),
+                    },
+                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -80,7 +98,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   children: [
                     Icon(
                       Icons.scoreboard_rounded,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: FFAppState().pages == 'scoreboardTaskee'
+                          ? FlutterFlowTheme.of(context).alternate
+                          : FlutterFlowTheme.of(context).primaryBackground,
                       size: 24.0,
                     ),
                   ],
@@ -92,7 +112,22 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed(RatingsTaskeesWidget.routeName);
+                  logFirebaseEvent('NAV_BAR_COMP_Column_v8htiu59_ON_TAP');
+                  logFirebaseEvent('Column_update_app_state');
+                  FFAppState().pages = 'ratingsTaskee';
+                  safeSetState(() {});
+                  logFirebaseEvent('Column_navigate_to');
+
+                  context.pushNamed(
+                    RatingsTaskeesWidget.routeName,
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                      ),
+                    },
+                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -100,7 +135,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   children: [
                     Icon(
                       Icons.stacked_bar_chart,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: FFAppState().pages == 'ratingsTaskee'
+                          ? FlutterFlowTheme.of(context).alternate
+                          : FlutterFlowTheme.of(context).primaryBackground,
                       size: 24.0,
                     ),
                   ],
@@ -112,16 +149,33 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed(CreateTaskWidget.routeName);
+                  logFirebaseEvent('NAV_BAR_COMP_Column_j7oun6op_ON_TAP');
+                  logFirebaseEvent('Column_update_app_state');
+                  FFAppState().pages = 'createTask';
+                  safeSetState(() {});
+                  logFirebaseEvent('Column_navigate_to');
+
+                  context.pushNamed(
+                    CreateTaskWidget.routeName,
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                      ),
+                    },
+                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.clean_hands_rounded,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                      size: 24.0,
+                      FFIcons.kcreateTaskButton,
+                      color: FFAppState().pages == 'createTask'
+                          ? FlutterFlowTheme.of(context).alternate
+                          : FlutterFlowTheme.of(context).primaryBackground,
+                      size: 30.0,
                     ),
                   ],
                 ),
@@ -132,7 +186,22 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed(CurrentTasksWidget.routeName);
+                  logFirebaseEvent('NAV_BAR_COMP_Column_tyid7p7y_ON_TAP');
+                  logFirebaseEvent('Column_update_app_state');
+                  FFAppState().pages = 'currentTaskTaskee';
+                  safeSetState(() {});
+                  logFirebaseEvent('Column_navigate_to');
+
+                  context.pushNamed(
+                    CurrentTasksWidget.routeName,
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                      ),
+                    },
+                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -140,7 +209,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   children: [
                     Icon(
                       Icons.lan_sharp,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: FFAppState().pages == 'currentTaskTaskee'
+                          ? FlutterFlowTheme.of(context).alternate
+                          : FlutterFlowTheme.of(context).primaryBackground,
                       size: 24.0,
                     ),
                   ],
@@ -152,7 +223,22 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed(ProfilePageWidget.routeName);
+                  logFirebaseEvent('NAV_BAR_COMP_Column_n5e5n6at_ON_TAP');
+                  logFirebaseEvent('Column_update_app_state');
+                  FFAppState().pages = 'profilePageTaskee';
+                  safeSetState(() {});
+                  logFirebaseEvent('Column_navigate_to');
+
+                  context.pushNamed(
+                    ProfilePageWidget.routeName,
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                      ),
+                    },
+                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -160,7 +246,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   children: [
                     Icon(
                       Icons.person_sharp,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: FFAppState().pages == 'profilePageTaskee'
+                          ? FlutterFlowTheme.of(context).alternate
+                          : FlutterFlowTheme.of(context).primaryBackground,
                       size: 24.0,
                     ),
                   ],

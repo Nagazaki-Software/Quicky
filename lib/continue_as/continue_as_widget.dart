@@ -1,6 +1,6 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'continue_as_model.dart';
@@ -26,6 +26,7 @@ class _ContinueAsWidgetState extends State<ContinueAsWidget> {
     super.initState();
     _model = createModel(context, () => ContinueAsModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'continueAs'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -347,9 +348,15 @@ class _ContinueAsWidgetState extends State<ContinueAsWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'CONTINUE_AS_PAGE_Icon_vzfnjyuz_ON_TAP');
                             if (_model.checkboxValue2 == true) {
+                              logFirebaseEvent('Icon_navigate_to');
+
                               context.pushNamed(CreateProfileWidget.routeName);
                             } else if (_model.checkboxValue1 == true) {
+                              logFirebaseEvent('Icon_navigate_to');
+
                               context.pushNamed(
                                   CreateProfileTaskerWidget.routeName);
                             }

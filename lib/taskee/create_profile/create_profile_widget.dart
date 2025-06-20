@@ -3,12 +3,12 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'dart:async';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,6 +37,8 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
     super.initState();
     _model = createModel(context, () => CreateProfileModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'createProfile'});
     if (!isWeb) {
       _keyboardVisibilitySubscription =
           KeyboardVisibilityController().onChange.listen((bool visible) {
@@ -119,6 +121,9 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        logFirebaseEvent(
+                            'CREATE_PROFILE_PAGE_Row_05tdhubr_ON_TAP');
+                        logFirebaseEvent('Row_upload_media_to_firebase');
                         final selectedMedia =
                             await selectMediaWithSourceBottomSheet(
                           context: context,
@@ -897,6 +902,9 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'CREATE_PROFILE_PAGE_Icon_c7c1gcqm_ON_TAP');
+                                  logFirebaseEvent('Icon_navigate_back');
                                   context.safePop();
                                 },
                                 child: Icon(
@@ -919,8 +927,12 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CREATE_PROFILE_PAGE_Icon_7hbs69ab_ON_TAP');
+                                    logFirebaseEvent('Icon_update_page_state');
                                     _model.clicou = true;
                                     safeSetState(() {});
+                                    logFirebaseEvent('Icon_auth');
                                     GoRouter.of(context).prepareAuthEvent(true);
 
                                     final user = await authManager
@@ -933,10 +945,13 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                                       return;
                                     }
 
+                                    logFirebaseEvent('Icon_backend_call');
                                     _model.accountStripe =
                                         await CreateaccountstripeAllCall.call(
                                       email: _model.emailTextController.text,
                                     );
+
+                                    logFirebaseEvent('Icon_backend_call');
 
                                     await currentUserReference!
                                         .update(createUsersRecordData(
@@ -951,6 +966,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                                       ).toString(),
                                       verifyaccount: false,
                                     ));
+                                    logFirebaseEvent('Icon_navigate_to');
 
                                     context.pushNamedAuth(
                                       VerifyYourAccountWidget.routeName,

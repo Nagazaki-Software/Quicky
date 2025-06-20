@@ -1,6 +1,6 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,10 +34,14 @@ class _YouraccontfoiverificadocomsucessoWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('YOURACCONTFOIVERIFICADOCOMSUCESSO_yourac');
+      logFirebaseEvent('youraccontfoiverificadocomsucesso_start_');
       _model.instantTimer = InstantTimer.periodic(
         duration: Duration(milliseconds: 5000),
         callback: (timer) async {
+          logFirebaseEvent('youraccontfoiverificadocomsucesso_bottom');
           Navigator.pop(context);
+          logFirebaseEvent('youraccontfoiverificadocomsucesso_stop_p');
           _model.instantTimer?.cancel();
         },
         startImmediately: true,

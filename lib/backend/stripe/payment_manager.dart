@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/number_symbols_data.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 
 import '../../flutter_flow/flutter_flow_widgets.dart';
@@ -17,7 +17,7 @@ final _isProd = false;
 const _kProdStripePublishableKey =
     'pk_live_51Ob84ED9xvi658VGPoaM5vMMOS4bt2lAeYjyRMyTuyRnz1QU7Chh2nla8PLqaZc6iGCaCGBdkiggMpIPgdAaqG2800EX4DMTFI';
 const _kTestStripePublishableKey =
-    'pk_test_51Ob84ED9xvi658VGwPcYbfLk65Hysgp0wxlV4GiWmfxHOOo7dVcJecpbWhG5vrCu3pYEylLWnH5GDuy47XvQ58oX00aT3dk5vY';
+    'pk_test_51RbYviCFk8wl8pruJ2cR2bIaSrhXjBq4QU4kW4WlR2cRgJdxOtVpTRJ7l3VIPSbegoj8PBCs8ODLMA5QtVtg4ZED00Zhn4kfQK';
 const _kAppleMerchantId = 'merchant.com.nagazakisoftware.quick';
 
 String stripePublishableKey() =>

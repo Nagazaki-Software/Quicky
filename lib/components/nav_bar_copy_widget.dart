@@ -1,7 +1,8 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'nav_bar_copy_model.dart';
 export 'nav_bar_copy_model.dart';
 
@@ -38,6 +39,8 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0.0, 1.0),
       child: Padding(
@@ -72,7 +75,22 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed(TaskeeRankingTaskerWidget.routeName);
+                  logFirebaseEvent('NAV_BAR_COPY_COMP_Column_54nfkd28_ON_TAP');
+                  logFirebaseEvent('Column_update_app_state');
+                  FFAppState().pages = 'scoreboardTasker';
+                  safeSetState(() {});
+                  logFirebaseEvent('Column_navigate_to');
+
+                  context.pushNamed(
+                    TaskeeRankingTaskerWidget.routeName,
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                      ),
+                    },
+                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -80,7 +98,9 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
                   children: [
                     Icon(
                       Icons.scoreboard_rounded,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: FFAppState().pages == 'scoreboardTasker'
+                          ? FlutterFlowTheme.of(context).primary
+                          : FlutterFlowTheme.of(context).secondaryBackground,
                       size: 24.0,
                     ),
                   ],
@@ -92,7 +112,22 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed(RatingsTaskerWidget.routeName);
+                  logFirebaseEvent('NAV_BAR_COPY_COMP_Column_0244ylbj_ON_TAP');
+                  logFirebaseEvent('Column_update_app_state');
+                  FFAppState().pages = 'ratingsTasker';
+                  safeSetState(() {});
+                  logFirebaseEvent('Column_navigate_to');
+
+                  context.pushNamed(
+                    RatingsTaskerWidget.routeName,
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                      ),
+                    },
+                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -100,7 +135,9 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
                   children: [
                     Icon(
                       Icons.stacked_bar_chart,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: FFAppState().pages == 'ratingsTasker'
+                          ? FlutterFlowTheme.of(context).primary
+                          : FlutterFlowTheme.of(context).secondaryBackground,
                       size: 24.0,
                     ),
                   ],
@@ -112,15 +149,32 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed(SwipeTaskerWidget.routeName);
+                  logFirebaseEvent('NAV_BAR_COPY_COMP_Column_e4cz6l60_ON_TAP');
+                  logFirebaseEvent('Column_update_app_state');
+                  FFAppState().pages = 'swipePage';
+                  safeSetState(() {});
+                  logFirebaseEvent('Column_navigate_to');
+
+                  context.pushNamed(
+                    SwipeTaskerWidget.routeName,
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                      ),
+                    },
+                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.swipe_up_sharp,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      Icons.swipe_up,
+                      color: FFAppState().pages == 'swipePage'
+                          ? FlutterFlowTheme.of(context).primary
+                          : FlutterFlowTheme.of(context).secondaryBackground,
                       size: 24.0,
                     ),
                   ],
@@ -132,7 +186,22 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed(CurrentTasksWidget.routeName);
+                  logFirebaseEvent('NAV_BAR_COPY_COMP_Column_twmx1e8h_ON_TAP');
+                  logFirebaseEvent('Column_update_app_state');
+                  FFAppState().pages = 'currentTasksTasker';
+                  safeSetState(() {});
+                  logFirebaseEvent('Column_navigate_to');
+
+                  context.pushNamed(
+                    CurrentTasksWidget.routeName,
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                      ),
+                    },
+                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -140,7 +209,9 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
                   children: [
                     Icon(
                       Icons.lan_sharp,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: FFAppState().pages == 'currentTasksTasker'
+                          ? FlutterFlowTheme.of(context).primary
+                          : FlutterFlowTheme.of(context).secondaryBackground,
                       size: 24.0,
                     ),
                   ],
@@ -152,6 +223,12 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
+                  logFirebaseEvent('NAV_BAR_COPY_COMP_Column_8uks1vus_ON_TAP');
+                  logFirebaseEvent('Column_update_app_state');
+                  FFAppState().pages = 'profilePageTasker';
+                  safeSetState(() {});
+                  logFirebaseEvent('Column_navigate_to');
+
                   context.pushNamed(ProfilePageWidget.routeName);
                 },
                 child: Column(
@@ -160,7 +237,9 @@ class _NavBarCopyWidgetState extends State<NavBarCopyWidget> {
                   children: [
                     Icon(
                       Icons.person_sharp,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: FFAppState().pages == 'profilePageTasker'
+                          ? FlutterFlowTheme.of(context).primary
+                          : FlutterFlowTheme.of(context).secondaryBackground,
                       size: 24.0,
                     ),
                   ],

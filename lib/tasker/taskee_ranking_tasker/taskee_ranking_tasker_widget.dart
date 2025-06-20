@@ -2,10 +2,10 @@ import '/backend/backend.dart';
 import '/components/nav_bar_copy_widget.dart';
 import '/components/nousersranking_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -37,6 +37,8 @@ class _TaskeeRankingTaskerWidgetState extends State<TaskeeRankingTaskerWidget>
     super.initState();
     _model = createModel(context, () => TaskeeRankingTaskerModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'TaskeeRankingTasker'});
     animationsMap.addAll({
       'stackOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,

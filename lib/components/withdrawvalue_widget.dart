@@ -1,9 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/task_feita_com_sucesso_copy_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -357,6 +357,9 @@ class _WithdrawvalueWidgetState extends State<WithdrawvalueWidget> {
                           EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
+                          logFirebaseEvent(
+                              'WITHDRAWVALUE_WITHDRAW_TO_BANK_ACCOUNT_B');
+                          logFirebaseEvent('Button_backend_call');
                           _model.apiResult4pg =
                               await RetirarSaldoStripeConnectedCall.call(
                             connectedAccountId: valueOrDefault(
@@ -367,6 +370,7 @@ class _WithdrawvalueWidgetState extends State<WithdrawvalueWidget> {
                           );
 
                           if ((_model.apiResult4pg?.succeeded ?? true)) {
+                            logFirebaseEvent('Button_bottom_sheet');
                             await showModalBottomSheet(
                               isScrollControlled: true,
                               backgroundColor: Colors.transparent,

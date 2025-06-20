@@ -105,12 +105,6 @@ class TasksRecord extends FirestoreRecord {
   bool get acceptRenegociate => _acceptRenegociate ?? false;
   bool hasAcceptRenegociate() => _acceptRenegociate != null;
 
-  // "usuariosDisputandoPelaTask" field.
-  List<DocumentReference>? _usuariosDisputandoPelaTask;
-  List<DocumentReference> get usuariosDisputandoPelaTask =>
-      _usuariosDisputandoPelaTask ?? const [];
-  bool hasUsuariosDisputandoPelaTask() => _usuariosDisputandoPelaTask != null;
-
   // "usuarioQueAceitouaTask" field.
   DocumentReference? _usuarioQueAceitouaTask;
   DocumentReference? get usuarioQueAceitouaTask => _usuarioQueAceitouaTask;
@@ -161,6 +155,12 @@ class TasksRecord extends FirestoreRecord {
   bool get avaliado => _avaliado ?? false;
   bool hasAvaliado() => _avaliado != null;
 
+  // "tempodeesperadosusuarioes" field.
+  List<TempodeesperatasksStruct>? _tempodeesperadosusuarioes;
+  List<TempodeesperatasksStruct> get tempodeesperadosusuarioes =>
+      _tempodeesperadosusuarioes ?? const [];
+  bool hasTempodeesperadosusuarioes() => _tempodeesperadosusuarioes != null;
+
   void _initializeFields() {
     _foto = getDataList(snapshotData['Foto']);
     _titulo = snapshotData['Titulo'] as String?;
@@ -180,8 +180,6 @@ class TasksRecord extends FirestoreRecord {
     _valor = snapshotData['valor'] as String?;
     _valorDeUrgencia = snapshotData['valorDeUrgencia'] as String?;
     _acceptRenegociate = snapshotData['acceptRenegociate'] as bool?;
-    _usuariosDisputandoPelaTask =
-        getDataList(snapshotData['usuariosDisputandoPelaTask']);
     _usuarioQueAceitouaTask =
         snapshotData['usuarioQueAceitouaTask'] as DocumentReference?;
     _fornecedorDosMateriais = snapshotData['FornecedorDosMateriais'] as String?;
@@ -195,6 +193,10 @@ class TasksRecord extends FirestoreRecord {
     _fotosFinaisTask = getDataList(snapshotData['fotosFinaisTask']);
     _stepsInText = getDataList(snapshotData['stepsInText']);
     _avaliado = snapshotData['avaliado'] as bool?;
+    _tempodeesperadosusuarioes = getStructList(
+      snapshotData['tempodeesperadosusuarioes'],
+      TempodeesperatasksStruct.fromMap,
+    );
   }
 
   static CollectionReference get collection =>
@@ -317,8 +319,6 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e1?.valor == e2?.valor &&
         e1?.valorDeUrgencia == e2?.valorDeUrgencia &&
         e1?.acceptRenegociate == e2?.acceptRenegociate &&
-        listEquality.equals(
-            e1?.usuariosDisputandoPelaTask, e2?.usuariosDisputandoPelaTask) &&
         e1?.usuarioQueAceitouaTask == e2?.usuarioQueAceitouaTask &&
         e1?.fornecedorDosMateriais == e2?.fornecedorDosMateriais &&
         e1?.localizacao == e2?.localizacao &&
@@ -328,7 +328,9 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e1?.stepsFinalizadas == e2?.stepsFinalizadas &&
         listEquality.equals(e1?.fotosFinaisTask, e2?.fotosFinaisTask) &&
         listEquality.equals(e1?.stepsInText, e2?.stepsInText) &&
-        e1?.avaliado == e2?.avaliado;
+        e1?.avaliado == e2?.avaliado &&
+        listEquality.equals(
+            e1?.tempodeesperadosusuarioes, e2?.tempodeesperadosusuarioes);
   }
 
   @override
@@ -351,7 +353,6 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e?.valor,
         e?.valorDeUrgencia,
         e?.acceptRenegociate,
-        e?.usuariosDisputandoPelaTask,
         e?.usuarioQueAceitouaTask,
         e?.fornecedorDosMateriais,
         e?.localizacao,
@@ -361,7 +362,8 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e?.stepsFinalizadas,
         e?.fotosFinaisTask,
         e?.stepsInText,
-        e?.avaliado
+        e?.avaliado,
+        e?.tempodeesperadosusuarioes
       ]);
 
   @override

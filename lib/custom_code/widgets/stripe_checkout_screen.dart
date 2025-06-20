@@ -1,7 +1,7 @@
 // Automatic FlutterFlow imports
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
@@ -73,7 +73,7 @@ class _StripeCheckoutScreenState extends State<StripeCheckoutScreen> {
         url,
         headers: {
           'Authorization':
-              'Bearer sk_test_51Ob84ED9xvi658VGJiv72yprCVGQ6sLv7pHDu5ZbuS1JfqZbXzuWf9bKpUk47bhqb0gIs5750pX2n2yZ8bKuhZPI00N3sruzNx', // Substitua com sua chave secreta do Stripe
+              'Bearer pk_test_51RbYviCFk8wl8pruJ2cR2bIaSrhXjBq4QU4kW4WlR2cRgJdxOtVpTRJ7l3VIPSbegoj8PBCs8ODLMA5QtVtg4ZED00Zhn4kfQK', // Substitua com sua chave secreta do Stripe
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: {

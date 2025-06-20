@@ -1,4 +1,4 @@
-# Quick
+# Quicky
 
 A new Flutter project.
 

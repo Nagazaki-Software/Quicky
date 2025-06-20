@@ -1,7 +1,7 @@
 // Automatic FlutterFlow imports
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
@@ -9,6 +9,10 @@ import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
+
+import '/custom_code/widgets/index.dart';
+import '/custom_code/actions/index.dart';
+import '/flutter_flow/custom_functions.dart';
 
 import 'package:audio_waveforms/audio_waveforms.dart';
 
@@ -30,6 +34,9 @@ class PlaybackWaveform extends StatefulWidget {
 
 class _PlaybackWaveformState extends State<PlaybackWaveform> {
   late final PlayerController playerController;
+  late final double width;
+  late final double height;
+
   bool isPlaying = false;
   bool isReady = false;
   bool isSeeking = false;
@@ -38,18 +45,29 @@ class _PlaybackWaveformState extends State<PlaybackWaveform> {
   void initState() {
     super.initState();
     playerController = PlayerController();
+    width = widget.width;
+    height = widget.height;
 
     _preparePlayer();
 
-    playerController.onCompletion.listen((_) {
+    playerController.onCompletion.listen((_) async {
       setState(() {
         isPlaying = false;
       });
+
+      try {
+        await playerController.stopPlayer();
+        await playerController.seekTo(0); // Reset para início
+      } catch (e) {
+        debugPrint("Erro ao resetar player: $e");
+      }
     });
 
     playerController.onCurrentDurationChanged.listen((duration) {
-      if (!isSeeking && isPlaying && mounted) {
-        setState(() {}); // atualiza UI
+      if (mounted && isPlaying && !isSeeking) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) setState(() {});
+        });
       }
     });
   }
@@ -59,7 +77,7 @@ class _PlaybackWaveformState extends State<PlaybackWaveform> {
       await playerController.preparePlayer(
         path: widget.audioPath,
         shouldExtractWaveform: true,
-        noOfSamples: 100, // performance melhor
+        noOfSamples: 100,
       );
       setState(() => isReady = true);
     } catch (e) {
@@ -70,15 +88,18 @@ class _PlaybackWaveformState extends State<PlaybackWaveform> {
   void togglePlayback() async {
     if (!isReady) return;
 
-    if (isPlaying) {
-      await playerController.pausePlayer();
-    } else {
-      await playerController.startPlayer();
+    try {
+      if (isPlaying) {
+        await playerController.pausePlayer();
+      } else {
+        await playerController.startPlayer();
+      }
+      setState(() {
+        isPlaying = !isPlaying;
+      });
+    } catch (e) {
+      debugPrint("Erro ao alternar reprodução: $e");
     }
-
-    setState(() {
-      isPlaying = !isPlaying;
-    });
   }
 
   @override
@@ -93,6 +114,10 @@ class _PlaybackWaveformState extends State<PlaybackWaveform> {
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      constraints: BoxConstraints(
+        minWidth: width + 50,
+        minHeight: height + 20,
+      ),
       decoration: BoxDecoration(
         color: isDark ? Colors.grey.shade800 : Colors.grey.shade200,
         borderRadius: BorderRadius.circular(20),
@@ -120,21 +145,24 @@ class _PlaybackWaveformState extends State<PlaybackWaveform> {
             GestureDetector(
               onHorizontalDragStart: (_) => setState(() => isSeeking = true),
               onHorizontalDragEnd: (_) => setState(() => isSeeking = false),
-              child: SizedBox(
-                width: widget.width,
-                height: widget.height,
-                child: AudioFileWaveforms(
-                  size: Size(widget.width, widget.height),
-                  playerController: playerController,
-                  enableSeekGesture: true,
-                  waveformType: WaveformType.long,
-                  playerWaveStyle: PlayerWaveStyle(
-                    fixedWaveColor: Colors.grey.shade400,
-                    liveWaveColor: isDark ? Colors.white : Colors.black,
-                    spacing: 4,
-                    showSeekLine: true,
-                    seekLineThickness: 2.0,
-                    seekLineColor: Colors.blueAccent,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: SizedBox(
+                  width: width,
+                  height: height,
+                  child: AudioFileWaveforms(
+                    size: Size(width, height),
+                    playerController: playerController,
+                    enableSeekGesture: true,
+                    waveformType: WaveformType.long,
+                    playerWaveStyle: PlayerWaveStyle(
+                      fixedWaveColor: Colors.grey.shade400,
+                      liveWaveColor: isDark ? Colors.white : Colors.black,
+                      spacing: 4,
+                      showSeekLine: true,
+                      seekLineThickness: 2.0,
+                      seekLineColor: Colors.blueAccent,
+                    ),
                   ),
                 ),
               ),
@@ -143,7 +171,9 @@ class _PlaybackWaveformState extends State<PlaybackWaveform> {
             const SizedBox(
               width: 100,
               height: 20,
-              child: Center(child: Text("Carregando...")),
+              child: Center(
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
             ),
         ],
       ),

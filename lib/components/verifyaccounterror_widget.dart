@@ -1,8 +1,8 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -35,10 +35,14 @@ class _VerifyaccounterrorWidgetState extends State<VerifyaccounterrorWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('VERIFYACCOUNTERROR_verifyaccounterror_ON');
+      logFirebaseEvent('verifyaccounterror_start_periodic_action');
       _model.instantTimer = InstantTimer.periodic(
         duration: Duration(milliseconds: 7000),
         callback: (timer) async {
+          logFirebaseEvent('verifyaccounterror_bottom_sheet');
           Navigator.pop(context);
+          logFirebaseEvent('verifyaccounterror_stop_periodic_action');
           _model.instantTimer?.cancel();
         },
         startImmediately: true,
@@ -161,6 +165,10 @@ class _VerifyaccounterrorWidgetState extends State<VerifyaccounterrorWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () async {
+                      logFirebaseEvent(
+                          'VERIFYACCOUNTERROR_GO_THERE_BTN_ON_TAP');
+                      logFirebaseEvent('Button_navigate_to');
+
                       context.pushNamed(PhoneNumberCopy2Widget.routeName);
                     },
                     text: 'GO THERE',

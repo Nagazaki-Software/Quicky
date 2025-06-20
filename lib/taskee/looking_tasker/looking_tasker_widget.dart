@@ -1,5 +1,5 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'looking_tasker_model.dart';
@@ -25,6 +25,8 @@ class _LookingTaskerWidgetState extends State<LookingTaskerWidget> {
     super.initState();
     _model = createModel(context, () => LookingTaskerModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'LookingTasker'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 

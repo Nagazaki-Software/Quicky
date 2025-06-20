@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class QuickFirebaseUser extends BaseAuthUser {
-  QuickFirebaseUser(this.user);
+class QuickyFirebaseUser extends BaseAuthUser {
+  QuickyFirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -58,17 +58,17 @@ class QuickFirebaseUser extends BaseAuthUser {
 
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
-  static BaseAuthUser fromFirebaseUser(User? user) => QuickFirebaseUser(user);
+  static BaseAuthUser fromFirebaseUser(User? user) => QuickyFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> quickFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> quickyFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = QuickFirebaseUser(user);
+        currentUser = QuickyFirebaseUser(user);
         return currentUser!;
       },
     );

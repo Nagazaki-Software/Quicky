@@ -1,12 +1,13 @@
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/navbar_create_tasks_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/upload_data.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'a_d_d_photo_create_task_model.dart';
 export 'a_d_d_photo_create_task_model.dart';
 
@@ -36,6 +37,8 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
     super.initState();
     _model = createModel(context, () => ADDPhotoCreateTaskModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ADDPhotoCreateTask'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -48,6 +51,8 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -126,6 +131,10 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'A_D_D_PHOTO_CREATE_TASK_Container_2iqqw5');
+                                      logFirebaseEvent(
+                                          'Container_upload_media_to_firebase');
                                       final selectedMedia =
                                           await selectMediaWithSourceBottomSheet(
                                         context: context,
@@ -185,6 +194,8 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                                         }
                                       }
 
+                                      logFirebaseEvent(
+                                          'Container_update_app_state');
                                       FFAppState().addToFotosDaTask(
                                           _model.uploadedFileUrl_uploadData52v);
                                       FFAppState().update(() {});
@@ -260,6 +271,10 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'A_D_D_PHOTO_CREATE_TASK_Container_7696rt');
+                                    logFirebaseEvent(
+                                        'Container_upload_media_to_firebase');
                                     final selectedMedia =
                                         await selectMediaWithSourceBottomSheet(
                                       context: context,
@@ -318,6 +333,8 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                                       }
                                     }
 
+                                    logFirebaseEvent(
+                                        'Container_update_app_state');
                                     FFAppState().addToFotosDaTask(
                                         _model.uploadedFileUrl_uploadData5v);
                                     safeSetState(() {});
@@ -398,6 +415,10 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'A_D_D_PHOTO_CREATE_TASK_Container_37l8ux');
+                                      logFirebaseEvent(
+                                          'Container_upload_media_to_firebase');
                                       final selectedMedia =
                                           await selectMediaWithSourceBottomSheet(
                                         context: context,
@@ -457,6 +478,8 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                                         }
                                       }
 
+                                      logFirebaseEvent(
+                                          'Container_update_app_state');
                                       FFAppState().addToFotosDaTask(_model
                                           .uploadedFileUrl_uploadData528v);
                                       safeSetState(() {});
@@ -531,6 +554,10 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'A_D_D_PHOTO_CREATE_TASK_Container_9j9a4v');
+                                    logFirebaseEvent(
+                                        'Container_upload_media_to_firebase');
                                     final selectedMedia =
                                         await selectMediaWithSourceBottomSheet(
                                       context: context,
@@ -589,6 +616,8 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                                       }
                                     }
 
+                                    logFirebaseEvent(
+                                        'Container_update_app_state');
                                     FFAppState().addToFotosDaTask(
                                         _model.uploadedFileUrl_uploadData572v);
                                     FFAppState().update(() {});
@@ -678,9 +707,12 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                         alignment: AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 8.0, 0.0, 0.0),
+                              8.0, 8.0, 200.0, 0.0),
                           child: Text(
-                            'Remeber to add up to dated\nphotos that represent the current\nsituation of your need.',
+                            _model.addphoto
+                                ? 'You need to add a photo first before continuing.'
+                                : 'Remeber to add up to dated photos that represent the current situation of your need.',
+                            textAlign: TextAlign.start,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -692,8 +724,10 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                                         .bodyMedium
                                         .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
+                                  color: _model.addphoto
+                                      ? FlutterFlowTheme.of(context).error
+                                      : FlutterFlowTheme.of(context)
+                                          .primaryBackground,
                                   fontSize: 12.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
@@ -717,6 +751,9 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'A_D_D_PHOTO_CREATE_TASK_Icon_w49mzhkb_ON');
+                              logFirebaseEvent('Icon_navigate_back');
                               context.safePop();
                             },
                             child: Icon(
@@ -739,24 +776,34 @@ class _ADDPhotoCreateTaskWidgetState extends State<ADDPhotoCreateTaskWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              _model.pretasks =
-                                  await TasksPreProntasRecord.getDocumentOnce(
-                                      widget.pretasks!);
+                              logFirebaseEvent(
+                                  'A_D_D_PHOTO_CREATE_TASK_Icon_xttwvdpb_ON');
+                              if (FFAppState().fotosDaTask.isNotEmpty) {
+                                logFirebaseEvent('Icon_backend_call');
+                                _model.pretasks =
+                                    await TasksPreProntasRecord.getDocumentOnce(
+                                        widget.pretasks!);
+                                logFirebaseEvent('Icon_navigate_to');
 
-                              context.pushNamed(
-                                RequestCreateTaskWidget.routeName,
-                                queryParameters: {
-                                  'pretasks': serializeParam(
-                                    widget.pretasks,
-                                    ParamType.DocumentReference,
-                                  ),
-                                  'materialsList': serializeParam(
-                                    _model.pretasks?.material,
-                                    ParamType.String,
-                                    isList: true,
-                                  ),
-                                }.withoutNulls,
-                              );
+                                context.pushNamed(
+                                  RequestCreateTaskWidget.routeName,
+                                  queryParameters: {
+                                    'pretasks': serializeParam(
+                                      widget.pretasks,
+                                      ParamType.DocumentReference,
+                                    ),
+                                    'materialsList': serializeParam(
+                                      _model.pretasks?.material,
+                                      ParamType.String,
+                                      isList: true,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              } else {
+                                logFirebaseEvent('Icon_update_page_state');
+                                _model.addphoto = true;
+                                safeSetState(() {});
+                              }
 
                               safeSetState(() {});
                             },

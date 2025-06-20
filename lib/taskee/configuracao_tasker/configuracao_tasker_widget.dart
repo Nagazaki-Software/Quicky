@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'configuracao_tasker_model.dart';
@@ -28,6 +28,8 @@ class _ConfiguracaoTaskerWidgetState extends State<ConfiguracaoTaskerWidget> {
     super.initState();
     _model = createModel(context, () => ConfiguracaoTaskerModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ConfiguracaoTasker'});
     _model.switchValue = true;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -81,6 +83,9 @@ class _ConfiguracaoTaskerWidgetState extends State<ConfiguracaoTaskerWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CONFIGURACAO_TASKER_Icon_kwxafl2n_ON_TAP');
+                                      logFirebaseEvent('Icon_navigate_back');
                                       context.safePop();
                                     },
                                     child: Icon(
@@ -189,6 +194,11 @@ class _ConfiguracaoTaskerWidgetState extends State<ConfiguracaoTaskerWidget> {
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'CONFIGURACAO_TASKER_Row_a4fwwn7v_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'Row_navigate_to');
+
                                                         context.pushNamed(
                                                             PhoneNumberTaskerWidget
                                                                 .routeName);
@@ -314,6 +324,11 @@ class _ConfiguracaoTaskerWidgetState extends State<ConfiguracaoTaskerWidget> {
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'CONFIGURACAO_TASKER_Row_uh1kimm5_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'Row_navigate_to');
+
                                                         context.pushNamed(
                                                             EmailTaskerWidget
                                                                 .routeName);
@@ -441,6 +456,11 @@ class _ConfiguracaoTaskerWidgetState extends State<ConfiguracaoTaskerWidget> {
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'CONFIGURACAO_TASKER_Row_fi0yq91e_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'Row_navigate_to');
+
                                                         context.pushNamed(
                                                             PasswordTaskerWidget
                                                                 .routeName);
@@ -568,15 +588,23 @@ class _ConfiguracaoTaskerWidgetState extends State<ConfiguracaoTaskerWidget> {
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'CONFIGURACAO_TASKER_Row_vnwiccku_ON_TAP');
                                                         if (valueOrDefault<
                                                                 bool>(
                                                             currentUserDocument
                                                                 ?.verifyaccount,
                                                             false)) {
+                                                          logFirebaseEvent(
+                                                              'Row_navigate_to');
+
                                                           context.pushNamed(
                                                               PhoneNumberCopy2CopyWidget
                                                                   .routeName);
                                                         } else {
+                                                          logFirebaseEvent(
+                                                              'Row_navigate_to');
+
                                                           context.pushNamed(
                                                               PhoneNumberCopy2Widget
                                                                   .routeName);
@@ -968,6 +996,11 @@ class _ConfiguracaoTaskerWidgetState extends State<ConfiguracaoTaskerWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'CONFIGURACAO_TASKER_Row_4ti0xo66_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                       EmailNotificacaoTaskerWidget
                                                           .routeName);
@@ -1051,6 +1084,11 @@ class _ConfiguracaoTaskerWidgetState extends State<ConfiguracaoTaskerWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'CONFIGURACAO_TASKER_Row_hkyri4qd_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Row_navigate_to');
+
                                                   context.pushNamed(
                                                       QuickyTeamNotificacoesTaskerWidget
                                                           .routeName);
@@ -1951,6 +1989,9 @@ class _ConfiguracaoTaskerWidgetState extends State<ConfiguracaoTaskerWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'CONFIGURACAO_TASKER_Icon_2xu4y6os_ON_TAP');
+                                  logFirebaseEvent('Icon_navigate_back');
                                   context.safePop();
                                 },
                                 child: Icon(
@@ -1973,6 +2014,9 @@ class _ConfiguracaoTaskerWidgetState extends State<ConfiguracaoTaskerWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'CONFIGURACAO_TASKER_Container_tyuoj57e_O');
+                                  logFirebaseEvent('Container_auth');
                                   GoRouter.of(context).prepareAuthEvent();
                                   await authManager.signOut();
                                   GoRouter.of(context).clearRedirectLocation();

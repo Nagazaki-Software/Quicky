@@ -39,7 +39,9 @@ class RequestCreateTaskModel extends FlutterFlowModel<RequestCreateTaskWidget> {
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   // State field(s) for PlacePicker widget.
-  FFPlace placePickerValue = FFPlace();
+  FFPlace placePickerValue1 = FFPlace();
+  // State field(s) for PlacePicker widget.
+  FFPlace placePickerValue2 = FFPlace();
   // Stores action output result for [Backend Call - Create Document] action in Container widget.
   TasksRecord? taskDocument;
 

@@ -1,8 +1,8 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/components/nav_bar_copy_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -31,6 +31,8 @@ class _RatingsTaskeesCopyWidgetState extends State<RatingsTaskeesCopyWidget> {
     super.initState();
     _model = createModel(context, () => RatingsTaskeesCopyModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'RatingsTaskeesCopy'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -913,6 +915,10 @@ class _RatingsTaskeesCopyWidgetState extends State<RatingsTaskeesCopyWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'RATINGS_TASKEES_COPY_Stack_477tt79x_ON_T');
+                                                logFirebaseEvent(
+                                                    'Stack_update_app_state');
                                                 FFAppState().selectedTabName =
                                                     'Active Tasks';
                                                 safeSetState(() {});
@@ -978,6 +984,10 @@ class _RatingsTaskeesCopyWidgetState extends State<RatingsTaskeesCopyWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'RATINGS_TASKEES_COPY_Stack_95gico26_ON_T');
+                                                logFirebaseEvent(
+                                                    'Stack_update_app_state');
                                                 FFAppState().selectedTabName =
                                                     'Messages & Calendar';
                                                 safeSetState(() {});
@@ -1048,6 +1058,10 @@ class _RatingsTaskeesCopyWidgetState extends State<RatingsTaskeesCopyWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'RATINGS_TASKEES_COPY_Stack_52lq357y_ON_T');
+                                                logFirebaseEvent(
+                                                    'Stack_update_app_state');
                                                 FFAppState().selectedTabName =
                                                     'Completed Tasks';
                                                 safeSetState(() {});
@@ -5732,6 +5746,10 @@ class _RatingsTaskeesCopyWidgetState extends State<RatingsTaskeesCopyWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'RATINGS_TASKEES_COPY_Stack_be27yupz_ON_T');
+                                                logFirebaseEvent(
+                                                    'Stack_update_app_state');
                                                 FFAppState().selectedTabName =
                                                     'Active Tasks';
                                                 safeSetState(() {});
@@ -5797,6 +5815,10 @@ class _RatingsTaskeesCopyWidgetState extends State<RatingsTaskeesCopyWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'RATINGS_TASKEES_COPY_Stack_3kiqtw9t_ON_T');
+                                                logFirebaseEvent(
+                                                    'Stack_update_app_state');
                                                 FFAppState().selectedTabName =
                                                     'Messages & Calendar';
                                                 safeSetState(() {});
@@ -5867,6 +5889,10 @@ class _RatingsTaskeesCopyWidgetState extends State<RatingsTaskeesCopyWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'RATINGS_TASKEES_COPY_Stack_gwl0hq75_ON_T');
+                                                logFirebaseEvent(
+                                                    'Stack_update_app_state');
                                                 FFAppState().selectedTabName =
                                                     'Completed Tasks';
                                                 safeSetState(() {});

@@ -2,12 +2,12 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/components/task_feita_com_sucesso_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -40,6 +40,7 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
     super.initState();
     _model = createModel(context, () => FazendoTaskModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'fazendoTask'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -143,6 +144,9 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'FAZENDO_TASK_PAGE_Icon_5wzexmve_ON_TAP');
+                                      logFirebaseEvent('Icon_navigate_back');
                                       context.safePop();
                                     },
                                     child: Icon(
@@ -181,6 +185,10 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'FAZENDO_TASK_Container_qn1kgtnz_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_upload_media_to_firebase');
                                           final selectedMedia =
                                               await selectMedia(
                                             multiImage: false,
@@ -247,6 +255,8 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                             }
                                           }
 
+                                          logFirebaseEvent(
+                                              'Container_update_page_state');
                                           _model.addToFotos(_model
                                               .uploadedFileUrl_uploadData93q);
                                           safeSetState(() {});
@@ -309,6 +319,10 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'FAZENDO_TASK_Container_0phdrrsl_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_upload_media_to_firebase');
                                           final selectedMedia =
                                               await selectMedia(
                                             multiImage: false,
@@ -375,6 +389,8 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                             }
                                           }
 
+                                          logFirebaseEvent(
+                                              'Container_update_page_state');
                                           _model.addToFotos(_model
                                               .uploadedFileUrl_uploadData93qewr);
                                           safeSetState(() {});
@@ -437,6 +453,10 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'FAZENDO_TASK_Container_uo57wm45_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_upload_media_to_firebase');
                                           final selectedMedia =
                                               await selectMedia(
                                             multiImage: false,
@@ -503,6 +523,8 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                             }
                                           }
 
+                                          logFirebaseEvent(
+                                              'Container_update_page_state');
                                           _model.addToFotos(_model
                                               .uploadedFileUrl_uploadData9gf3q);
                                           safeSetState(() {});
@@ -562,6 +584,10 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'FAZENDO_TASK_Container_l82dfujm_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_upload_media_to_firebase');
                                           final selectedMedia =
                                               await selectMedia(
                                             multiImage: false,
@@ -628,6 +654,8 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                             }
                                           }
 
+                                          logFirebaseEvent(
+                                              'Container_update_page_state');
                                           _model.addToFotos(_model
                                               .uploadedFileUrl_uploadData9fdgd);
                                           safeSetState(() {});
@@ -687,6 +715,10 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'FAZENDO_TASK_Container_52fv54z1_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_upload_media_to_firebase');
                                           final selectedMedia =
                                               await selectMedia(
                                             multiImage: false,
@@ -753,6 +785,8 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                             }
                                           }
 
+                                          logFirebaseEvent(
+                                              'Container_update_page_state');
                                           _model.addToFotos(_model
                                               .uploadedFileUrl_uploadDataEr46);
                                           safeSetState(() {});
@@ -1116,6 +1150,11 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                                                           stepItem] =
                                                                       newValue!);
                                                               if (newValue!) {
+                                                                logFirebaseEvent(
+                                                                    'FAZENDO_TASK_Checkbox_gse0v12r_ON_TOGGLE');
+                                                                logFirebaseEvent(
+                                                                    'Checkbox_backend_call');
+
                                                                 await widget
                                                                     .task!
                                                                     .update({
@@ -1132,6 +1171,8 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                                                     },
                                                                   ),
                                                                 });
+                                                                logFirebaseEvent(
+                                                                    'Checkbox_trigger_push_notification');
                                                                 triggerPushNotification(
                                                                   notificationTitle:
                                                                       'Step completed!',
@@ -1148,6 +1189,11 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                                                                   parameterData: {},
                                                                 );
                                                               } else {
+                                                                logFirebaseEvent(
+                                                                    'FAZENDO_TASK_Checkbox_gse0v12r_ON_TOGGLE');
+                                                                logFirebaseEvent(
+                                                                    'Checkbox_backend_call');
+
                                                                 await widget
                                                                     .task!
                                                                     .update({
@@ -1204,6 +1250,9 @@ class _FazendoTaskWidgetState extends State<FazendoTaskWidget> {
                             ),
                             FFButtonWidget(
                               onPressed: () async {
+                                logFirebaseEvent(
+                                    'FAZENDO_TASK_PAGE_FINISH_TASK_BTN_ON_TAP');
+                                logFirebaseEvent('Button_bottom_sheet');
                                 await showModalBottomSheet(
                                   isScrollControlled: true,
                                   backgroundColor: Colors.transparent,

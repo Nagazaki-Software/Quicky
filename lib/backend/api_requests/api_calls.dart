@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
-import 'api_manager.dart';
+import 'package:ff_commons/api_requests/api_manager.dart';
 
-export 'api_manager.dart' show ApiCallResponse;
+
+export 'package:ff_commons/api_requests/api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
@@ -637,20 +638,57 @@ class GetSaldoCall {
       ));
 }
 
-class ApiPagingParams {
-  int nextPageNumber = 0;
-  int numItems = 0;
-  dynamic lastResponse;
+class RejetedTaskCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'rejetedTask',
+      apiUrl:
+          'https://us-central1-quick-b108e.cloudfunctions.net/rejectedTask/check-task?taskId=NXkirmKIhtJx3tY1s6CQ&currentTime=2025-06-17T18:00:00Z',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
 
-  ApiPagingParams({
-    required this.nextPageNumber,
-    required this.numItems,
-    required this.lastResponse,
-  });
+class LantlngForStringCall {
+  static Future<ApiCallResponse> call({
+    String? latlng = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'lantlng for string',
+      apiUrl:
+          'https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyCFBfcNHFg97sM7EhKnAP4OHIoY3Q8Y_xQ',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'latlng': latlng,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 
-  @override
-  String toString() =>
-      'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
+  static List<String>? formatAddress(dynamic response) => (getJsonField(
+        response,
+        r'''$.results[:].formatted_address''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 String _toEncodable(dynamic item) {

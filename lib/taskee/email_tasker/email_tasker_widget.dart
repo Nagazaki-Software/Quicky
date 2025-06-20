@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'email_tasker_model.dart';
@@ -27,6 +27,7 @@ class _EmailTaskerWidgetState extends State<EmailTaskerWidget> {
     super.initState();
     _model = createModel(context, () => EmailTaskerModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'emailTasker'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -80,6 +81,9 @@ class _EmailTaskerWidgetState extends State<EmailTaskerWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'EMAIL_TASKER_PAGE_Icon_ukd086r6_ON_TAP');
+                                    logFirebaseEvent('Icon_navigate_back');
                                     context.safePop();
                                   },
                                   child: Icon(
@@ -385,6 +389,9 @@ class _EmailTaskerWidgetState extends State<EmailTaskerWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'EMAIL_TASKER_Container_80j5b7i4_ON_TAP');
+                                    logFirebaseEvent('Container_auth');
                                     GoRouter.of(context).prepareAuthEvent();
                                     await authManager.signOut();
                                     GoRouter.of(context)

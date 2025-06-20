@@ -1,6 +1,6 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'task_overview_model.dart';
@@ -26,6 +26,8 @@ class _TaskOverviewWidgetState extends State<TaskOverviewWidget> {
     super.initState();
     _model = createModel(context, () => TaskOverviewModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'taskOverview'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 

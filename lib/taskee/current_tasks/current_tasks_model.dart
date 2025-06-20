@@ -20,11 +20,9 @@ class CurrentTasksModel extends FlutterFlowModel<CurrentTasksWidget> {
   // Model for verifiyaccounturgent component.
   late VerifiyaccounturgentModel verifiyaccounturgentModel;
   // State field(s) for Calendar widget.
-  DateTimeRange? calendarSelectedDay1;
+  DateTimeRange? calendarSelectedDay;
   // Model for navBarCopy component.
   late NavBarCopyModel navBarCopyModel;
-  // State field(s) for Calendar widget.
-  DateTimeRange? calendarSelectedDay2;
   // Model for navBar component.
   late NavBarModel navBarModel;
 
@@ -32,15 +30,11 @@ class CurrentTasksModel extends FlutterFlowModel<CurrentTasksWidget> {
   void initState(BuildContext context) {
     verifiyaccounturgentModel =
         createModel(context, () => VerifiyaccounturgentModel());
-    calendarSelectedDay1 = DateTimeRange(
+    calendarSelectedDay = DateTimeRange(
       start: DateTime.now().startOfDay,
       end: DateTime.now().endOfDay,
     );
     navBarCopyModel = createModel(context, () => NavBarCopyModel());
-    calendarSelectedDay2 = DateTimeRange(
-      start: DateTime.now().startOfDay,
-      end: DateTime.now().endOfDay,
-    );
     navBarModel = createModel(context, () => NavBarModel());
   }
 

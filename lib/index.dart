@@ -76,3 +76,8 @@ export '/taskee/phone_number_copy2_copy/phone_number_copy2_copy_widget.dart'
 export '/tasker/fazendo_task/fazendo_task_widget.dart' show FazendoTaskWidget;
 export '/taskee/ratings_tasker/ratings_tasker_widget.dart'
     show RatingsTaskerWidget;
+export '/dkjfjdskfsd4/dkjfjdskfsd4_widget.dart' show Dkjfjdskfsd4Widget;
+export '/captura_de_camera/captura_de_camera_widget.dart'
+    show CapturaDeCameraWidget;
+export '/quicky_solutions/quicky_solutions_widget.dart'
+    show QuickySolutionsWidget;

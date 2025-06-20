@@ -62,7 +62,10 @@ class _StripePaymentIntentWidgetState extends State<StripePaymentIntentWidget> {
           height: MediaQuery.sizeOf(context).height * 0.5,
           emailDoCliente: currentUserEmail,
           customerName: currentUserDisplayName,
-          amount: widget.value!,
+          amount: valueOrDefault<double>(
+            widget.value,
+            0.0,
+          ),
           description: widget.momento == 'requestTask'
               ? 'Request Task in Quicky'
               : 'Deposit Quicky Wallet',
@@ -73,9 +76,12 @@ class _StripePaymentIntentWidgetState extends State<StripePaymentIntentWidget> {
             0,
           ),
           onPaymentSuccess: (status, paymentId) async {
+            logFirebaseEvent('STRIPE_PAYMENT_INTENT_Container_amx49fr2');
             if (widget.momento == 'requestTask') {
               if (paymentId != null && paymentId != '') {
                 if (widget.task != null) {
+                  logFirebaseEvent('StripePaymentWidget_backend_call');
+
                   await currentUserReference!.update({
                     ...createUsersRecordData(
                       transferId: paymentId,
@@ -88,21 +94,29 @@ class _StripePaymentIntentWidgetState extends State<StripePaymentIntentWidget> {
                     ),
                   });
                 } else {
+                  logFirebaseEvent('StripePaymentWidget_backend_call');
+
                   await widget.task!.update(createTasksRecordData(
                     status: 'Not paid',
                   ));
                 }
 
+                logFirebaseEvent('StripePaymentWidget_bottom_sheet');
                 Navigator.pop(context);
+                logFirebaseEvent('StripePaymentWidget_navigate_to');
 
                 context.pushNamed(RequestEvaluationWidget.routeName);
               } else {
+                logFirebaseEvent('StripePaymentWidget_backend_call');
+
                 await widget.task!.update(createTasksRecordData(
                   status: 'Not paid',
                 ));
               }
             } else {
               if (paymentId != null && paymentId != '') {
+                logFirebaseEvent('StripePaymentWidget_backend_call');
+
                 await currentUserReference!.update({
                   ...createUsersRecordData(
                     transferId: paymentId,
@@ -113,6 +127,7 @@ class _StripePaymentIntentWidgetState extends State<StripePaymentIntentWidget> {
                     },
                   ),
                 });
+                logFirebaseEvent('StripePaymentWidget_bottom_sheet');
                 await showModalBottomSheet(
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,

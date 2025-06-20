@@ -4,10 +4,10 @@ import '/components/nav_bar_widget.dart';
 import '/components/nousersranking_copy_widget.dart';
 import '/components/text_field_raties_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -39,6 +39,8 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
     super.initState();
     _model = createModel(context, () => RatingsTaskeesModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'RatingsTaskees'});
     animationsMap.addAll({
       'stackOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -530,10 +532,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                       hoverColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
+                                                                                        logFirebaseEvent('RATINGS_TASKEES_Column_1ahggiqo_ON_TAP');
                                                                                         if (_model.feedback1 == 0) {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = null;
                                                                                           safeSetState(() {});
                                                                                         } else {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = 0;
                                                                                           safeSetState(() {});
                                                                                         }
@@ -564,10 +569,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                       hoverColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
+                                                                                        logFirebaseEvent('RATINGS_TASKEES_Column_elpsdcz4_ON_TAP');
                                                                                         if (_model.feedback1 == 1) {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = null;
                                                                                           safeSetState(() {});
                                                                                         } else {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = 1;
                                                                                           safeSetState(() {});
                                                                                         }
@@ -598,10 +606,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                       hoverColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
+                                                                                        logFirebaseEvent('RATINGS_TASKEES_Column_1fnaoi03_ON_TAP');
                                                                                         if (_model.feedback1 == 2) {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = null;
                                                                                           safeSetState(() {});
                                                                                         } else {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = 2;
                                                                                           safeSetState(() {});
                                                                                         }
@@ -632,10 +643,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                       hoverColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
+                                                                                        logFirebaseEvent('RATINGS_TASKEES_Column_lhilx92e_ON_TAP');
                                                                                         if (_model.feedback1 == 3) {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = null;
                                                                                           safeSetState(() {});
                                                                                         } else {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = 3;
                                                                                           safeSetState(() {});
                                                                                         }
@@ -666,10 +680,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                       hoverColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
+                                                                                        logFirebaseEvent('RATINGS_TASKEES_Column_wd1crcly_ON_TAP');
                                                                                         if (_model.feedback1 == 4) {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = null;
                                                                                           safeSetState(() {});
                                                                                         } else {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = 4;
                                                                                           safeSetState(() {});
                                                                                         }
@@ -700,10 +717,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                       hoverColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
+                                                                                        logFirebaseEvent('RATINGS_TASKEES_Column_vleh60wz_ON_TAP');
                                                                                         if (_model.feedback1 == 5) {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = null;
                                                                                           safeSetState(() {});
                                                                                         } else {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = 5;
                                                                                           safeSetState(() {});
                                                                                         }
@@ -734,10 +754,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                       hoverColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
+                                                                                        logFirebaseEvent('RATINGS_TASKEES_Column_26vkll6z_ON_TAP');
                                                                                         if (_model.feedback1 == 6) {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = null;
                                                                                           safeSetState(() {});
                                                                                         } else {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = 6;
                                                                                           safeSetState(() {});
                                                                                         }
@@ -833,10 +856,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                       hoverColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
+                                                                                        logFirebaseEvent('RATINGS_TASKEES_Column_7l1uxc0o_ON_TAP');
                                                                                         if (_model.feedback1 == 7) {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = null;
                                                                                           safeSetState(() {});
                                                                                         } else {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = 7;
                                                                                           safeSetState(() {});
                                                                                         }
@@ -867,10 +893,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                       hoverColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
+                                                                                        logFirebaseEvent('RATINGS_TASKEES_Column_wjqn8cle_ON_TAP');
                                                                                         if (_model.feedback1 == 8) {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = null;
                                                                                           safeSetState(() {});
                                                                                         } else {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = 8;
                                                                                           safeSetState(() {});
                                                                                         }
@@ -966,10 +995,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                       hoverColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
+                                                                                        logFirebaseEvent('RATINGS_TASKEES_Column_c8dgtvqm_ON_TAP');
                                                                                         if (_model.feedback1 == 9) {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = null;
                                                                                           safeSetState(() {});
                                                                                         } else {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = 9;
                                                                                           safeSetState(() {});
                                                                                         }
@@ -1000,10 +1032,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                       hoverColor: Colors.transparent,
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
+                                                                                        logFirebaseEvent('RATINGS_TASKEES_Column_fj4z12yk_ON_TAP');
                                                                                         if (_model.feedback1 == 10) {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = null;
                                                                                           safeSetState(() {});
                                                                                         } else {
+                                                                                          logFirebaseEvent('Column_update_page_state');
                                                                                           _model.feedback1 = 10;
                                                                                           safeSetState(() {});
                                                                                         }
@@ -1173,10 +1208,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_fvovdliq_ON_TAP');
                                                                                       if (_model.feedback1 == 0) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback1 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback1 = 0;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1242,10 +1280,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_72odf1pt_ON_TAP');
                                                                                       if (_model.feedback1 == 8) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback1 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback1 = 8;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1487,10 +1528,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_yxjzjjud_ON_TAP');
                                                                                       if (_model.feedback2 == 0) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 0;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1521,10 +1565,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_qh7rot1b_ON_TAP');
                                                                                       if (_model.feedback2 == 1) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 1;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1555,10 +1602,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_5bb51ll1_ON_TAP');
                                                                                       if (_model.feedback2 == 2) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 2;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1589,10 +1639,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_yftdzdva_ON_TAP');
                                                                                       if (_model.feedback2 == 3) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 3;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1623,10 +1676,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_mxsr4697_ON_TAP');
                                                                                       if (_model.feedback2 == 4) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 4;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1657,10 +1713,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_qx00bn7u_ON_TAP');
                                                                                       if (_model.feedback2 == 5) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 5;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1691,10 +1750,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_adehuvez_ON_TAP');
                                                                                       if (_model.feedback2 == 6) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 6;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1793,10 +1855,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_hyot5ace_ON_TAP');
                                                                                       if (_model.feedback2 == 7) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 7;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1827,10 +1892,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_4xeh2bb8_ON_TAP');
                                                                                       if (_model.feedback2 == 8) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 8;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1929,10 +1997,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_5x5vc6la_ON_TAP');
                                                                                       if (_model.feedback2 == 9) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 9;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -1963,10 +2034,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_7licxugr_ON_TAP');
                                                                                       if (_model.feedback2 == 10) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 10;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2208,10 +2282,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_8hmggmiy_ON_TAP');
                                                                                       if (_model.feedback2 == 0) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 0;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2242,10 +2319,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_auza7zmx_ON_TAP');
                                                                                       if (_model.feedback2 == 1) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 1;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2276,10 +2356,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_tk86fiv9_ON_TAP');
                                                                                       if (_model.feedback2 == 2) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 2;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2310,10 +2393,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_f7dkggp0_ON_TAP');
                                                                                       if (_model.feedback2 == 3) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 3;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2344,10 +2430,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_ylux1u9j_ON_TAP');
                                                                                       if (_model.feedback2 == 4) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 4;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2378,10 +2467,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_yhxc5t8o_ON_TAP');
                                                                                       if (_model.feedback2 == 5) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 5;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2412,10 +2504,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_7gph3j1l_ON_TAP');
                                                                                       if (_model.feedback2 == 6) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 6;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2514,10 +2609,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_tqi4mbjk_ON_TAP');
                                                                                       if (_model.feedback2 == 7) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 7;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2548,10 +2646,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_5yi328j4_ON_TAP');
                                                                                       if (_model.feedback2 == 8) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 8;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2650,10 +2751,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_7f8s6cus_ON_TAP');
                                                                                       if (_model.feedback2 == 9) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 9;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2684,10 +2788,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_4mvub1k7_ON_TAP');
                                                                                       if (_model.feedback2 == 10) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 10;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2929,10 +3036,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_yuxmep9q_ON_TAP');
                                                                                       if (_model.feedback2 == 0) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 0;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2963,10 +3073,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_p6rd91es_ON_TAP');
                                                                                       if (_model.feedback2 == 1) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 1;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -2997,10 +3110,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_6gsw223q_ON_TAP');
                                                                                       if (_model.feedback2 == 2) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 2;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -3031,10 +3147,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_8ma0t987_ON_TAP');
                                                                                       if (_model.feedback2 == 3) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 3;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -3065,10 +3184,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_xuyzyg41_ON_TAP');
                                                                                       if (_model.feedback2 == 4) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 4;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -3099,10 +3221,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_yftgdco9_ON_TAP');
                                                                                       if (_model.feedback2 == 5) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 5;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -3133,10 +3258,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_g8kqme8i_ON_TAP');
                                                                                       if (_model.feedback2 == 6) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 6;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -3235,10 +3363,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_0xcn99za_ON_TAP');
                                                                                       if (_model.feedback2 == 7) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 7;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -3269,10 +3400,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_unh5epn0_ON_TAP');
                                                                                       if (_model.feedback2 == 8) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 8;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -3371,10 +3505,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_uti42g77_ON_TAP');
                                                                                       if (_model.feedback2 == 9) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 9;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -3405,10 +3542,13 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                                                                     hoverColor: Colors.transparent,
                                                                                     highlightColor: Colors.transparent,
                                                                                     onTap: () async {
+                                                                                      logFirebaseEvent('RATINGS_TASKEES_Column_e1fuhefj_ON_TAP');
                                                                                       if (_model.feedback2 == 10) {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = null;
                                                                                         safeSetState(() {});
                                                                                       } else {
+                                                                                        logFirebaseEvent('Column_update_page_state');
                                                                                         _model.feedback2 = 10;
                                                                                         safeSetState(() {});
                                                                                       }
@@ -7939,6 +8079,10 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'RATINGS_TASKEES_Stack_zw7pa5hq_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Stack_update_app_state');
                                                 FFAppState()
                                                         .selectedRakingPages =
                                                     'About the task';
@@ -8005,6 +8149,10 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
+                                                logFirebaseEvent(
+                                                    'RATINGS_TASKEES_Stack_9dguqqo2_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Stack_update_app_state');
                                                 FFAppState()
                                                         .selectedRakingPages =
                                                     'About the tasker';
@@ -8067,6 +8215,10 @@ class _RatingsTaskeesWidgetState extends State<RatingsTaskeesWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'RATINGS_TASKEES_Container_aye94b0y_ON_TA');
+                                            logFirebaseEvent(
+                                                'Container_update_page_state');
                                             _model.indexs = _model.indexs! + 1;
                                             safeSetState(() {});
                                           },

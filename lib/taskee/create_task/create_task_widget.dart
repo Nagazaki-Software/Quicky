@@ -1,7 +1,8 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'create_task_model.dart';
@@ -27,6 +28,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
     super.initState();
     _model = createModel(context, () => CreateTaskModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'CreateTask'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -75,6 +77,61 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                             ),
                       ),
                     ),
+                    if (!valueOrDefault<bool>(
+                        currentUserDocument?.verifyaccount, false))
+                      AuthUserStreamWidget(
+                        builder: (context) => InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            logFirebaseEvent(
+                                'CREATE_TASK_PAGE_Row_47e5yjkm_ON_TAP');
+                            logFirebaseEvent('Row_navigate_to');
+
+                            context.pushNamed(PhoneNumberCopy2Widget.routeName);
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Text(
+                                  'Active your account to continue',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w300,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w300,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                        lineHeight: 1.0,
+                                      ),
+                                ),
+                              ),
+                              Icon(
+                                Icons.chevron_right_sharp,
+                                color: FlutterFlowTheme.of(context).error,
+                                size: 24.0,
+                              ),
+                            ].divide(SizedBox(width: 4.0)),
+                          ),
+                        ),
+                      ),
                   ].divide(SizedBox(height: 14.0)),
                 ),
               ].divide(SizedBox(height: 20.0)),
@@ -96,56 +153,65 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                   alignment: AlignmentDirectional(1.0, 1.0),
                   child: Stack(
                     children: [
-                      Align(
-                        alignment: AlignmentDirectional(1.0, 0.0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 22.0, 0.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              context.pushNamed(SelectTaskWidget.routeName);
-                            },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'START HERE',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.poppins(
-                                          fontWeight: FontWeight.w300,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        fontSize: 24.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w300,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
+                      if (valueOrDefault<bool>(
+                          currentUserDocument?.verifyaccount, false))
+                        Align(
+                          alignment: AlignmentDirectional(1.0, 0.0),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 22.0, 0.0, 0.0),
+                            child: AuthUserStreamWidget(
+                              builder: (context) => InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'CREATE_TASK_PAGE_Row_h20gfoc5_ON_TAP');
+                                  logFirebaseEvent('Row_navigate_to');
+
+                                  context.pushNamed(SelectTaskWidget.routeName);
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      'START HERE',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.poppins(
+                                              fontWeight: FontWeight.w300,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            fontSize: 24.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w300,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right_rounded,
+                                      color: Colors.white,
+                                      size: 35.0,
+                                    ),
+                                  ],
                                 ),
-                                Icon(
-                                  Icons.chevron_right_rounded,
-                                  color: Colors.white,
-                                  size: 35.0,
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
                       wrapWithModel(
                         model: _model.navBarModel,
                         updateCallback: () => safeSetState(() {}),

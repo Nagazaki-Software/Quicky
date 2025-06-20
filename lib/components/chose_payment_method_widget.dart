@@ -1,11 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/components/stripe_payment_intent_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'chose_payment_method_model.dart';
@@ -17,10 +16,12 @@ class ChosePaymentMethodWidget extends StatefulWidget {
     super.key,
     required this.value,
     required this.task,
+    this.fastPass,
   });
 
   final double? value;
   final DocumentReference? task;
+  final int? fastPass;
 
   @override
   State<ChosePaymentMethodWidget> createState() =>
@@ -229,9 +230,17 @@ class _ChosePaymentMethodWidgetState extends State<ChosePaymentMethodWidget> {
                               safeSetState(
                                   () => _model.checkboxValue1 = newValue!);
                               if (newValue!) {
+                                logFirebaseEvent(
+                                    'CHOSE_PAYMENT_METHOD_Checkbox_146h1yf7_O');
+                                logFirebaseEvent(
+                                    'Checkbox_update_component_state');
                                 _model.chose = 'accountBalance';
                                 safeSetState(() {});
                               } else {
+                                logFirebaseEvent(
+                                    'CHOSE_PAYMENT_METHOD_Checkbox_146h1yf7_O');
+                                logFirebaseEvent(
+                                    'Checkbox_update_component_state');
                                 _model.chose = 'accountBalance';
                                 safeSetState(() {});
                               }
@@ -365,9 +374,17 @@ class _ChosePaymentMethodWidgetState extends State<ChosePaymentMethodWidget> {
                               safeSetState(
                                   () => _model.checkboxValue2 = newValue!);
                               if (newValue!) {
+                                logFirebaseEvent(
+                                    'CHOSE_PAYMENT_METHOD_Checkbox_x0laddyx_O');
+                                logFirebaseEvent(
+                                    'Checkbox_update_component_state');
                                 _model.chose = 'creditCard';
                                 safeSetState(() {});
                               } else {
+                                logFirebaseEvent(
+                                    'CHOSE_PAYMENT_METHOD_Checkbox_x0laddyx_O');
+                                logFirebaseEvent(
+                                    'Checkbox_update_component_state');
                                 _model.chose = 'accountBalance';
                                 safeSetState(() {});
                               }
@@ -393,12 +410,10 @@ class _ChosePaymentMethodWidgetState extends State<ChosePaymentMethodWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    _model.getSaldo = await GetSaldoCall.call(
-                      connectedAccountId: valueOrDefault(
-                          currentUserDocument?.clienteStripeId, ''),
-                    );
-
+                    logFirebaseEvent(
+                        'CHOSE_PAYMENT_METHOD_CONTINUE_BTN_ON_TAP');
                     if (_model.chose == 'creditCard') {
+                      logFirebaseEvent('Button_bottom_sheet');
                       await showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: Colors.transparent,
@@ -411,6 +426,7 @@ class _ChosePaymentMethodWidgetState extends State<ChosePaymentMethodWidget> {
                               value: widget.value!,
                               momento: 'requestTask',
                               task: widget.task,
+                              fastpass: 0,
                             ),
                           );
                         },
@@ -418,6 +434,8 @@ class _ChosePaymentMethodWidgetState extends State<ChosePaymentMethodWidget> {
                     } else {
                       if (valueOrDefault(currentUserDocument?.saldo, 0.0) >=
                           widget.value!) {
+                        logFirebaseEvent('Button_backend_call');
+
                         await currentUserReference!.update({
                           ...mapToFirestore(
                             {
@@ -425,9 +443,11 @@ class _ChosePaymentMethodWidgetState extends State<ChosePaymentMethodWidget> {
                             },
                           ),
                         });
+                        logFirebaseEvent('Button_navigate_to');
 
                         context.pushNamed(RequestEvaluationWidget.routeName);
                       } else {
+                        logFirebaseEvent('Button_bottom_sheet');
                         await showModalBottomSheet(
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
@@ -446,8 +466,6 @@ class _ChosePaymentMethodWidgetState extends State<ChosePaymentMethodWidget> {
                         ).then((value) => safeSetState(() {}));
                       }
                     }
-
-                    safeSetState(() {});
                   },
                   text: 'CONTINUE',
                   icon: Icon(

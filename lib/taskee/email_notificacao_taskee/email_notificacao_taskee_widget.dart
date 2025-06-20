@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'email_notificacao_taskee_model.dart';
@@ -29,6 +29,8 @@ class _EmailNotificacaoTaskeeWidgetState
     super.initState();
     _model = createModel(context, () => EmailNotificacaoTaskeeModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'emailNotificacaoTaskee'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -85,6 +87,9 @@ class _EmailNotificacaoTaskeeWidgetState
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'EMAIL_NOTIFICACAO_TASKEE_Icon_olp14c5z_O');
+                                    logFirebaseEvent('Icon_navigate_back');
                                     context.safePop();
                                   },
                                   child: Icon(
@@ -643,6 +648,9 @@ class _EmailNotificacaoTaskeeWidgetState
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'EMAIL_NOTIFICACAO_TASKEE_Container_8dpa7');
+                                    logFirebaseEvent('Container_auth');
                                     GoRouter.of(context).prepareAuthEvent();
                                     await authManager.signOut();
                                     GoRouter.of(context)

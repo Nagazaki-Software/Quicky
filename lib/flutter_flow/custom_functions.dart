@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'lat_lng.dart';
-import 'place.dart';
-import 'uploaded_file.dart';
+import 'package:ff_commons/flutter_flow/lat_lng.dart';
+import 'package:ff_commons/flutter_flow/place.dart';
+import 'package:ff_commons/flutter_flow/uploaded_file.dart';
 import '/backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '/backend/schema/structs/index.dart';
@@ -480,4 +480,43 @@ List<ChatRecord> retorneBaseadoNahora(
     return chatTime.isAfter(horario.subtract(Duration(hours: 1))) &&
         chatTime.isBefore(horario.add(Duration(hours: 1)));
   }).toList();
+}
+
+LatLng newCustomFunction(
+  LatLng locationUser,
+  List<LatLng> comunnityLocation,
+) {
+  const double earthRadius = 6371;
+  LatLng closestLocation = locationUser;
+  double closestDistance = double.infinity;
+
+  for (LatLng community in comunnityLocation) {
+    double dLat = (community.latitude - locationUser.latitude) * math.pi / 180;
+    double dLon =
+        (community.longitude - locationUser.longitude) * math.pi / 180;
+    double a = math.sin(dLat / 2) * math.sin(dLat / 2) +
+        math.cos(locationUser.latitude * math.pi / 180) *
+            math.cos(community.latitude * math.pi / 180) *
+            math.sin(dLon / 2) *
+            math.sin(dLon / 2);
+    double c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
+    double distance = earthRadius * c;
+
+    if (distance < 30 && distance < closestDistance) {
+      closestDistance = distance;
+      closestLocation = community;
+    }
+  }
+
+  return closestLocation;
+}
+
+DateTime retornedaquia6horas(DateTime horarioatual) {
+  // retorne 6 horas depois do horario atual
+  return horarioatual.add(Duration(hours: 6));
+}
+
+String latlngsemespaco(LatLng location) {
+  // retorne o latlng assim: "-42.98777,-18.32132"
+  return '${location.latitude},${location.longitude}';
 }

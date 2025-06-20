@@ -1,10 +1,10 @@
 import '/backend/backend.dart';
 import '/components/navbar_create_tasks_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -36,6 +36,7 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
     super.initState();
     _model = createModel(context, () => SelectTaskModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'SelectTask'});
     animationsMap.addAll({
       'columnOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -143,10 +144,8 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                         ),
                       ),
                     ),
-                    ListView(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         Column(
                           mainAxisSize: MainAxisSize.max,
@@ -187,6 +186,10 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'SELECT_TASK_PAGE_Icon_80evjl7s_ON_TAP');
+                                        logFirebaseEvent(
+                                            'Icon_update_page_state');
                                         _model.openPage = 'Nada';
                                         safeSetState(() {});
                                       },
@@ -204,7 +207,14 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        _model.openPage = 'Property & Grounds';
+                                        logFirebaseEvent(
+                                            'SELECT_TASK_PAGE_Icon_rqpb52oc_ON_TAP');
+                                        logFirebaseEvent(
+                                            'Icon_update_page_state');
+                                        _model.openPage =
+                                            _model.openPage == 'All'
+                                                ? 'Nada'
+                                                : 'Property & Grounds';
                                         safeSetState(() {});
                                       },
                                       child: FaIcon(
@@ -508,6 +518,9 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                                                                 Colors.transparent,
                                                                             onTap:
                                                                                 () async {
+                                                                              logFirebaseEvent('SELECT_TASK_Container_vywo2sa8_ON_TAP');
+                                                                              logFirebaseEvent('Container_navigate_to');
+
                                                                               context.pushNamed(
                                                                                 ADDPhotoCreateTaskWidget.routeName,
                                                                                 queryParameters: {
@@ -805,6 +818,11 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                                                         .transparent,
                                                                 onTap:
                                                                     () async {
+                                                                  logFirebaseEvent(
+                                                                      'SELECT_TASK_Container_unvguwu7_ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'Container_navigate_to');
+
                                                                   context
                                                                       .pushNamed(
                                                                     ADDPhotoCreateTaskWidget
@@ -1028,6 +1046,10 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'SELECT_TASK_PAGE_Icon_ewe5m48j_ON_TAP');
+                                        logFirebaseEvent(
+                                            'Icon_update_page_state');
                                         _model.openPage = 'Nada';
                                         safeSetState(() {});
                                       },
@@ -1045,6 +1067,10 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'SELECT_TASK_PAGE_Icon_220ekw61_ON_TAP');
+                                        logFirebaseEvent(
+                                            'Icon_update_page_state');
                                         _model.openPage = 'Concierge & Errands';
                                         safeSetState(() {});
                                       },
@@ -1349,6 +1375,9 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                                                                 Colors.transparent,
                                                                             onTap:
                                                                                 () async {
+                                                                              logFirebaseEvent('SELECT_TASK_Container_ba9zyu4c_ON_TAP');
+                                                                              logFirebaseEvent('Container_navigate_to');
+
                                                                               context.pushNamed(
                                                                                 ADDPhotoCreateTaskWidget.routeName,
                                                                                 queryParameters: {
@@ -1646,6 +1675,11 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                                                         .transparent,
                                                                 onTap:
                                                                     () async {
+                                                                  logFirebaseEvent(
+                                                                      'SELECT_TASK_Container_7uw3a1v2_ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'Container_navigate_to');
+
                                                                   context
                                                                       .pushNamed(
                                                                     ADDPhotoCreateTaskWidget
@@ -1872,6 +1906,10 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'SELECT_TASK_PAGE_Icon_helyjwc1_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Icon_update_page_state');
                                           _model.openPage = 'Nada';
                                           safeSetState(() {});
                                         },
@@ -1889,6 +1927,10 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'SELECT_TASK_PAGE_Icon_rdxzeibd_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Icon_update_page_state');
                                           _model.openPage = 'Events & Other';
                                           safeSetState(() {});
                                         },
@@ -2176,6 +2218,9 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                                                               hoverColor: Colors.transparent,
                                                                               highlightColor: Colors.transparent,
                                                                               onTap: () async {
+                                                                                logFirebaseEvent('SELECT_TASK_Container_42jqc94u_ON_TAP');
+                                                                                logFirebaseEvent('Container_navigate_to');
+
                                                                                 context.pushNamed(
                                                                                   ADDPhotoCreateTaskWidget.routeName,
                                                                                   queryParameters: {
@@ -2476,6 +2521,11 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                                                                           .transparent,
                                                                   onTap:
                                                                       () async {
+                                                                    logFirebaseEvent(
+                                                                        'SELECT_TASK_Container_n889qhe2_ON_TAP');
+                                                                    logFirebaseEvent(
+                                                                        'Container_navigate_to');
+
                                                                     context
                                                                         .pushNamed(
                                                                       ADDPhotoCreateTaskWidget
@@ -2658,7 +2708,7 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                             ],
                           ),
                         ),
-                      ].divide(SizedBox(height: 12.0)),
+                      ].divide(SizedBox(height: 18.0)),
                     ),
                   ].divide(SizedBox(height: 20.0)),
                 ),
@@ -2694,6 +2744,9 @@ class _SelectTaskWidgetState extends State<SelectTaskWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'SELECT_TASK_PAGE_Icon_1qhmnmmy_ON_TAP');
+                                logFirebaseEvent('Icon_navigate_back');
                                 context.safePop();
                               },
                               child: Icon(
